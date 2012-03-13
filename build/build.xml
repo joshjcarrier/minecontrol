@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<project name="Minecontrol" default="codesign" basedir="../">
+	<property name="bin.dir" location="bin" />
+	<property name="build.dir" location="build" />
+	<property name="drop.dir" location="drop" />
+	<property name="lib.dir" location="lib" />
+	<property name="codesign.dir" location="${drop.dir}/signed" />
+	
+    <target name="create_run_jar">
+    	<delete dir="${drop.dir}"/>
+    	<mkdir dir="${drop.dir}"/>
+    	<jar destfile="${drop.dir}/Minecontrol.jar">
+            <manifest>
+                <attribute name="Main-Class" value="com.joshjcarrier.minecontrol.App"/>
+                <attribute name="Class-Path" value=". jinput.jar"/>
+            </manifest>
+            <fileset dir="${bin.dir}"/>
+        </jar>
+    	<!-- Other dependencies -->
+    	<jar destfile="${drop.dir}/jinput-windows-native.jar">
+    		<fileset file="${lib.dir}/jinput-dx8_64.dll"/>
+    		<fileset file="${lib.dir}/jinput-dx8.dll"/>
+    		<fileset file="${lib.dir}/jinput-raw_64.dll"/>
+    		<fileset file="${lib.dir}/jinput-raw.dll"/>
+    		<fileset file="${lib.dir}/jinput-wintab.dll"/>
+    	</jar>
+    	<jar destfile="${drop.dir}/jinput-osx-native.jar">
+    	    <fileset file="${lib.dir}/libjinput-osx.jnilib"/>
+    	</jar>
+    	<jar destfile="${drop.dir}/jinput-linux-native.jar">
+    	    <fileset file="${lib.dir}/libjinput-linux.so"/>
+    	    <fileset file="${lib.dir}/libjinput-linux64.so"/>
+    	</jar>
+    	
+        <copy file="${lib.dir}/jinput.jar" todir="${drop.dir}"/>
+    	<copy file="${build.dir}/launch.jnlp" todir="${drop.dir}"/>
+    	<copy file="${build.dir}/htaccess.htaccess" tofile="${drop.dir}/.htaccess"/>
+    	<copy file="${build.dir}/icon.png" todir="${drop.dir}"/>
+    	
+    	<input message="Build channel (update/beta)?" addproperty="build.channel" defaultvalue="update"/>
+    	<replace file="${drop.dir}/launch.jnlp" token="@{channel}" value="${build.channel}" />
+    </target>
+	
+	<!-- Signs the bits and places them in the codesign directory  -->
+	<target name="codesign" depends="create_run_jar">
+		<input message="JarSigner: Keystore location?" addproperty="cs.keystore" defaultvalue="C:/Users/joshjcarrier/Desktop/"/>
+		<input message="JarSigner: Keystore passphrase?" addproperty="cs.storepass"/>
+		<input message="JarSigner: Keystore alias?" addproperty="cs.alias"/>
+		<input message="JarSigner: Keystore alias passphrase?" defaultvalue="${cs.storepass}" addproperty="cs.keypass"/>
+		<delete dir="${codesign.dir}"/>
+		<mkdir dir="${codesign.dir}"/>
+		<signjar destDir="${codesign.dir}" 
+			alias="${cs.alias}"
+			storepass="${cs.storepass}"
+			keystore="${cs.keystore}"
+			keypass="${cs.keypass}">
+			<path>
+				<fileset dir="${drop.dir}" includes="*.jar" />
+			</path>
+		</signjar>
+    	<copy file="${drop.dir}/launch.jnlp" todir="${codesign.dir}"/>
+    	<copy file="${build.dir}/htaccess.htaccess" tofile="${codesign.dir}/.htaccess"/>
+    	<copy file="${build.dir}/icon.png" todir="${codesign.dir}"/>
+	</target>
+</project>

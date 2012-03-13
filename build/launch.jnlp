@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+"
+  codebase="http://@{channel}.joshjcarrier.com/minecontrol"
+  href="launch.jnlp">
+<information>
+  <title>Minecontrol for Minecraft</title>
+  <vendor>Josh Carrier</vendor>
+  <homepage href="http://redirect.joshjcarrier.com?r=minecontrol" />
+  <description>Allows gamepads such as the Microsoft Xbox 360 controller to be used with Minecraft.</description>
+  <offline-allowed/>
+  <shortcut online="true">
+      <desktop/>
+      <menu submenu="Minecontrol for Minecraft"/>
+  </shortcut>
+  <icon href="http://@{channel}.joshjcarrier.com/minecontrol/icon.png"/>
+</information>
+<offline-allowed/>
+<security>
+  <all-permissions/>
+</security>
+<resources>
+  <j2se version="1.5+" />
+  <jar href="Minecontrol.jar"/>
+  <jar href="jinput.jar"/>
+</resources>
+<resources os="Windows" arch="x86_64 x86">
+  <nativelib href="jinput-windows-native.jar"/>
+</resources>
+<resources os="Linux" arch="i386 ia64 x84_64">
+  <nativelib href="jinput-linux-native.jar"/>
+</resources>
+<resources os="Mac OS">
+  <nativelib href="jinput-osx-native.jar"/>
+</resources>
+<application-desc main-class="com.joshjcarrier.minecontrol.App" />
+</jnlp>
