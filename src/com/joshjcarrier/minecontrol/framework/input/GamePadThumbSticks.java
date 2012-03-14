@@ -1,6 +1,6 @@
 package com.joshjcarrier.minecontrol.framework.input;
 
-import com.joshjcarrier.minecontrol.framework.Vector2;
+import java.awt.geom.Point2D;
 
 /**
  * The position of the left and right game pad thumb sticks.
@@ -9,21 +9,21 @@ import com.joshjcarrier.minecontrol.framework.Vector2;
  */
 public class GamePadThumbSticks
 {
-	private final Vector2 left;
-	private final Vector2 right;
+	private final Point2D left;
+	private final Point2D right;
 	
 	public GamePadThumbSticks(float leftX, float leftY, float rightX, float rightY)
 	{
-		this.left = new Vector2(leftX, leftY);
-		this.right = new Vector2(rightX, rightY);
+		this.left = new Point2D.Float(leftX, leftY);
+		this.right = new Point2D.Float(rightX, rightY);
 	}
 
-	public Vector2 getLeft()
+	public Point2D getLeft()
 	{
 		return this.left;
 	}
 	
-	public Vector2 getRight()
+	public Point2D getRight()
 	{
 		return this.right;
 	}

@@ -58,7 +58,7 @@ public class RunnableGamePadInterpreter implements Runnable
 			GamePadState gamePadState = this.gamePad.getState();
 			replayService.update(gamePadState);
 			
-			ThreadHelper.Sleep(20);
+			ThreadHelper.Sleep(5);
 		}
 	}
 

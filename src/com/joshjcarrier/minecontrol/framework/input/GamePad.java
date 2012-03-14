@@ -59,33 +59,38 @@ public class GamePad
 		}
 	};
 		
-	private final Controller controller;
+	private final Controller controller;	
+	EnumSet<Buttons> previousButtons = EnumSet.noneOf(Buttons.class);
+	float previousLeftThumbStickX = 0;
+	float previousLeftThumbStickY = 0;
+	float previousRightThumbStickX = 0;
+	float previousRightThumbStickY = 0;
+	float previousLeftTrigger = 0;
+	float previousRightTrigger = 0;
 	
 	public GamePad(Controller controller)
 	{
 		this.controller = controller;
 	}
 	
-	EnumSet<Buttons> previousButtons = EnumSet.noneOf(Buttons.class);
 	public GamePadState getState()
 	{
 		// primes the event queue with pending controller events
 		this.controller.poll();
 		
 		EnumSet<Buttons> buttons = EnumSet.copyOf(previousButtons);
-		float leftThumbStickX = 0;
-		float leftThumbStickY = 0;
-		float rightThumbStickX = 0;
-		float rightThumbStickY = 0;
-		float leftTrigger = 0;
-		float rightTrigger = 0;
-		
+		float leftThumbStickX = previousLeftThumbStickX;
+		float leftThumbStickY = previousLeftThumbStickY;
+		float rightThumbStickX = previousRightThumbStickX;
+		float rightThumbStickY = previousRightThumbStickY;
+		float leftTrigger = previousLeftTrigger;
+		float rightTrigger = previousRightTrigger;
+				
 		EventQueue queue = this.controller.getEventQueue();
 		Event event = new Event();
 				
 		// read all pending events
 		while (queue.getNextEvent(event))
-		//for (Component comp : this.controller.getComponents())
 		{
 			Component comp = event.getComponent();
 			
@@ -111,11 +116,14 @@ public class GamePad
 				}
 				else if (inputIdentifier == Identifier.Axis.Z)
 				{
-					leftTrigger = inputValue;
-				}
-				else if (inputIdentifier == Identifier.Axis.RZ)
-				{
-					rightTrigger = inputValue;
+					if (inputValue < 0)
+					{
+						rightTrigger = -inputValue;	
+					}
+					else
+					{
+						leftTrigger = inputValue;
+					}
 				}
 			} 
 			else 
@@ -162,11 +170,50 @@ public class GamePad
 			}	
 		}
 		
-		previousButtons = buttons;		
+		previousButtons = buttons;
+		
+		leftThumbStickX = getFilteredApproximation(leftThumbStickX, 0.15f, 0.9f);
+		leftThumbStickY = getFilteredApproximation(leftThumbStickY, 0.15f, 0.9f);
+		rightThumbStickX = getFilteredApproximation(rightThumbStickX, 0.15f, 0.9f);
+		rightThumbStickY = getFilteredApproximation(rightThumbStickY, 0.15f, 0.9f);
+		leftTrigger = getFilteredApproximation(leftTrigger, 0.15f, 0.9f);
+		rightTrigger = getFilteredApproximation(rightTrigger, 0.15f, 0.9f);
+		
+		previousLeftThumbStickX = leftThumbStickX;
+		previousLeftThumbStickY = leftThumbStickY;
+		previousRightThumbStickX = rightThumbStickX;
+		previousRightThumbStickY = rightThumbStickY;
+		previousLeftTrigger = leftTrigger;
+		previousRightTrigger = rightTrigger;
+		
 		return new GamePadState(
 			true, 
-			buttons, 
+			buttons.clone(), 
 			new GamePadThumbSticks(leftThumbStickX, leftThumbStickY, rightThumbStickX, rightThumbStickY), 
 			new GamePadTriggers(leftTrigger, rightTrigger));
+	}
+		
+	private float getFilteredApproximation(float value, float lowerTolerance, float upperTolerance)
+	{
+		float returnValue = 0;
+
+		if (value > upperTolerance)
+		{
+			returnValue = 1f;
+		} 
+		else if (-value > upperTolerance)
+		{
+			returnValue = -1f;
+		} 
+		else if (value < lowerTolerance && value > -lowerTolerance)
+		{
+			returnValue = 0f;
+		} 
+		else
+		{
+			returnValue = value;
+		}
+
+		return returnValue;
 	}
 }
