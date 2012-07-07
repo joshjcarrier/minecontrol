@@ -1,9 +1,10 @@
 package com.joshjcarrier.minecontrol;
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.joshjcarrier.minecontrol.services.RunnableGamePadInterpreter;
-import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
 import com.joshjcarrier.minecontrol.ui.views.MainView;
 
 /**
@@ -19,21 +20,11 @@ public class App
 	{
 		// TODO sync with minecontrol runtime
 		// controller reader service async
-		RunnableGamePadInterpreter inputReaderService = new RunnableGamePadInterpreter();
-		
-		for (GamePadWrapper device : inputReaderService.getInputReaderDevices())
-		{
-			// TODO lowercase
-			if (device.getName().contains("Xbox"))
-			{
-				inputReaderService.setInputReaderDevice(device.getController());
-			}
-		}
-		
+		RunnableGamePadInterpreter inputReaderService = new RunnableGamePadInterpreter();		
 		Thread inputReaderServiceThread = new Thread(inputReaderService);
 		inputReaderServiceThread.start();
 		
-		new MainView();
+		new MainView(inputReaderService);
 	}
 
 	/**
@@ -43,6 +34,18 @@ public class App
 	{
 		try
 		{
+			// Get the native look and feel class name
+			String nativeLF = UIManager.getSystemLookAndFeelClassName();
+
+			// Install the native look and feel, allowing startup to proceed with default look and feel if native not possible
+			try {
+			    UIManager.setLookAndFeel(nativeLF);
+			} catch (InstantiationException e) {
+			} catch (ClassNotFoundException e) {
+			} catch (UnsupportedLookAndFeelException e) {
+			} catch (IllegalAccessException e) {
+			}
+			
 			new App();
 		}
 		catch(Exception ex)

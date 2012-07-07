@@ -61,11 +61,14 @@ public class GamePadWrapperListCellRenderer extends JLabel implements ListCellRe
         this.setFont(list.getFont());
 
         // custom imaging
-        if(value instanceof GamePadWrapper)
+        if (value instanceof GamePadWrapper)
         {
-        	GamePadWrapper controller = ((GamePadWrapper)value);        	
-    	  	URL iconUrl = controller.getTileResource();
+        	GamePadWrapper controller = ((GamePadWrapper)value);
         	
+    	  	this.setText(controller.getName());
+        	
+    	  	URL iconUrl = controller.getTileResource();
+    	  	
         	// TODO consider resizing resources in advance
         	ImageIcon icon = new ImageIcon(iconUrl);
         	Image newimg = icon.getImage().getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);  

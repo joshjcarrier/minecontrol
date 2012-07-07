@@ -23,10 +23,10 @@
   <jar href="Minecontrol.jar"/>
   <jar href="jinput.jar"/>
 </resources>
-<resources os="Windows" arch="x86_64 x86">
+<resources os="Windows">
   <nativelib href="jinput-windows-native.jar"/>
 </resources>
-<resources os="Linux" arch="i386 ia64 x84_64">
+<resources os="Linux">
   <nativelib href="jinput-linux-native.jar"/>
 </resources>
 <resources os="Mac OS">

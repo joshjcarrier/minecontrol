@@ -32,6 +32,11 @@ public class GamePadWrapper
 	
 	public URL getTileResource()
 	{
+		if (this.getName().toLowerCase().contains("xbox"))
+		{
+			return this.getClass().getClassLoader().getResource("content/inputdevices/xbox360.png");
+		}
+		
 		return this.getClass().getClassLoader().getResource("content/inputdevices/generic.png"); 
 	}
 }

@@ -41,20 +41,23 @@ public class RunnableGamePadInterpreter implements Runnable
 	public void setInputReaderDevice(Controller controller)
 	{
 		this.gamePad = new GamePad(controller);
-		this.replayService = new RunnableHidReplayService();
-		Thread replayServiceThread = new Thread(replayService);
-		replayServiceThread.start();
 	}
 
 	public void run()
 	{
-		if(this.gamePad == null)
-		{
-			return;
-		}
+		this.replayService = new RunnableHidReplayService();
+		Thread replayServiceThread = new Thread(replayService);
+		replayServiceThread.start();
 		
 		while (true)
 		{
+			if (this.gamePad == null)
+			{
+				replayService.update(null);
+				ThreadHelper.Sleep(1000);
+				continue;
+			}
+			
 			GamePadState gamePadState = this.gamePad.getState();
 			replayService.update(gamePadState);
 			

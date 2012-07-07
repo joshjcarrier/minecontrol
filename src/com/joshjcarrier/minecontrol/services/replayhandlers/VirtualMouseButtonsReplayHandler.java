@@ -30,7 +30,7 @@ public class VirtualMouseButtonsReplayHandler implements IButtonsReplayHandler
 				previouslyActivated = true;
 			}
 		}
-		else
+		else if (previouslyActivated)
 		{
 			humanInterfaceDeviceService.mouseRelease(this.virtualMouseButtonMask);
 			previouslyActivated = false;
