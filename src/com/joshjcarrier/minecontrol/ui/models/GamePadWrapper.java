@@ -3,6 +3,7 @@ package com.joshjcarrier.minecontrol.ui.models;
 import java.net.URL;
 
 import com.joshjcarrier.minecontrol.framework.input.GamePad;
+import com.joshjcarrier.minecontrol.ui.ContentResources;
 
 import net.java.games.input.Controller;
 
@@ -34,9 +35,9 @@ public class GamePadWrapper
 	{
 		if (this.getName().toLowerCase().contains("xbox"))
 		{
-			return this.getClass().getClassLoader().getResource("content/inputdevices/xbox360.png");
+			return this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX360);
 		}
 		
-		return this.getClass().getClassLoader().getResource("content/inputdevices/generic.png"); 
+		return this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_GENERIC); 
 	}
 }

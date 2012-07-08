@@ -4,7 +4,25 @@
 	<property name="build.dir" location="build" />
 	<property name="drop.dir" location="drop" />
 	<property name="lib.dir" location="lib" />
+	<property name="src.dir" location="src" />
 	<property name="codesign.dir" location="${drop.dir}/signed" />
+	
+	<target name="version">
+		<input message="Version?" addproperty="Version" defaultvalue="0.0.0"/>
+		<tstamp>
+		  <format property="BuildDate"
+		          pattern="yyyymmdd"/>
+		</tstamp>
+        <echo file="${src.dir}/com/joshjcarrier/minecontrol/AppInfo.java">
+        	package com.joshjcarrier.minecontrol;
+        	
+			// This is an auto-generated file.
+			public class AppInfo
+			{
+				public static String BuildVersion = "${Version}.${BuildDate}";
+			}
+		</echo>
+	</target>
 	
     <target name="create_run_jar">
     	<delete dir="${drop.dir}"/>

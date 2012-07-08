@@ -14,8 +14,6 @@ import com.joshjcarrier.minecontrol.ui.views.MainView;
  */
 public class App
 {
-	public final static String VERSION = "2.0.0a";
-	
 	public App()
 	{
 		// TODO sync with minecontrol runtime
@@ -24,7 +22,8 @@ public class App
 		Thread inputReaderServiceThread = new Thread(inputReaderService);
 		inputReaderServiceThread.start();
 		
-		new MainView(inputReaderService);
+		MainView view = new MainView(inputReaderService);
+		view.setVisible(true);
 	}
 
 	/**
