@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 
+import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
 import com.joshjcarrier.minecontrol.framework.input.GamePad;
 import com.joshjcarrier.minecontrol.framework.input.GamePadState;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
@@ -16,14 +17,12 @@ import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
  */
 public class RunnableGamePadInterpreter implements Runnable
 {
-	//private InputReaderProfileService controllerProfileService;
-	private RunnableHidReplayService replayService;
-	//private Controller controller;
-	//private InputReaderDevice controller;
 	private GamePad gamePad;
+	private ControllerProfile profile;
 	
 	public RunnableGamePadInterpreter()
 	{
+		this.profile = new ControllerProfile();
 		//this.controllerProfileService = new InputReaderProfileService();
 	}
 	
@@ -38,14 +37,18 @@ public class RunnableGamePadInterpreter implements Runnable
 		return devices;
 	}
 	
+	public ControllerProfile getControllerProfile() {
+		return this.profile;
+	}
+	
 	public void setInputReaderDevice(Controller controller)
 	{
 		this.gamePad = new GamePad(controller);
 	}
 
 	public void run()
-	{
-		this.replayService = new RunnableHidReplayService();
+	{	
+		RunnableHidReplayService replayService = new RunnableHidReplayService(this.profile);
 		Thread replayServiceThread = new Thread(replayService);
 		replayServiceThread.start();
 		

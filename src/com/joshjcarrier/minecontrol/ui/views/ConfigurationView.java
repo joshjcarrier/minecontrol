@@ -30,13 +30,18 @@ import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
 import com.joshjcarrier.minecontrol.framework.input.Buttons;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
+import com.joshjcarrier.minecontrol.ui.parts.ConfigurationPart;
 
 public class ConfigurationView extends JDialog
 {
 	private static final long serialVersionUID = -424815020280281748L;
 	
-	public ConfigurationView()
+	private final ConfigurationPart dataContext;
+	
+	public ConfigurationView(ConfigurationPart part)
 	{
+		this.dataContext = part;
+		
 		ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX360));
     	this.setIconImage(icon.getImage());    
     	
@@ -128,6 +133,10 @@ public class ConfigurationView extends JDialog
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_E),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_ESCAPE),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F),
+					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F1),
+					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F2),
+					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F3),
+					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F4),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F5),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_I),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_Q),
@@ -175,51 +184,50 @@ public class ConfigurationView extends JDialog
 		return panel;
 	}
 	
-	private static JPanel createSensitivityPanel()
+	private JPanel createSensitivityPanel()
 	{
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
 		gridConstraints.fill = GridBagConstraints.HORIZONTAL;
 		gridConstraints.insets = new Insets(5, 0, 0, 0);
 		gridConstraints.weightx = 1;
-		JSlider lookVerticalSlider, lookHorizontalSlider, lookMouseVerticalSlider, lookMouseHorizontalSlider;
 		
 		/* Sliders for look movement sensitivity */
 		gridConstraints.gridy = 0;
 		panel.add(new JLabel("X, Y Look sensitivity (movement mode)"), gridConstraints);
 		
-		lookHorizontalSlider = new JSlider();		
+		final JSlider lookHorizontalSlider = new JSlider();		
 		lookHorizontalSlider.setMajorTickSpacing(5);
 		lookHorizontalSlider.setMinorTickSpacing(1);
 		lookHorizontalSlider.setPaintTicks(true);
 		lookHorizontalSlider.setPaintLabels(true);
 		lookHorizontalSlider.setSnapToTicks(true);
-		//lookHorizontalSlider.setValue(this.dataContext.getMouseMode1SensitivityX());
+		lookHorizontalSlider.setValue(this.dataContext.getMouseMode1SensitivityX());
 		lookHorizontalSlider.setMinimum(0);
 		lookHorizontalSlider.setMaximum(40);		
 		lookHorizontalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				//dataContext.setMouseMode1SensitivityX(lookHorizontalSlider.getValue());
+				dataContext.setMouseMode1SensitivityX(lookHorizontalSlider.getValue());
 			}
 		});		
 		
 		gridConstraints.gridy = 1;
 		panel.add(lookHorizontalSlider, gridConstraints);
 		
-		lookVerticalSlider = new JSlider();
+		final JSlider lookVerticalSlider = new JSlider();
 		lookVerticalSlider.setMajorTickSpacing(5);
 		lookVerticalSlider.setMinorTickSpacing(1);
 		lookVerticalSlider.setPaintTicks(true);
 		lookVerticalSlider.setPaintLabels(true);
 		lookVerticalSlider.setSnapToTicks(true);
-		//lookVerticalSlider.setValue(this.dataContext.getMouseMode1SensitivityY());
+		lookVerticalSlider.setValue(this.dataContext.getMouseMode1SensitivityY());
 		lookVerticalSlider.setMinimum(0);
 		lookVerticalSlider.setMaximum(40);
 		lookVerticalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				//dataContext.setMouseMode1SensitivityY(lookVerticalSlider.getValue());
+				dataContext.setMouseMode1SensitivityY(lookVerticalSlider.getValue());
 			}
 		});
 		
@@ -230,7 +238,7 @@ public class ConfigurationView extends JDialog
 		gridConstraints.gridy = 3;
 		panel.add(new JLabel("X, Y Look sensitivity (mouse mode)"), gridConstraints);
 		
-		lookMouseHorizontalSlider = new JSlider();						
+		final JSlider lookMouseHorizontalSlider = new JSlider();						
 		lookMouseHorizontalSlider.setMajorTickSpacing(5);
 		lookMouseHorizontalSlider.setMinorTickSpacing(1);
 		lookMouseHorizontalSlider.setPaintTicks(true);
@@ -249,7 +257,7 @@ public class ConfigurationView extends JDialog
 		gridConstraints.gridy = 4;
 		panel.add(lookMouseHorizontalSlider, gridConstraints);
 		
-		lookMouseVerticalSlider = new JSlider();
+		final JSlider lookMouseVerticalSlider = new JSlider();
 		lookMouseVerticalSlider.setMajorTickSpacing(5);
 		lookMouseVerticalSlider.setMinorTickSpacing(1);
 		lookMouseVerticalSlider.setPaintTicks(true);
@@ -273,12 +281,12 @@ public class ConfigurationView extends JDialog
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				//dataContext.setInvertLook(invertPitchCheckBox.isSelected());
+				dataContext.setLookInverted(invertPitchCheckBox.isSelected());
 			}
 		});
 		
 		invertPitchCheckBox.setText("Invert look up/down");
-		//invertPitchCheckBox.setSelected(this.dataContext.isInvertLook());
+		invertPitchCheckBox.setSelected(this.dataContext.isLookInverted());
 		gridConstraints.gridy = 6;
 		panel.add(invertPitchCheckBox, gridConstraints);
 		

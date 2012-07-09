@@ -15,6 +15,7 @@ import com.joshjcarrier.minecontrol.services.ReplayState;
 public class VirtualMouseMoveAnalogReplayHandler implements IAnalogReplayHandler
 {
 	private int sensitivityX = 20, sensitivityY = 20;
+	private byte invertY = 1;
 	
 	public ReplayState replay(ReplayState replayState, Point2D analogInput, Robot humanInterfaceDeviceService)
 	{
@@ -26,9 +27,46 @@ public class VirtualMouseMoveAnalogReplayHandler implements IAnalogReplayHandler
 			// TODO 2.0+ smoothen mouse
 			humanInterfaceDeviceService.mouseMove(
 					(int) (info.getLocation().x + moveMouse.getX() * sensitivityX),
-					(int) (info.getLocation().y + moveMouse.getY() * sensitivityY));
+					(int) (info.getLocation().y + moveMouse.getY() * sensitivityY * this.invertY));
 		}
 		
 		return replayState;
+	}
+
+	public int getSensitivityX() 
+	{
+		return this.sensitivityX;
+	}
+
+	public void setSensitivityX(int sensitivityX) 
+	{
+		this.sensitivityX = sensitivityX;
+	}
+
+	public int getSensitivityY() 
+	{
+		return this.sensitivityY;
+	}
+
+	public void setSensitivityY(int sensitivityY) 
+	{
+		this.sensitivityY = sensitivityY;
+	}
+
+	public boolean isInvertY() 
+	{
+		return this.invertY < 0;
+	}
+
+	public void setInvertY(boolean invertY) 
+	{
+		if (invertY)
+		{
+			this.invertY = -1;
+		}
+		else
+		{
+			this.invertY = 1;
+		}
 	}
 }

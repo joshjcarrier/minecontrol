@@ -1,0 +1,92 @@
+package com.joshjcarrier.minecontrol.framework.input;
+
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+import com.joshjcarrier.minecontrol.services.ReplayState;
+import com.joshjcarrier.minecontrol.services.replayhandlers.IButtonsReplayHandler;
+import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualKeyAnalogReplayHandler;
+import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualKeyButtonsReplayHandler;
+import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualMouseAnalogReplayHandler;
+import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualMouseButtonsReplayHandler;
+import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualMouseMoveAnalogReplayHandler;
+import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualScrollButtonsReplayHandler;
+import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualToggleKeyButtonsReplayHandler;
+
+public class ControllerProfile 
+{
+	private VirtualKeyAnalogReplayHandler leftThumbStickXHandler;
+	private VirtualKeyAnalogReplayHandler leftThumbStickYHandler;
+	private VirtualMouseMoveAnalogReplayHandler rightThumbStickHandler;
+	private VirtualMouseAnalogReplayHandler leftTriggerHandler;
+	private VirtualMouseAnalogReplayHandler rightTriggerHandler;
+	
+	public ControllerProfile() 
+	{
+		this.leftThumbStickXHandler = new VirtualKeyAnalogReplayHandler(KeyEvent.VK_D, KeyEvent.VK_A, 1.6f);
+		this.leftThumbStickYHandler = new VirtualKeyAnalogReplayHandler(KeyEvent.VK_S, KeyEvent.VK_W, 1.6f);
+		this.rightThumbStickHandler = new VirtualMouseMoveAnalogReplayHandler();
+		this.leftTriggerHandler = new VirtualMouseAnalogReplayHandler(KeyEvent.BUTTON3_MASK, false);
+		this.rightTriggerHandler = new VirtualMouseAnalogReplayHandler(KeyEvent.BUTTON1_MASK, false);
+	}
+	
+	public VirtualKeyAnalogReplayHandler getLeftThumbStickXHandler() 
+	{
+		return leftThumbStickXHandler;
+	}
+
+	public VirtualKeyAnalogReplayHandler getLeftThumbStickYHandler() 
+	{
+		return leftThumbStickYHandler;
+	}
+
+	public VirtualMouseMoveAnalogReplayHandler getRightThumbStickHandler() 
+	{
+		return rightThumbStickHandler;
+	}
+
+	public ReplayState replay(GamePadState activeGamePadState, ReplayState replayState, Robot humanInterfaceDeviceService)
+	{
+		EnumSet<Buttons> buttons = activeGamePadState.getButtons();
+		for (Entry<Buttons, IButtonsReplayHandler> replayHandler : digitalIdentifierMap.entrySet())
+		{
+			replayState = replayHandler.getValue().replay(replayState, buttons, humanInterfaceDeviceService);
+		}
+		
+		leftThumbStickXHandler.replay(replayState, (float)activeGamePadState.getThumbSticks().getLeft().getX(), humanInterfaceDeviceService);
+		leftThumbStickYHandler.replay(replayState, (float)activeGamePadState.getThumbSticks().getLeft().getY(), humanInterfaceDeviceService);
+		rightThumbStickHandler.replay(replayState, activeGamePadState.getThumbSticks().getRight(), humanInterfaceDeviceService);
+		leftTriggerHandler.replay(replayState, activeGamePadState.getTriggers().getLeft(), humanInterfaceDeviceService);
+		rightTriggerHandler.replay(replayState, activeGamePadState.getTriggers().getRight(), humanInterfaceDeviceService);
+		
+		return replayState;
+	}
+	
+	private HashMap<Buttons, IButtonsReplayHandler> digitalIdentifierMap = new HashMap<Buttons, IButtonsReplayHandler>()
+	{
+		public static final long serialVersionUID = 7658388604108766926L;
+		{
+			put(Buttons.A, new VirtualKeyButtonsReplayHandler(Buttons.A, KeyEvent.VK_SPACE, false));
+			put(Buttons.B, new VirtualKeyButtonsReplayHandler(Buttons.B, KeyEvent.VK_E, false));
+			put(Buttons.X, new VirtualKeyButtonsReplayHandler(Buttons.X, KeyEvent.VK_Q, false));
+			put(Buttons.Y, new VirtualKeyButtonsReplayHandler(Buttons.Y, KeyEvent.VK_F5, false));
+			
+			put(Buttons.LEFT_SHOULDER, new VirtualScrollButtonsReplayHandler(Buttons.LEFT_SHOULDER, -1, false));
+			put(Buttons.RIGHT_SHOULDER, new VirtualScrollButtonsReplayHandler(Buttons.RIGHT_SHOULDER, 1, false));
+			
+			put(Buttons.BACK, new VirtualKeyButtonsReplayHandler(Buttons.BACK, KeyEvent.VK_ESCAPE, false));
+//			put(Buttons.START, new VirtualKeyReplayHandler(Buttons.A, KeyEvent.VK_0, false));
+			
+			put(Buttons.LEFT_STICK, new VirtualToggleKeyButtonsReplayHandler(Buttons.LEFT_STICK, KeyEvent.VK_SHIFT));
+			put(Buttons.RIGHT_STICK, new VirtualKeyButtonsReplayHandler(Buttons.RIGHT_STICK, KeyEvent.VK_SPACE, false));
+			
+			put(Buttons.DPAD_LEFT, new VirtualKeyButtonsReplayHandler(Buttons.DPAD_LEFT, KeyEvent.VK_TAB, false));
+			put(Buttons.DPAD_UP, new VirtualMouseButtonsReplayHandler(Buttons.DPAD_UP, KeyEvent.BUTTON2_MASK, false));
+			put(Buttons.DPAD_RIGHT, new VirtualKeyButtonsReplayHandler(Buttons.DPAD_RIGHT, KeyEvent.VK_F3, false));			
+			put(Buttons.DPAD_DOWN, new VirtualKeyButtonsReplayHandler(Buttons.DPAD_DOWN, KeyEvent.VK_F2, false));			
+		}
+	};
+}

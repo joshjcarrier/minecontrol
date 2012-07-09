@@ -28,6 +28,7 @@ import com.joshjcarrier.minecontrol.ui.controls.renderers.GamePadWrapperListCell
 import com.joshjcarrier.minecontrol.ui.controls.renderers.GameTitleWrapperListCellRenderer;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GameTitleWrapper;
+import com.joshjcarrier.minecontrol.ui.parts.ConfigurationPart;
 
 /**
  * The main view.
@@ -74,7 +75,7 @@ public class MainView extends JFrame
 		gridConstraints.gridy = 1;		
 		contentPanel.add(controllerSelectionPanel, gridConstraints);
 								
-		JPanel profilePanel = createProfilePanel();
+		JPanel profilePanel = createProfilePanel(gamePadInterpreter);
 		profilePanel.setBorder(BorderFactory.createTitledBorder(panelBorder, "PROFILE"));
 		gridConstraints.gridx = 0;
 		gridConstraints.gridy = 2;
@@ -148,7 +149,7 @@ public class MainView extends JFrame
 		return panel;
 	}
 	
-	private static JPanel createProfilePanel()
+	private static JPanel createProfilePanel(final RunnableGamePadInterpreter gamePadInterpreter)
 	{
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
@@ -165,7 +166,8 @@ public class MainView extends JFrame
 		{			
 			public void actionPerformed(ActionEvent event)
 			{
-				ConfigurationView view = new ConfigurationView();
+				ConfigurationPart part = new ConfigurationPart(gamePadInterpreter.getControllerProfile());
+				ConfigurationView view = part.createView();
 				view.setModal(true);
 				view.setVisible(true);
 			}
