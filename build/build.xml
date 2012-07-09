@@ -61,7 +61,7 @@
 	
 	<!-- Signs the bits and places them in the codesign directory  -->
 	<target name="codesign" depends="create_run_jar">
-		<input message="JarSigner: Keystore location?" addproperty="cs.keystore" defaultvalue="C:/Users/joshjcarrier/Desktop/"/>
+		<input message="JarSigner: Keystore location?" addproperty="cs.keystore" defaultvalue="${user.home}\Desktop\minecontrol2.jks"/>
 		<input message="JarSigner: Keystore passphrase?" addproperty="cs.storepass"/>
 		<input message="JarSigner: Keystore alias?" addproperty="cs.alias"/>
 		<input message="JarSigner: Keystore alias passphrase?" defaultvalue="${cs.storepass}" addproperty="cs.keypass"/>
