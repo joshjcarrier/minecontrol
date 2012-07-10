@@ -3,6 +3,7 @@ package com.joshjcarrier.minecontrol.services.replayhandlers;
 import java.awt.Robot;
 import java.util.EnumSet;
 
+import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
 import com.joshjcarrier.minecontrol.framework.input.Buttons;
 import com.joshjcarrier.minecontrol.services.ReplayState;
 
@@ -14,14 +15,19 @@ import com.joshjcarrier.minecontrol.services.ReplayState;
 public class VirtualToggleKeyButtonsReplayHandler implements IButtonsReplayHandler
 {
 	private final Buttons activationButton;
-	private final int virtualKeyMask;
+	private final ButtonMapping buttonMapping;
 	private boolean previouslyActivated;
 	private boolean toggleEnabled;
 	
-	public VirtualToggleKeyButtonsReplayHandler(Buttons activationButton, int virtualKeyMask)
+	public VirtualToggleKeyButtonsReplayHandler(Buttons activationButton, ButtonMapping buttonMapping)
 	{	
 		this.activationButton = activationButton;
-		this.virtualKeyMask = virtualKeyMask;
+		this.buttonMapping = buttonMapping;
+	}
+	
+	public ButtonMapping getButtonMapping() 
+	{
+		return this.buttonMapping;
 	}
 	
 	public ReplayState replay(ReplayState replayState, EnumSet<Buttons> buttons, Robot humanInterfaceDeviceService)
@@ -37,7 +43,7 @@ public class VirtualToggleKeyButtonsReplayHandler implements IButtonsReplayHandl
 				else
 				{
 					this.toggleEnabled = false;
-					humanInterfaceDeviceService.keyRelease(this.virtualKeyMask);
+					humanInterfaceDeviceService.keyRelease(this.buttonMapping.getEventCode());
 				}
 				
 				this.previouslyActivated = true;
@@ -50,7 +56,7 @@ public class VirtualToggleKeyButtonsReplayHandler implements IButtonsReplayHandl
 		
 		if (this.toggleEnabled)
 		{
-			humanInterfaceDeviceService.keyPress(this.virtualKeyMask);
+			humanInterfaceDeviceService.keyPress(this.buttonMapping.getEventCode());
 		}
 		
 		return replayState;

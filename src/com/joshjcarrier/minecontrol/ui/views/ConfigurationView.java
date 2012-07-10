@@ -9,13 +9,12 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.EnumSet;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,6 +29,7 @@ import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
 import com.joshjcarrier.minecontrol.framework.input.Buttons;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
+import com.joshjcarrier.minecontrol.ui.controls.ButtonMappingToReplayControl;
 import com.joshjcarrier.minecontrol.ui.parts.ConfigurationPart;
 
 public class ConfigurationView extends JDialog
@@ -50,7 +50,7 @@ public class ConfigurationView extends JDialog
     	
     	JTabbedPane tabbedPane = new JTabbedPane();
     	
-    	JPanel mappingPanel = createMappingPanel();
+    	JPanel mappingPanel = createMappingPanel(part);
     	mappingPanel.setBorder(emptyBorder);
     	tabbedPane.addTab("MAPPING", mappingPanel);
     	
@@ -101,7 +101,7 @@ public class ConfigurationView extends JDialog
 		return panel;
 	}
 	
-	private static JPanel createMappingPanel()
+	private static JPanel createMappingPanel(ConfigurationPart part)
 	{		
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
@@ -125,7 +125,7 @@ public class ConfigurationView extends JDialog
 		gridConstraints.ipadx = 0;
 		panel.add(mappingHeader, gridConstraints);
 		
-		Object[] mappings = new Object[]
+		ButtonMapping[] mappings = new ButtonMapping[]
 				{
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_A),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_C),
@@ -153,32 +153,36 @@ public class ConfigurationView extends JDialog
 					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON1),
 					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON2),
 					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON3),
-					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, 0),
+					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, -1),
 					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, 1),
 				};
 				
-		for(Buttons button : EnumSet.allOf(Buttons.class))
+		for(Buttons button : new Buttons[] { Buttons.A, Buttons.B, Buttons.X, Buttons.Y, Buttons.LEFT_SHOULDER, Buttons.RIGHT_SHOULDER, Buttons.LEFT_STICK, Buttons.RIGHT_STICK, Buttons.DPAD_LEFT, Buttons.DPAD_UP, Buttons.DPAD_RIGHT, Buttons.DPAD_DOWN, Buttons.BACK, Buttons.START })
 		{
 			gridConstraints.gridy += 1;
 			
 			gridConstraints.gridx = 0;
 			panel.add(new JLabel(button.name()), gridConstraints);
 							
-			final JComboBox comboBox = new JComboBox(mappings);
-			comboBox.setAction(new SimpleAction()
+			final ButtonMappingToReplayControl buttonMappingToReplayControl = new ButtonMappingToReplayControl(Arrays.asList(mappings));
+			buttonMappingToReplayControl.setAction(new SimpleAction()
 			{				
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					if (comboBox.isValid())
+					if (buttonMappingToReplayControl.isValid())
 					{
+						// TODO
+						//buttonMappingToReplayControl.getSelectedButtonMapping();
 						//dataContext.setButtonMapping(controllerButton, (MappedButton)comboBox.getSelectedItem());
 					}
 				}
 			});
 			
+			buttonMappingToReplayControl.setSelectedButton(part.getButtonMapping(button));
+			
 			gridConstraints.gridx = 1;
-			panel.add(comboBox, gridConstraints);
+			panel.add(buttonMappingToReplayControl, gridConstraints);
 		}
 		
 		return panel;

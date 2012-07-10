@@ -20,7 +20,19 @@ public class ButtonMapping
 	{
 		this(mappingType, eventCode, 0);
 	}
+	
+	@Override
+	public boolean equals(Object b)
+	{
+		ButtonMapping other = (ButtonMapping) b;
+		if (other == null)
+		{
+			return false;
+		}
 		
+		return this.eventCode == other.eventCode && this.mappingType == other.mappingType && this.variant == other.variant;
+	}
+	
 	public ButtonMappingType getMappingType()
 	{
 		return this.mappingType;
@@ -29,6 +41,11 @@ public class ButtonMapping
 	public int getEventCode()
 	{
 		return this.eventCode;
+	}
+	
+	public int getVariant()
+	{
+		return this.variant;
 	}
 
 	public String toString()
@@ -47,13 +64,15 @@ public class ButtonMapping
 					case MouseEvent.BUTTON3:
 						return "Mouse right click (button 3)";
 					case MouseEvent.MOUSE_WHEEL:
-						if (variant == 0)
+						if (variant > 0)
 						{
 							return "Mouse scroll up";
 						}
 						
 						return "Mouse scroll down";
 				}
+			case Unbound:
+				return "none";
 		}
 		
 		return this.mappingType.name() + " code " + this.eventCode;		

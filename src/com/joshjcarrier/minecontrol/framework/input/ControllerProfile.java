@@ -2,8 +2,10 @@ package com.joshjcarrier.minecontrol.framework.input;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import com.joshjcarrier.minecontrol.services.ReplayState;
@@ -31,6 +33,11 @@ public class ControllerProfile
 		this.rightThumbStickHandler = new VirtualMouseMoveAnalogReplayHandler();
 		this.leftTriggerHandler = new VirtualMouseAnalogReplayHandler(KeyEvent.BUTTON3_MASK, false);
 		this.rightTriggerHandler = new VirtualMouseAnalogReplayHandler(KeyEvent.BUTTON1_MASK, false);
+	}
+	
+	public Map<Buttons, IButtonsReplayHandler> getButtonMappingReplayHandlers()
+	{
+		return this.digitalIdentifierMap;
 	}
 	
 	public VirtualKeyAnalogReplayHandler getLeftThumbStickXHandler() 
@@ -69,24 +76,24 @@ public class ControllerProfile
 	{
 		public static final long serialVersionUID = 7658388604108766926L;
 		{
-			put(Buttons.A, new VirtualKeyButtonsReplayHandler(Buttons.A, KeyEvent.VK_SPACE, false));
-			put(Buttons.B, new VirtualKeyButtonsReplayHandler(Buttons.B, KeyEvent.VK_E, false));
-			put(Buttons.X, new VirtualKeyButtonsReplayHandler(Buttons.X, KeyEvent.VK_Q, false));
-			put(Buttons.Y, new VirtualKeyButtonsReplayHandler(Buttons.Y, KeyEvent.VK_F5, false));
+			put(Buttons.A, new VirtualKeyButtonsReplayHandler(Buttons.A, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_SPACE), false));
+			put(Buttons.B, new VirtualKeyButtonsReplayHandler(Buttons.B, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_E), false));
+			put(Buttons.X, new VirtualKeyButtonsReplayHandler(Buttons.X, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_Q), false));
+			put(Buttons.Y, new VirtualKeyButtonsReplayHandler(Buttons.Y, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F5), false));
 			
-			put(Buttons.LEFT_SHOULDER, new VirtualScrollButtonsReplayHandler(Buttons.LEFT_SHOULDER, -1, false));
-			put(Buttons.RIGHT_SHOULDER, new VirtualScrollButtonsReplayHandler(Buttons.RIGHT_SHOULDER, 1, false));
+			put(Buttons.LEFT_SHOULDER, new VirtualScrollButtonsReplayHandler(Buttons.LEFT_SHOULDER, new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, -1), false));
+			put(Buttons.RIGHT_SHOULDER, new VirtualScrollButtonsReplayHandler(Buttons.RIGHT_SHOULDER, new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, 1), false));
 			
-			put(Buttons.BACK, new VirtualKeyButtonsReplayHandler(Buttons.BACK, KeyEvent.VK_ESCAPE, false));
+			put(Buttons.BACK, new VirtualKeyButtonsReplayHandler(Buttons.BACK, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_ESCAPE), false));
 //			put(Buttons.START, new VirtualKeyReplayHandler(Buttons.A, KeyEvent.VK_0, false));
 			
-			put(Buttons.LEFT_STICK, new VirtualToggleKeyButtonsReplayHandler(Buttons.LEFT_STICK, KeyEvent.VK_SHIFT));
-			put(Buttons.RIGHT_STICK, new VirtualKeyButtonsReplayHandler(Buttons.RIGHT_STICK, KeyEvent.VK_SPACE, false));
+			put(Buttons.LEFT_STICK, new VirtualToggleKeyButtonsReplayHandler(Buttons.LEFT_STICK, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_SHIFT)));
+			put(Buttons.RIGHT_STICK, new VirtualKeyButtonsReplayHandler(Buttons.RIGHT_STICK, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_SPACE), false));
 			
-			put(Buttons.DPAD_LEFT, new VirtualKeyButtonsReplayHandler(Buttons.DPAD_LEFT, KeyEvent.VK_TAB, false));
-			put(Buttons.DPAD_UP, new VirtualMouseButtonsReplayHandler(Buttons.DPAD_UP, KeyEvent.BUTTON2_MASK, false));
-			put(Buttons.DPAD_RIGHT, new VirtualKeyButtonsReplayHandler(Buttons.DPAD_RIGHT, KeyEvent.VK_F3, false));			
-			put(Buttons.DPAD_DOWN, new VirtualKeyButtonsReplayHandler(Buttons.DPAD_DOWN, KeyEvent.VK_F2, false));			
+			put(Buttons.DPAD_LEFT, new VirtualKeyButtonsReplayHandler(Buttons.DPAD_LEFT, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_TAB), false));
+			put(Buttons.DPAD_UP, new VirtualMouseButtonsReplayHandler(Buttons.DPAD_UP, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.BUTTON2_MASK), false));
+			put(Buttons.DPAD_RIGHT, new VirtualKeyButtonsReplayHandler(Buttons.DPAD_RIGHT, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F3), false));			
+			put(Buttons.DPAD_DOWN, new VirtualKeyButtonsReplayHandler(Buttons.DPAD_DOWN, new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F2), false));			
 		}
 	};
 }
