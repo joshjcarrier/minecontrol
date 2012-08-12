@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 
 import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
 import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
-import com.joshjcarrier.minecontrol.services.replayhandlers.IButtonsReplayHandler;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
 
 public class ButtonMappingToReplayControl extends JPanel 
@@ -55,10 +54,9 @@ public class ButtonMappingToReplayControl extends JPanel
 		this.add(this.keyToggleModeCheckBox, gridConstraints);
 	}
 	
-	public IButtonsReplayHandler getSelectedButtonMapping()
+	public ButtonMapping getSelectedButtonMapping()
 	{
-		// TODO
-		return null;
+		return (ButtonMapping)this.buttonMappingComboBox.getSelectedItem();
 	}
 	
 	public void setAction(Action a)

@@ -5,11 +5,14 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.Arrays;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -36,12 +39,8 @@ public class ConfigurationView extends JDialog
 {
 	private static final long serialVersionUID = -424815020280281748L;
 	
-	private final ConfigurationPart dataContext;
-	
 	public ConfigurationView(ConfigurationPart part)
 	{
-		this.dataContext = part;
-		
 		ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX360));
     	this.setIconImage(icon.getImage());    
     	
@@ -54,7 +53,7 @@ public class ConfigurationView extends JDialog
     	mappingPanel.setBorder(emptyBorder);
     	tabbedPane.addTab("MAPPING", mappingPanel);
     	
-    	JPanel sensitivityPanel = createSensitivityPanel();
+    	JPanel sensitivityPanel = createSensitivityPanel(part);
     	sensitivityPanel.setBorder(emptyBorder);
     	tabbedPane.addTab("LOOK/SENSITIVITY", sensitivityPanel);
     	
@@ -76,7 +75,7 @@ public class ConfigurationView extends JDialog
 		GridBagConstraints gridConstraints = new GridBagConstraints();
 		gridConstraints.fill = GridBagConstraints.BOTH;
 		
-		JLabel confirmLabel = new JLabel("Changes take effect immediately.");
+		JLabel confirmLabel = new JLabel("Changes automatically save and apply.");
 		confirmLabel.setFont(new Font("Verdana", Font.ITALIC, 10));
 		gridConstraints.gridx = 0;
 		gridConstraints.weightx = 1;
@@ -101,7 +100,7 @@ public class ConfigurationView extends JDialog
 		return panel;
 	}
 	
-	private static JPanel createMappingPanel(ConfigurationPart part)
+	private static JPanel createMappingPanel(final ConfigurationPart dataContext)
 	{		
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
@@ -157,7 +156,7 @@ public class ConfigurationView extends JDialog
 					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, 1),
 				};
 				
-		for(Buttons button : new Buttons[] { Buttons.A, Buttons.B, Buttons.X, Buttons.Y, Buttons.LEFT_SHOULDER, Buttons.RIGHT_SHOULDER, Buttons.LEFT_STICK, Buttons.RIGHT_STICK, Buttons.DPAD_LEFT, Buttons.DPAD_UP, Buttons.DPAD_RIGHT, Buttons.DPAD_DOWN, Buttons.BACK, Buttons.START })
+		for (final Buttons button : new Buttons[] { Buttons.A, Buttons.B, Buttons.X, Buttons.Y, Buttons.LEFT_SHOULDER, Buttons.RIGHT_SHOULDER, Buttons.LEFT_STICK, Buttons.RIGHT_STICK, Buttons.DPAD_LEFT, Buttons.DPAD_UP, Buttons.DPAD_RIGHT, Buttons.DPAD_DOWN, Buttons.BACK, Buttons.START })
 		{
 			gridConstraints.gridy += 1;
 			
@@ -172,14 +171,12 @@ public class ConfigurationView extends JDialog
 				{
 					if (buttonMappingToReplayControl.isValid())
 					{
-						// TODO
-						//buttonMappingToReplayControl.getSelectedButtonMapping();
-						//dataContext.setButtonMapping(controllerButton, (MappedButton)comboBox.getSelectedItem());
+						dataContext.setButtonMapping(button, buttonMappingToReplayControl.getSelectedButtonMapping());
 					}
 				}
 			});
 			
-			buttonMappingToReplayControl.setSelectedButton(part.getButtonMapping(button));
+			buttonMappingToReplayControl.setSelectedButton(dataContext.getButtonMapping(button));
 			
 			gridConstraints.gridx = 1;
 			panel.add(buttonMappingToReplayControl, gridConstraints);
@@ -188,7 +185,7 @@ public class ConfigurationView extends JDialog
 		return panel;
 	}
 	
-	private JPanel createSensitivityPanel()
+	private static JPanel createSensitivityPanel(final ConfigurationPart dataContext)
 	{
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
@@ -206,7 +203,7 @@ public class ConfigurationView extends JDialog
 		lookHorizontalSlider.setPaintTicks(true);
 		lookHorizontalSlider.setPaintLabels(true);
 		lookHorizontalSlider.setSnapToTicks(true);
-		lookHorizontalSlider.setValue(this.dataContext.getMouseMode1SensitivityX());
+		lookHorizontalSlider.setValue(dataContext.getMouseMode1SensitivityX());
 		lookHorizontalSlider.setMinimum(0);
 		lookHorizontalSlider.setMaximum(40);		
 		lookHorizontalSlider.addChangeListener(new ChangeListener() {
@@ -225,7 +222,7 @@ public class ConfigurationView extends JDialog
 		lookVerticalSlider.setPaintTicks(true);
 		lookVerticalSlider.setPaintLabels(true);
 		lookVerticalSlider.setSnapToTicks(true);
-		lookVerticalSlider.setValue(this.dataContext.getMouseMode1SensitivityY());
+		lookVerticalSlider.setValue(dataContext.getMouseMode1SensitivityY());
 		lookVerticalSlider.setMinimum(0);
 		lookVerticalSlider.setMaximum(40);
 		lookVerticalSlider.addChangeListener(new ChangeListener() {
@@ -290,14 +287,28 @@ public class ConfigurationView extends JDialog
 		});
 		
 		invertPitchCheckBox.setText("Invert look up/down");
-		invertPitchCheckBox.setSelected(this.dataContext.isLookInverted());
+		invertPitchCheckBox.setSelected(dataContext.isLookInverted());
 		gridConstraints.gridy = 6;
 		panel.add(invertPitchCheckBox, gridConstraints);
 		
-		// filler at bottom
+		// filler at bottom    
+    	JPanel fillerPanel = new JPanel();
+    	Random rand = new Random(System.currentTimeMillis());
+		int niceSettingsssYouHaveThere = rand.nextInt(4);	
+		if(niceSettingsssYouHaveThere == 0)
+		{
+			JLabel iconLabel = new JLabel();
+			URL iconUrl = ConfigurationView.class.getClassLoader().getResource(ContentResources.CHROME_SENSITIVITYPANEL_FILLER);
+		  	
+	    	ImageIcon icon = new ImageIcon(iconUrl);
+	    	Image newimg = icon.getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);  
+	    	iconLabel.setIcon(new ImageIcon(newimg));
+			fillerPanel.add(iconLabel, BorderLayout.CENTER);
+		}
+		
 		gridConstraints.gridy = 7;
 		gridConstraints.weighty = 1;
-		panel.add(new JPanel(), gridConstraints);
+		panel.add(fillerPanel, gridConstraints);
 		
 		return panel;
 	}

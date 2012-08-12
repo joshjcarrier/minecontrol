@@ -40,6 +40,12 @@ public class ControllerProfile
 		return this.digitalIdentifierMap;
 	}
 	
+	public String getIdentifier()
+	{
+		// TODO read/write identifier
+		return "default";
+	}
+	
 	public VirtualKeyAnalogReplayHandler getLeftThumbStickXHandler() 
 	{
 		return leftThumbStickXHandler;
