@@ -50,6 +50,7 @@ public class App
 		catch(Exception ex)
 		{
 			JOptionPane.showMessageDialog(null, ex + "\r\n" + ex.getStackTrace()[0] + "\r\nContact josh@joshjcarrier.com .", "Minecontrol failure", JOptionPane.ERROR_MESSAGE);
+			ex.printStackTrace();
 			System.exit(1);
 		}
 	}

@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 import com.joshjcarrier.minecontrol.AppInfo;
+import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
+import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
 
 /**
  * Stores data within a properties file.
@@ -89,6 +91,22 @@ public class PropertiesStorage
 		return Boolean.parseBoolean(stringValue);
 	}
 	
+	public ButtonMapping readButtonMapping(String name)
+	{
+		String mappingType = this.read(name + ".mappingtype");
+		
+		if (mappingType == null)
+		{
+			return null;
+		}
+		
+		ButtonMappingType buttonMappingType = ButtonMappingType.valueOf(mappingType);
+		int eventCode = this.readInt(name + ".eventcode", 0);
+		int variant = this.readInt(name + ".variant", 0);
+		
+		return new ButtonMapping(buttonMappingType, eventCode, variant);
+	}
+	
 	public int readInt(String name, int defaultValue)
 	{
 		String stringValue = this.read(name);
@@ -110,6 +128,13 @@ public class PropertiesStorage
 	public void writeBoolean(String name, boolean value)
 	{
 		this.write(name, String.valueOf(value));
+	}
+	
+	public void writeButtonMapping(String name, ButtonMapping buttonMapping)
+	{
+		this.write(name + ".mappingtype", buttonMapping.getMappingType().name());
+		this.writeInt(name + ".eventcode", buttonMapping.getEventCode());
+		this.writeInt(name + ".variant", buttonMapping.getVariant());
 	}
 	
 	public void writeInt(String name, int value)

@@ -2,9 +2,13 @@ package com.joshjcarrier.minecontrol.framework.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
-public class ButtonMapping
+public class ButtonMapping implements Serializable
 {
+	private static final long serialVersionUID = 7306882809094286108L;
+	public static final ButtonMapping UNBOUND = new ButtonMapping(ButtonMappingType.Unbound, 0);
+	
 	private ButtonMappingType mappingType;	
 	private int eventCode;
 	private int variant;

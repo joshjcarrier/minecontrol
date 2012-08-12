@@ -22,8 +22,8 @@ public class RunnableGamePadInterpreter implements Runnable
 	
 	public RunnableGamePadInterpreter()
 	{
-		this.profile = new ControllerProfile();
-		//this.controllerProfileService = new InputReaderProfileService();
+		ProfileStorageService profileStorageService = new ProfileStorageService();
+		this.profile = profileStorageService.load("default");
 	}
 	
 	public ArrayList<GamePadWrapper> getInputReaderDevices()
