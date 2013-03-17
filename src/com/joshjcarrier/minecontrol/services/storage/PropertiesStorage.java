@@ -1,4 +1,4 @@
-package com.joshjcarrier.minecontrol.services;
+package com.joshjcarrier.minecontrol.services.storage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,15 +7,13 @@ import java.io.IOException;
 import java.util.Properties;
 
 import com.joshjcarrier.minecontrol.AppInfo;
-import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
-import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
 
 /**
  * Stores data within a properties file.
  * @author joshjcarrier
  *
  */
-public class PropertiesStorage
+public class PropertiesStorage implements IStorage
 {	
 	private Properties cache;
 	
@@ -42,7 +40,7 @@ public class PropertiesStorage
 		}
 	}
 	
-	public Properties load()
+	public void load()
 	{
 		String settingsFilePath = this.getSettingsFilePath();
 	 
@@ -76,40 +74,22 @@ public class PropertiesStorage
 				}
 			}
 		}
-		
-		return cache;
 	}
 	
-	public String read(String name)
+	public String read(String section, String name)
 	{
-		return this.cache.getProperty(name);
+		return this.cache.getProperty(section + "." + name);
 	}
 	
-	public boolean readBoolean(String name)
+	public boolean readBoolean(String section, String name)
 	{
-		String stringValue = this.read(name);
+		String stringValue = this.read(section, name);
 		return Boolean.parseBoolean(stringValue);
 	}
-	
-	public ButtonMapping readButtonMapping(String name)
+		
+	public int readInt(String section, String name, int defaultValue)
 	{
-		String mappingType = this.read(name + ".mappingtype");
-		
-		if (mappingType == null)
-		{
-			return null;
-		}
-		
-		ButtonMappingType buttonMappingType = ButtonMappingType.valueOf(mappingType);
-		int eventCode = this.readInt(name + ".eventcode", 0);
-		int variant = this.readInt(name + ".variant", 0);
-		
-		return new ButtonMapping(buttonMappingType, eventCode, variant);
-	}
-	
-	public int readInt(String name, int defaultValue)
-	{
-		String stringValue = this.read(name);
+		String stringValue = this.read(section, name);
 		try
 		{
 			return Integer.parseInt(stringValue);
@@ -120,26 +100,19 @@ public class PropertiesStorage
 		}
 	}
 	
-	public void write(String name, String value)
+	public void write(String section, String name, String value)
 	{
-		this.cache.put(name, value);
+		this.cache.put(section + "." + name, value);
 	}
 	
-	public void writeBoolean(String name, boolean value)
+	public void writeBoolean(String section, String name, boolean value)
 	{
-		this.write(name, String.valueOf(value));
+		this.write(section, name, String.valueOf(value));
 	}
-	
-	public void writeButtonMapping(String name, ButtonMapping buttonMapping)
+		
+	public void writeInt(String section, String name, int value)
 	{
-		this.write(name + ".mappingtype", buttonMapping.getMappingType().name());
-		this.writeInt(name + ".eventcode", buttonMapping.getEventCode());
-		this.writeInt(name + ".variant", buttonMapping.getVariant());
-	}
-	
-	public void writeInt(String name, int value)
-	{
-		this.write(name, String.valueOf(value));
+		this.write(section, name, String.valueOf(value));
 	}
 	
 	private String getSettingsFilePath()
