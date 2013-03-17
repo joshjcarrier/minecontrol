@@ -61,12 +61,13 @@
 	
 	<!-- Signs the bits and places them in the codesign directory  -->
 	<target name="codesign" depends="create_run_jar">
-		<input message="JarSigner: Keystore location?" addproperty="cs.keystore" defaultvalue="${user.home}\Desktop\minecontrol2.jks"/>
+		<input message="JarSigner: Keystore location?" addproperty="cs.keystore" defaultvalue="${drop.dir}/minecontrol2.keystore"/>
 		<input message="JarSigner: Keystore passphrase?" addproperty="cs.storepass"/>
-		<input message="JarSigner: Keystore alias?" addproperty="cs.alias"/>
+		<input message="JarSigner: Keystore alias?" addproperty="cs.alias" defaultvalue="minecontrol2"/>
 		<input message="JarSigner: Keystore alias passphrase?" defaultvalue="${cs.storepass}" addproperty="cs.keypass"/>
 		<delete dir="${codesign.dir}"/>
 		<mkdir dir="${codesign.dir}"/>
+		<antcall target="generate_keystore" inheritall="true"/>
 		<signjar destDir="${codesign.dir}" 
 			alias="${cs.alias}"
 			storepass="${cs.storepass}"
@@ -79,5 +80,20 @@
     	<copy file="${drop.dir}/launch.jnlp" todir="${codesign.dir}"/>
     	<copy file="${build.dir}/htaccess.htaccess" tofile="${codesign.dir}/.htaccess"/>
     	<copy file="${build.dir}/icon.png" todir="${codesign.dir}"/>
+	</target>
+	
+	<target name="generate_keystore">
+		<genkey alias="${cs.alias}" 
+				storepass="${cs.storepass}" 
+				keypass="${cs.storepass}"
+				validity="365" 
+				keystore="${cs.keystore}">
+			<dname>
+				<param name="CN" value="Josh Carrier"/>
+				<param name="OU" value="Minecontrol for Minecraft 2"/>
+				<param name="O" value="update.joshjcarrier.com"/>
+				<param name="C" value="US"/>
+			</dname>
+		</genkey>
 	</target>
 </project>
