@@ -11,6 +11,8 @@ import com.joshjcarrier.minecontrol.services.ReplayState;
  */
 public class VirtualKeyAnalogReplayHandler 
 {
+	public static final float DefaultTolerance = 1.5f;
+	
 	private final int positiveVirtualKeyMask;
 	private final int negativeVirtualKeyMask;
 	private final float tolerance;
@@ -23,6 +25,21 @@ public class VirtualKeyAnalogReplayHandler
 		this.positiveVirtualKeyMask = positiveVirtualKeyMask;
 		this.negativeVirtualKeyMask = negativeVirtualKeyMask;
 		this.tolerance = tolerance;
+	}
+	
+	public int getNegativeVirtualKeyMask()
+	{
+		return this.negativeVirtualKeyMask;
+	}
+	
+	public int getPositiveVirtualKeyMask()
+	{
+		return this.positiveVirtualKeyMask;
+	}
+	
+	public float getTolerance()
+	{
+		return this.tolerance;
 	}
 	
 	public ReplayState replay(ReplayState replayState, float analogInput, Robot humanInterfaceDeviceService)

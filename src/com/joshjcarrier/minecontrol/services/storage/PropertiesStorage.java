@@ -56,7 +56,6 @@ public class PropertiesStorage implements IStorage
 		} 
 		catch (IOException e) 
 		{
-			// TODO Auto-generated catch block
 			// maybe the settings file is corrupt, so delete it
 			e.printStackTrace();
 		}
@@ -86,8 +85,21 @@ public class PropertiesStorage implements IStorage
 		String stringValue = this.read(section, name);
 		return Boolean.parseBoolean(stringValue);
 	}
+	
+	public float read(String section, String name, float defaultValue)
+	{
+		String stringValue = this.read(section, name);
+		try
+		{
+			return Float.parseFloat(stringValue);
+		}
+		catch (NumberFormatException ex)
+		{
+			return defaultValue;
+		}
+	}
 		
-	public int readInt(String section, String name, int defaultValue)
+	public int read(String section, String name, int defaultValue)
 	{
 		String stringValue = this.read(section, name);
 		try
@@ -105,12 +117,17 @@ public class PropertiesStorage implements IStorage
 		this.cache.put(section + "." + name, value);
 	}
 	
-	public void writeBoolean(String section, String name, boolean value)
+	public void write(String section, String name, boolean value)
+	{
+		this.write(section, name, String.valueOf(value));
+	}
+	
+	public void write(String section, String name, float value) 
 	{
 		this.write(section, name, String.valueOf(value));
 	}
 		
-	public void writeInt(String section, String name, int value)
+	public void write(String section, String name, int value)
 	{
 		this.write(section, name, String.valueOf(value));
 	}

@@ -10,12 +10,15 @@ public interface IStorage
 
 	public abstract boolean readBoolean(String section, String name);
 
-	public abstract int readInt(String section, String name, int defaultValue);
+	public abstract float read(String section, String name, float defaultValue);
+	
+	public abstract int read(String section, String name, int defaultValue);
 
 	public abstract void write(String section, String name, String value);
 
-	public abstract void writeBoolean(String section, String name, boolean value);
-
-	public abstract void writeInt(String section, String name, int value);
-
+	public abstract void write(String section, String name, boolean value);
+	
+	public abstract void write(String section, String name, float value);
+	
+	public abstract void write(String section, String name, int value);
 }

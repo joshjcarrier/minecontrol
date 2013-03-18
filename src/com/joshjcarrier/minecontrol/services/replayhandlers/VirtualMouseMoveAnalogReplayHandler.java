@@ -14,8 +14,30 @@ import com.joshjcarrier.minecontrol.services.ReplayState;
  */
 public class VirtualMouseMoveAnalogReplayHandler implements IAnalogReplayHandler
 {
-	private int sensitivityX = 20, sensitivityY = 20;
-	private byte invertY = 1;
+	public static final int DefaultSensitivity = 20;
+	
+	private int sensitivityX, sensitivityY;
+	private byte invertY;
+	
+	public VirtualMouseMoveAnalogReplayHandler(int sensitivityX, int sensitivityY, boolean invertY) 
+	{
+		this.sensitivityX = sensitivityX;
+		this.sensitivityY = sensitivityY;
+		
+		if(invertY)
+		{
+			this.invertY = -1;	
+		}
+		else
+		{
+			this.invertY = 1;
+		}
+	}
+	
+	public VirtualMouseMoveAnalogReplayHandler() 
+	{
+		this(DefaultSensitivity, DefaultSensitivity, false);
+	}
 	
 	public ReplayState replay(ReplayState replayState, Point2D analogInput, Robot humanInterfaceDeviceService)
 	{

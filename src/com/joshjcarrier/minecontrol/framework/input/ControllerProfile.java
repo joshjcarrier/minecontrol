@@ -20,6 +20,11 @@ import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualToggleKeyButt
 
 public class ControllerProfile 
 {
+	public static final int DefaultLeftThumbStickXPositiveMask = KeyEvent.VK_D;
+	public static final int DefaultLeftThumbStickXNegativeMask = KeyEvent.VK_A;
+	public static final int DefaultLeftThumbStickYPositiveMask = KeyEvent.VK_S;
+	public static final int DefaultLeftThumbStickYNegativeMask = KeyEvent.VK_W;
+	
 	private VirtualKeyAnalogReplayHandler leftThumbStickXHandler;
 	private VirtualKeyAnalogReplayHandler leftThumbStickYHandler;
 	private VirtualMouseMoveAnalogReplayHandler rightThumbStickHandler;
@@ -28,8 +33,8 @@ public class ControllerProfile
 	
 	public ControllerProfile() 
 	{
-		this.leftThumbStickXHandler = new VirtualKeyAnalogReplayHandler(KeyEvent.VK_D, KeyEvent.VK_A, 1.6f);
-		this.leftThumbStickYHandler = new VirtualKeyAnalogReplayHandler(KeyEvent.VK_S, KeyEvent.VK_W, 1.6f);
+		this.leftThumbStickXHandler = new VirtualKeyAnalogReplayHandler(DefaultLeftThumbStickXPositiveMask, DefaultLeftThumbStickXNegativeMask, VirtualKeyAnalogReplayHandler.DefaultTolerance);
+		this.leftThumbStickYHandler = new VirtualKeyAnalogReplayHandler(DefaultLeftThumbStickYPositiveMask, DefaultLeftThumbStickYNegativeMask, VirtualKeyAnalogReplayHandler.DefaultTolerance);
 		this.rightThumbStickHandler = new VirtualMouseMoveAnalogReplayHandler();
 		this.leftTriggerHandler = new VirtualMouseAnalogReplayHandler(KeyEvent.BUTTON3_MASK, false);
 		this.rightTriggerHandler = new VirtualMouseAnalogReplayHandler(KeyEvent.BUTTON1_MASK, false);
@@ -50,15 +55,30 @@ public class ControllerProfile
 	{
 		return leftThumbStickXHandler;
 	}
+	
+	public void setLeftThumbStickXHandler(VirtualKeyAnalogReplayHandler handler) 
+	{
+		this.leftThumbStickXHandler = handler;
+	}
 
 	public VirtualKeyAnalogReplayHandler getLeftThumbStickYHandler() 
 	{
 		return leftThumbStickYHandler;
 	}
+	
+	public void setLeftThumbStickYHandler(VirtualKeyAnalogReplayHandler handler) 
+	{
+		this.leftThumbStickYHandler = handler;
+	}
 
 	public VirtualMouseMoveAnalogReplayHandler getRightThumbStickHandler() 
 	{
 		return rightThumbStickHandler;
+	}
+	
+	public void setRightThumbStickHandler(VirtualMouseMoveAnalogReplayHandler handler) 
+	{
+		this.rightThumbStickHandler = handler;
 	}
 
 	public ReplayState replay(GamePadState activeGamePadState, ReplayState replayState, Robot humanInterfaceDeviceService)

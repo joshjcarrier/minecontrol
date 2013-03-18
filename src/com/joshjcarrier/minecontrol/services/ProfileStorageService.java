@@ -35,9 +35,9 @@ public class ProfileStorageService
 		ControllerProfile profile = new ControllerProfile();
 
 		String section = getControllerProfileSectionName(identifier);
-		readKeyAnalogHandler(section, "mouse.mode1.sensitivity.x", this.propertiesStorage); // TODO profile.getLeftThumbStickXHandler()
-		readKeyAnalogHandler(section, "mouse.mode1.sensitivity.y", this.propertiesStorage); // TODO profile.getLeftThumbStickYHandler()
-		readMouseMoveAnalogHandler(section, "mouse", this.propertiesStorage); // TODO profile.getRightThumbStickHandler()
+		profile.setLeftThumbStickXHandler(readKeyAnalogHandler(section, "mode1.lts.x", ControllerProfile.DefaultLeftThumbStickXPositiveMask, ControllerProfile.DefaultLeftThumbStickXNegativeMask));
+		profile.setLeftThumbStickYHandler(readKeyAnalogHandler(section, "mode1.lts.y", ControllerProfile.DefaultLeftThumbStickYPositiveMask, ControllerProfile.DefaultLeftThumbStickYNegativeMask));
+		profile.setRightThumbStickHandler(readMouseMoveAnalogHandler(section, "mode1.rts"));
 		
 		for (Entry<Buttons, IButtonsReplayHandler> mapping : profile.getButtonMappingReplayHandlers().entrySet())
 		{
@@ -50,20 +50,19 @@ public class ProfileStorageService
 	
 	public void store(ControllerProfile profile)
 	{
-		// TODO commit button mapping value instead of persisting hash value
 		String identifier = profile.getIdentifier();
 		
 		String section = getControllerProfileSectionName(identifier);
-		writeHandler(section, "mouse.mode1.sensitivity.x", profile.getLeftThumbStickXHandler(), this.propertiesStorage);
-		writeHandler(section, "mouse.mode1.sensitivity.y", profile.getLeftThumbStickYHandler(), this.propertiesStorage);
-		writeHandler(section, "mouse", profile.getRightThumbStickHandler(), this.propertiesStorage);
+		writeHandler(section, "mode1.lts.x", profile.getLeftThumbStickXHandler());
+		writeHandler(section, "mode1.lts.y", profile.getLeftThumbStickYHandler());
+		writeHandler(section, "mode1.rts", profile.getRightThumbStickHandler());
 		
 //		this.propertiesStorage.writeInt(getConfigurationKey(identifier, "mouse.mode2.sensitivity.x"), profile.getMouseMode2SensitivityX());
 //		this.propertiesStorage.writeInt(getConfigurationKey(identifier, "mouse.mode2.sensitivity.y"), profile.getMouseMode2SensitivityY());
 		
 		for (Entry<Buttons, IButtonsReplayHandler> mapping : profile.getButtonMappingReplayHandlers().entrySet())
 		{
-			writeHandler(section, "button." + mapping.getKey().name(), mapping.getValue(), this.propertiesStorage);
+			writeHandler(section, "button." + mapping.getKey().name(), mapping.getValue());
 		}
 		
 		this.propertiesStorage.commit();
@@ -84,43 +83,48 @@ public class ProfileStorageService
 		}
 		
 		ButtonMappingType buttonMappingType = ButtonMappingType.valueOf(mappingType);
-		int eventCode = propertiesStorage.readInt(section, handlerIdentifier + ".eventcode", 0);
-		int variant = propertiesStorage.readInt(section, handlerIdentifier + ".variant", 0);
+		int eventCode = propertiesStorage.read(section, handlerIdentifier + ".eventcode", 0);
+		int variant = propertiesStorage.read(section, handlerIdentifier + ".variant", 0);
 		
 		ButtonMapping buttonMapping = new ButtonMapping(buttonMappingType, eventCode, variant);						
 		return this.replayHandlerFactory.create(activationButton, buttonMapping, false);
 	}
 	
-	private static VirtualKeyAnalogReplayHandler readKeyAnalogHandler(String section, String handlerIdentifier, IStorage propertiesStorage)
+	private VirtualKeyAnalogReplayHandler readKeyAnalogHandler(String section, String handlerIdentifier, int defaultPositiveMask, int defaultNegativeMask)
 	{
-		// TODO propertiesStorage.writeInt(getConfigurationKey(handlerIdentifierPrefix, ""));
-		return null;
+		int positiveVirtualKeyMask = this.propertiesStorage.read(section, handlerIdentifier + ".positive.eventcode", defaultPositiveMask);
+		int negativeVirtualKeyMask = this.propertiesStorage.read(section, handlerIdentifier + ".negative.eventcode", defaultNegativeMask);
+		float tolerance = this.propertiesStorage.read(section, handlerIdentifier + ".tolerance", VirtualKeyAnalogReplayHandler.DefaultTolerance);
+		return new VirtualKeyAnalogReplayHandler(positiveVirtualKeyMask, negativeVirtualKeyMask, tolerance);
 	}
 	
-	private static VirtualMouseMoveAnalogReplayHandler readMouseMoveAnalogHandler(String section, String handlerIdentifier, IStorage propertiesStorage)
+	private VirtualMouseMoveAnalogReplayHandler readMouseMoveAnalogHandler(String section, String handlerIdentifier)
 	{
-		// TODO
-//		propertiesStorage.writeInt(getConfigurationKey(handlerIdentifierPrefix, ""), handler.hashCode());
-//		propertiesStorage.writeBoolean(getConfigurationKey(handlerIdentifierPrefix, "invert"), handler.isInvertY());
-		return null;
+		int sensitivityX = this.propertiesStorage.read(section, handlerIdentifier + ".x.sensitivity", VirtualMouseMoveAnalogReplayHandler.DefaultSensitivity);
+		int sensitivityY = this.propertiesStorage.read(section, handlerIdentifier + ".x.sensitivity", VirtualMouseMoveAnalogReplayHandler.DefaultSensitivity);
+		boolean invertY = this.propertiesStorage.readBoolean(section, handlerIdentifier + ".y.invert"); 
+		return new VirtualMouseMoveAnalogReplayHandler(sensitivityX, sensitivityY, invertY);
 	}
 	
-	private static void writeHandler(String section, String handlerIdentifier, IButtonsReplayHandler handler, IStorage propertiesStorage)
+	private void writeHandler(String section, String handlerIdentifier, IButtonsReplayHandler handler)
 	{
 		ButtonMapping buttonMapping = handler != null ? handler.getButtonMapping() : ButtonMapping.UNBOUND;
-		propertiesStorage.write(section, handlerIdentifier + ".mappingtype", buttonMapping.getMappingType().name());
-		propertiesStorage.writeInt(section, handlerIdentifier + ".eventcode", buttonMapping.getEventCode());
-		propertiesStorage.writeInt(section, handlerIdentifier + ".variant", buttonMapping.getVariant());
+		this.propertiesStorage.write(section, handlerIdentifier + ".mappingtype", buttonMapping.getMappingType().name());
+		this.propertiesStorage.write(section, handlerIdentifier + ".eventcode", buttonMapping.getEventCode());
+		this.propertiesStorage.write(section, handlerIdentifier + ".variant", buttonMapping.getVariant());
 	}
 	
-	private static void writeHandler(String section, String handlerIdentifier, VirtualKeyAnalogReplayHandler handler, IStorage propertiesStorage)
+	private void writeHandler(String section, String handlerIdentifier, VirtualKeyAnalogReplayHandler handler)
 	{
-		propertiesStorage.writeInt(section, handlerIdentifier, handler.hashCode());
+		this.propertiesStorage.write(section, handlerIdentifier + ".positive.eventcode", handler.getPositiveVirtualKeyMask());
+		this.propertiesStorage.write(section, handlerIdentifier + ".negative.eventcode", handler.getNegativeVirtualKeyMask());
+		this.propertiesStorage.write(section, handlerIdentifier + ".tolerance", Float.toString(handler.getTolerance()));
 	}
 	
-	private static void writeHandler(String section, String handlerIdentifier, VirtualMouseMoveAnalogReplayHandler handler, IStorage propertiesStorage)
+	private void writeHandler(String section, String handlerIdentifier, VirtualMouseMoveAnalogReplayHandler handler)
 	{
-		propertiesStorage.writeInt(section, handlerIdentifier, handler.hashCode());
-		propertiesStorage.writeBoolean(section, handlerIdentifier + ".invert", handler.isInvertY());
+		this.propertiesStorage.write(section, handlerIdentifier + ".x.sensitivity", handler.getSensitivityX());
+		this.propertiesStorage.write(section, handlerIdentifier + ".y.sensitivity", handler.getSensitivityY());
+		this.propertiesStorage.write(section, handlerIdentifier + ".y.invert", handler.isInvertY());
 	}
 }

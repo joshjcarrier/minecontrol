@@ -53,7 +53,6 @@ public class IniStorage implements IStorage
 		} 
 		catch (IOException e) 
 		{
-			// TODO Auto-generated catch block
 			// maybe the settings file is corrupt, so delete it
 			e.printStackTrace();
 		}
@@ -80,12 +79,38 @@ public class IniStorage implements IStorage
 
 	public boolean readBoolean(String section, String name) 
 	{
-		return this.cache.fetch(section, name, Boolean.class);
+		try
+		{
+			return this.cache.fetch(section, name, Boolean.class);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+	}
+	
+	public float read(String section, String name, float defaultValue) 
+	{
+		try
+		{
+			return this.cache.fetch(section, name, Float.class);
+		}
+		catch (Exception e)
+		{
+			return defaultValue;
+		}
 	}
 
-	public int readInt(String section, String name, int defaultValue) 
+	public int read(String section, String name, int defaultValue) 
 	{
-		return this.cache.fetch(section, name, Integer.class);
+		try
+		{
+			return this.cache.fetch(section, name, Integer.class);
+		}
+		catch (Exception e)
+		{
+			return defaultValue;
+		}
 	}
 
 	public void write(String section, String name, String value) 
@@ -93,12 +118,17 @@ public class IniStorage implements IStorage
 		this.cache.put(section, name, value);
 	}
 
-	public void writeBoolean(String section, String name, boolean value) 
+	public void write(String section, String name, boolean value) 
 	{
 		this.cache.put(section, name, value);
 	}
 
-	public void writeInt(String section, String name, int value) 
+	public void write(String section, String name, float value) 
+	{
+		this.cache.put(section, name, value);
+	}
+	
+	public void write(String section, String name, int value) 
 	{
 		this.cache.put(section, name, value);
 	}
