@@ -22,6 +22,7 @@
   <j2se version="1.5+" />
   <jar href="Minecontrol.jar"/>
   <jar href="jinput.jar"/>
+  <jar href="ini4j.jar"/>
 </resources>
 <resources os="Windows">
   <nativelib href="jinput-windows-native.jar"/>
