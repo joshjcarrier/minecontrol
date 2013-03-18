@@ -61,11 +61,11 @@ public class ButtonMapping implements Serializable
 			case Mouse:
 				switch(this.eventCode)
 				{
-					case MouseEvent.BUTTON1:
+					case MouseEvent.BUTTON1_MASK:
 						return "Mouse left click (button 1)";
-					case MouseEvent.BUTTON2:
+					case MouseEvent.BUTTON2_MASK:
 						return "Mouse middle click (button 2)";
-					case MouseEvent.BUTTON3:
+					case MouseEvent.BUTTON3_MASK:
 						return "Mouse right click (button 3)";
 					case MouseEvent.MOUSE_WHEEL:
 						if (variant > 0)

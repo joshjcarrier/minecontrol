@@ -5,20 +5,28 @@ import com.joshjcarrier.minecontrol.framework.input.Buttons;
 import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
 import com.joshjcarrier.minecontrol.services.ProfileStorageService;
 import com.joshjcarrier.minecontrol.services.replayhandlers.IButtonsReplayHandler;
-import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualKeyButtonsReplayHandler;
+import com.joshjcarrier.minecontrol.services.replayhandlers.ReplayHandlerFactory;
 import com.joshjcarrier.minecontrol.ui.views.ConfigurationView;
 
 public class ConfigurationPart extends BasePart
 {
 	private final ControllerProfile controllerProfile;
 	private final ProfileStorageService profileStorageService;
+	private final ReplayHandlerFactory replayHandlerFactory;
 	
-	public ConfigurationPart(ControllerProfile controllerProfile) 
+	public ConfigurationPart(
+			ControllerProfile controllerProfile, 
+			ReplayHandlerFactory replayHandlerFactory,
+			ProfileStorageService profileStorageService) 
 	{
 		this.controllerProfile = controllerProfile;
-		
-		// TODO retrieve from service resolver
-		this.profileStorageService = new ProfileStorageService();
+		this.replayHandlerFactory = replayHandlerFactory;
+		this.profileStorageService = profileStorageService;
+	}
+	
+	public ConfigurationPart(ControllerProfile controllerProfile)
+	{
+		this(controllerProfile, new ReplayHandlerFactory(), new ProfileStorageService());
 	}
 
 	public ConfigurationView createView()
@@ -39,7 +47,7 @@ public class ConfigurationPart extends BasePart
 	
 	public void setButtonMapping(Buttons button, ButtonMapping buttonMapping)
 	{
-		IButtonsReplayHandler handler = new VirtualKeyButtonsReplayHandler(button, buttonMapping, false);
+		IButtonsReplayHandler handler = this.replayHandlerFactory.create(button, buttonMapping, false);
 		this.controllerProfile.getButtonMappingReplayHandlers().put(button, handler);
 		this.profileStorageService.store(this.controllerProfile);
 	}

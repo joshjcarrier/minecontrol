@@ -149,9 +149,9 @@ public class ConfigurationView extends JDialog
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_W),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_X),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_Z),
-					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON1),
-					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON2),
-					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON3),
+					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON1_MASK),
+					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON2_MASK),
+					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON3_MASK),
 					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, -1),
 					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, 1),
 				};

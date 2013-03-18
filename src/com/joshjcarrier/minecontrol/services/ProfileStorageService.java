@@ -7,8 +7,8 @@ import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
 import com.joshjcarrier.minecontrol.framework.input.Buttons;
 import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
 import com.joshjcarrier.minecontrol.services.replayhandlers.IButtonsReplayHandler;
+import com.joshjcarrier.minecontrol.services.replayhandlers.ReplayHandlerFactory;
 import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualKeyAnalogReplayHandler;
-import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualKeyButtonsReplayHandler;
 import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualMouseMoveAnalogReplayHandler;
 import com.joshjcarrier.minecontrol.services.storage.IStorage;
 import com.joshjcarrier.minecontrol.services.storage.IniStorage;
@@ -16,10 +16,17 @@ import com.joshjcarrier.minecontrol.services.storage.IniStorage;
 public class ProfileStorageService 
 {
 	private final IStorage propertiesStorage;
+	private final ReplayHandlerFactory replayHandlerFactory;
+	
+	public ProfileStorageService(ReplayHandlerFactory replayHandlerFactory, IStorage propertiesStorage)
+	{
+		this.replayHandlerFactory = replayHandlerFactory;
+		this.propertiesStorage = propertiesStorage;
+	}
 	
 	public ProfileStorageService() 
 	{
-		this.propertiesStorage = new IniStorage();
+		this(new ReplayHandlerFactory(), new IniStorage());
 	}
 	
 	public ControllerProfile load(String identifier)
@@ -67,7 +74,7 @@ public class ProfileStorageService
 		return "controllers." + identifier;
 	}
 	
-	private static IButtonsReplayHandler readHandler(String section, String handlerIdentifier, Buttons activationButton, IButtonsReplayHandler fallbackValue, IStorage propertiesStorage)
+	private IButtonsReplayHandler readHandler(String section, String handlerIdentifier, Buttons activationButton, IButtonsReplayHandler fallbackValue, IStorage propertiesStorage)
 	{
 		String mappingType = propertiesStorage.read(section, handlerIdentifier + ".mappingtype");
 		
@@ -81,7 +88,7 @@ public class ProfileStorageService
 		int variant = propertiesStorage.readInt(section, handlerIdentifier + ".variant", 0);
 		
 		ButtonMapping buttonMapping = new ButtonMapping(buttonMappingType, eventCode, variant);						
-		return new VirtualKeyButtonsReplayHandler(activationButton, buttonMapping, false);
+		return this.replayHandlerFactory.create(activationButton, buttonMapping, false);
 	}
 	
 	private static VirtualKeyAnalogReplayHandler readKeyAnalogHandler(String section, String handlerIdentifier, IStorage propertiesStorage)
