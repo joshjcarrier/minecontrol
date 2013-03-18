@@ -11,6 +11,7 @@
     <path id="Minecontrol v2.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/jinput.jar"/>
+        <pathelement location="lib/ini4j.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
