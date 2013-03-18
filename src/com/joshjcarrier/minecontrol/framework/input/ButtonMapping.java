@@ -74,6 +74,16 @@ public class ButtonMapping implements Serializable
 						}
 						
 						return "Mouse scroll down";
+					default:
+						return "Mouse event unknown";
+				}
+			case Application:
+				switch(this.eventCode)
+				{
+					case ApplicationEvent.MouseMode:
+						return "Toggle mouse sensitivity";
+					default:
+						return "Application event unknown";
 				}
 			case Unbound:
 				return "none";

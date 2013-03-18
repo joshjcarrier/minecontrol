@@ -4,5 +4,6 @@ public enum ButtonMappingType
 {
 	Keyboard,
 	Mouse,
+	Application,
 	Unbound
 }

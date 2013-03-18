@@ -9,6 +9,9 @@ public class ReplayHandlerFactory
 	{
 		switch(buttonMapping.getMappingType())
 		{
+			case Application:
+				return new ApplicationCommandReplayHandler(button, buttonMapping);
+			
 			case Keyboard:
 				return new VirtualKeyButtonsReplayHandler(button, buttonMapping, isRepeatMode);
 				

@@ -27,6 +27,7 @@ import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.joshjcarrier.minecontrol.framework.input.ApplicationEvent;
 import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
 import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
 import com.joshjcarrier.minecontrol.framework.input.Buttons;
@@ -126,6 +127,7 @@ public class ConfigurationView extends JDialog
 		
 		ButtonMapping[] mappings = new ButtonMapping[]
 				{
+					new ButtonMapping(ButtonMappingType.Application, ApplicationEvent.MouseMode),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_A),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_C),
 					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_D),
