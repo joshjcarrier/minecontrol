@@ -241,14 +241,14 @@ public class ConfigurationView extends JDialog
 		panel.add(new JLabel("X, Y Look sensitivity (movement mode)"), gridConstraints);
 		
 		final JSlider lookHorizontalSlider = new JSlider();		
-		lookHorizontalSlider.setMajorTickSpacing(5);
+		lookHorizontalSlider.setMajorTickSpacing(10);
 		lookHorizontalSlider.setMinorTickSpacing(1);
 		lookHorizontalSlider.setPaintTicks(true);
 		lookHorizontalSlider.setPaintLabels(true);
 		lookHorizontalSlider.setSnapToTicks(true);
 		lookHorizontalSlider.setValue(dataContext.getMouseMode1SensitivityX());
 		lookHorizontalSlider.setMinimum(0);
-		lookHorizontalSlider.setMaximum(40);		
+		lookHorizontalSlider.setMaximum(100);		
 		lookHorizontalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
@@ -260,14 +260,14 @@ public class ConfigurationView extends JDialog
 		panel.add(lookHorizontalSlider, gridConstraints);
 		
 		final JSlider lookVerticalSlider = new JSlider();
-		lookVerticalSlider.setMajorTickSpacing(5);
+		lookVerticalSlider.setMajorTickSpacing(10);
 		lookVerticalSlider.setMinorTickSpacing(1);
 		lookVerticalSlider.setPaintTicks(true);
 		lookVerticalSlider.setPaintLabels(true);
 		lookVerticalSlider.setSnapToTicks(true);
 		lookVerticalSlider.setValue(dataContext.getMouseMode1SensitivityY());
 		lookVerticalSlider.setMinimum(0);
-		lookVerticalSlider.setMaximum(40);
+		lookVerticalSlider.setMaximum(100);
 		lookVerticalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{

@@ -21,6 +21,7 @@ public class RunnableHidReplayService implements Runnable
 	public RunnableHidReplayService(ControllerProfile profile)
 	{	
 		this.profile = profile;
+		this.replayState = ReplayState.Primary;
 		
 		try
 		{

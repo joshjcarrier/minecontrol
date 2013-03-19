@@ -14,8 +14,8 @@ import com.joshjcarrier.minecontrol.services.ReplayState;
  */
 public class VirtualMouseMoveAnalogReplayHandler implements IAnalogReplayHandler
 {
-	public static final int DefaultSensitivity = 20;
-	public static final int DefaultSecondarySensitivity = 40;
+	public static final int DefaultSensitivity = 30;
+	public static final int DefaultSecondarySensitivity = 10;
 	
 	private int sensitivityX, sensitivityY, sensitivitySecondaryX, sensitivitySecondaryY;
 	private byte invertY;
@@ -56,13 +56,23 @@ public class VirtualMouseMoveAnalogReplayHandler implements IAnalogReplayHandler
 			
 			// TODO 2.0+ smoothen mouse
 			humanInterfaceDeviceService.mouseMove(
-					(int) (info.getLocation().x + moveMouse.getX() * sensitivityX),
-					(int) (info.getLocation().y + moveMouse.getY() * sensitivityY * this.invertY));
+					(int) (info.getLocation().x + moveMouse.getX() * getCurrentSensitivityX(replayState)),
+					(int) (info.getLocation().y + moveMouse.getY() * getCurrentSensitivityY(replayState) * this.invertY));
 		}
 		
 		return replayState;
 	}
 
+	public int getCurrentSensitivityX(ReplayState replayState) 
+	{
+		return replayState == ReplayState.Primary ? this.sensitivityX : this.sensitivitySecondaryX;
+	}
+	
+	public int getCurrentSensitivityY(ReplayState replayState) 
+	{
+		return replayState == ReplayState.Primary ? this.sensitivityY : this.sensitivitySecondaryY;
+	}
+	
 	public int getSensitivityX() 
 	{
 		return this.sensitivityX;

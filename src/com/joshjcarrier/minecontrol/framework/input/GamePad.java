@@ -172,10 +172,11 @@ public class GamePad
 		
 		previousButtons = buttons;
 		
-		leftThumbStickX = getFilteredApproximation(leftThumbStickX, 0.15f, 0.9f);
-		leftThumbStickY = getFilteredApproximation(leftThumbStickY, 0.15f, 0.9f);
-		rightThumbStickX = getFilteredApproximation(rightThumbStickX, 0.15f, 0.9f);
-		rightThumbStickY = getFilteredApproximation(rightThumbStickY, 0.15f, 0.9f);
+		// these filters compensate for noise due to mechanical nature of joystick readings
+		leftThumbStickX = getFilteredApproximation(leftThumbStickX, 0.25f, 0.9f);
+		leftThumbStickY = getFilteredApproximation(leftThumbStickY, 0.25f, 0.9f);
+		rightThumbStickX = getFilteredApproximation(rightThumbStickX, 0.19f, 0.9f);
+		rightThumbStickY = getFilteredApproximation(rightThumbStickY, 0.19f, 0.9f);
 		leftTrigger = getFilteredApproximation(leftTrigger, 0.15f, 0.9f);
 		rightTrigger = getFilteredApproximation(rightTrigger, 0.15f, 0.9f);
 		

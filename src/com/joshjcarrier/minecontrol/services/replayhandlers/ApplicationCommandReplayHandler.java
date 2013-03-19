@@ -25,7 +25,8 @@ public class ApplicationCommandReplayHandler implements IButtonsReplayHandler
 		return this.buttonMapping;
 	}
 
-	public ReplayState replay(ReplayState replayState,
+	public ReplayState replay(
+			ReplayState replayState,
 			EnumSet<Buttons> buttons, Robot humanInterfaceDeviceService) 
 	{
 		if (buttons.contains(this.activationButton) && refactoryCounter == 0)
@@ -33,7 +34,7 @@ public class ApplicationCommandReplayHandler implements IButtonsReplayHandler
 			switch(this.buttonMapping.getEventCode())
 			{
 				case ApplicationEvent.MouseMode:
-					System.out.println("TODO toggle mouse sensitivity on controller profile");
+					replayState = replayState == ReplayState.Primary ? ReplayState.Secondary : ReplayState.Primary;
 					break;
 			}
 			
