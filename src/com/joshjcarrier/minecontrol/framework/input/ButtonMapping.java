@@ -87,10 +87,10 @@ public class ButtonMapping implements Serializable
 					case MouseEvent.MOUSE_WHEEL:
 						if (variant > 0)
 						{
-							return "Mouse scroll up";
+							return "Mouse scroll down";
 						}
 						
-						return "Mouse scroll down";
+						return "Mouse scroll up";
 					default:
 						return "Mouse event unknown";
 				}
