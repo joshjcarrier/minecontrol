@@ -42,6 +42,21 @@ public class ButtonMappingToReplayControl extends JPanel
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
+					ButtonMapping mapping = (ButtonMapping)buttonMappingComboBox.getSelectedItem();
+					
+					// toggle mode only enabled for keyboard
+					if(mapping.getMappingType() != ButtonMappingType.Keyboard)
+					{
+						keyToggleModeCheckBox.setEnabled(false);
+						keyToggleModeCheckBox.setSelected(false);
+					}
+					else
+					{
+						// resync toggle mode state
+						keyToggleModeCheckBox.setSelected(mapping.isToggleMode());
+						keyToggleModeCheckBox.setEnabled(true);
+					}
+					
 					notifyItemStateChanged();
 				}
 			});
@@ -50,6 +65,15 @@ public class ButtonMappingToReplayControl extends JPanel
 		gridConstraints.gridx = 1;
 		gridConstraints.weighty = 0;
 		this.keyToggleModeCheckBox = new JCheckBox();
+		this.keyToggleModeCheckBox.setAction(new SimpleAction()
+		{				
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				((ButtonMapping)buttonMappingComboBox.getSelectedItem()).setIsToggleMode(keyToggleModeCheckBox.isSelected());
+				notifyItemStateChanged();
+			}
+		});
 		this.keyToggleModeCheckBox.setText("Toggle mode");
 		this.add(this.keyToggleModeCheckBox, gridConstraints);
 	}
@@ -57,6 +81,11 @@ public class ButtonMappingToReplayControl extends JPanel
 	public ButtonMapping getSelectedButtonMapping()
 	{
 		return (ButtonMapping)this.buttonMappingComboBox.getSelectedItem();
+	}
+	
+	public boolean isToggleModeEnabled()
+	{
+		return this.keyToggleModeCheckBox.isSelected();
 	}
 	
 	public void setAction(Action a)
@@ -68,12 +97,11 @@ public class ButtonMappingToReplayControl extends JPanel
 	{
 		ButtonMapping selectedButtonMapping = buttonMapping != null ? buttonMapping : unboundMapping;
 		this.buttonMappingComboBox.setSelectedItem(selectedButtonMapping);	
+		this.keyToggleModeCheckBox.setSelected(selectedButtonMapping.isToggleMode());
 	}
 	
 	private void notifyItemStateChanged()
-	{
-		this.keyToggleModeCheckBox.setEnabled(((ButtonMapping)this.buttonMappingComboBox.getSelectedItem()).getMappingType() == ButtonMappingType.Keyboard);
-		
+	{	
 		if (this.updateAction != null)
 		{
 			this.updateAction.actionPerformed(new ActionEvent(this, ItemEvent.ITEM_STATE_CHANGED, ""));

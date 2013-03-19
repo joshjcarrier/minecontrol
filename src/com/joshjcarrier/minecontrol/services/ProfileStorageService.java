@@ -82,9 +82,10 @@ public class ProfileStorageService
 		ButtonMappingType buttonMappingType = ButtonMappingType.valueOf(mappingType);
 		int eventCode = propertiesStorage.read(section, handlerIdentifier + ".eventcode", 0);
 		int variant = propertiesStorage.read(section, handlerIdentifier + ".variant", 0);
+		boolean isToggleMode = propertiesStorage.readBoolean(section, handlerIdentifier + ".istogglemode");
 		
-		ButtonMapping buttonMapping = new ButtonMapping(buttonMappingType, eventCode, variant);						
-		return this.replayHandlerFactory.create(activationButton, buttonMapping, false);
+		ButtonMapping buttonMapping = new ButtonMapping(buttonMappingType, eventCode, variant, isToggleMode);						
+		return this.replayHandlerFactory.create(activationButton, buttonMapping);
 	}
 	
 	private VirtualKeyAnalogReplayHandler readKeyAnalogHandler(String section, String handlerIdentifier, int defaultPositiveMask, int defaultNegativeMask)
@@ -111,6 +112,7 @@ public class ProfileStorageService
 		this.propertiesStorage.write(section, handlerIdentifier + ".mappingtype", buttonMapping.getMappingType().name());
 		this.propertiesStorage.write(section, handlerIdentifier + ".eventcode", buttonMapping.getEventCode());
 		this.propertiesStorage.write(section, handlerIdentifier + ".variant", buttonMapping.getVariant());
+		this.propertiesStorage.write(section, handlerIdentifier + ".istogglemode", buttonMapping.isToggleMode());
 	}
 	
 	private void writeHandler(String section, String handlerIdentifier, VirtualKeyAnalogReplayHandler handler)

@@ -12,17 +12,24 @@ public class ButtonMapping implements Serializable
 	private ButtonMappingType mappingType;	
 	private int eventCode;
 	private int variant;
+	private boolean isToggleMode;
 	
-	public ButtonMapping(ButtonMappingType mappingType, int eventCode, int variant)
+	public ButtonMapping(ButtonMappingType mappingType, int eventCode, int variant, boolean isToggleMode)
 	{
 		this.mappingType = mappingType;
 		this.eventCode = eventCode;
 		this.variant = variant;
+		this.isToggleMode = isToggleMode;
+	}
+	
+	public ButtonMapping(ButtonMappingType mappingType, int eventCode, int variant)
+	{
+		this(mappingType, eventCode, variant, false);
 	}
 	
 	public ButtonMapping(ButtonMappingType mappingType, int eventCode)
 	{
-		this(mappingType, eventCode, 0);
+		this(mappingType, eventCode, 0, false);
 	}
 	
 	@Override
@@ -35,6 +42,16 @@ public class ButtonMapping implements Serializable
 		}
 		
 		return this.eventCode == other.eventCode && this.mappingType == other.mappingType && this.variant == other.variant;
+	}
+	
+	public boolean isToggleMode()
+	{
+		return this.isToggleMode;
+	}
+	
+	public void setIsToggleMode(boolean isToggleMode)
+	{
+		this.isToggleMode = isToggleMode;
 	}
 	
 	public ButtonMappingType getMappingType()

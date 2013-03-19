@@ -5,7 +5,7 @@ import com.joshjcarrier.minecontrol.framework.input.Buttons;
 
 public class ReplayHandlerFactory 
 {
-	public IButtonsReplayHandler create(Buttons button, ButtonMapping buttonMapping, boolean isRepeatMode)
+	public IButtonsReplayHandler create(Buttons button, ButtonMapping buttonMapping)
 	{
 		switch(buttonMapping.getMappingType())
 		{
@@ -13,10 +13,17 @@ public class ReplayHandlerFactory
 				return new ApplicationCommandReplayHandler(button, buttonMapping);
 			
 			case Keyboard:
-				return new VirtualKeyButtonsReplayHandler(button, buttonMapping, isRepeatMode);
+				if(buttonMapping.isToggleMode())
+				{
+					return new VirtualToggleKeyButtonsReplayHandler(button, buttonMapping);
+				}
+				else
+				{
+					return new VirtualKeyButtonsReplayHandler(button, buttonMapping, false);	
+				}
 				
 			case Mouse:
-				return new VirtualMouseButtonsReplayHandler(button, buttonMapping, isRepeatMode);
+				return new VirtualMouseButtonsReplayHandler(button, buttonMapping, false);
 				
 			default:
 				return new UnboundButtonReplayHandler();		

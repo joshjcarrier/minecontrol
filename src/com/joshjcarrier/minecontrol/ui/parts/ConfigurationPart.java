@@ -47,7 +47,7 @@ public class ConfigurationPart extends BasePart
 	
 	public void setButtonMapping(Buttons button, ButtonMapping buttonMapping)
 	{
-		IButtonsReplayHandler handler = this.replayHandlerFactory.create(button, buttonMapping, false);
+		IButtonsReplayHandler handler = this.replayHandlerFactory.create(button, buttonMapping);
 		this.controllerProfile.getButtonMappingReplayHandlers().put(button, handler);
 		this.profileStorageService.store(this.controllerProfile);
 	}
