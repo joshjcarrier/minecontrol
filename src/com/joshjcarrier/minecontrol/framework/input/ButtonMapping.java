@@ -81,12 +81,12 @@ public class ButtonMapping implements Serializable
 				switch(this.eventCode)
 				{
 					case ApplicationEvent.MouseMode:
-						return "Toggle mouse sensitivity";
+						return "<Toggle mouse sensitivity>";
 					default:
 						return "Application event unknown";
 				}
 			case Unbound:
-				return "none";
+				return "<none>";
 		}
 		
 		return this.mappingType.name() + " code " + this.eventCode;		
