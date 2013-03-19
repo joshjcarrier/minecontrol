@@ -70,6 +70,24 @@ public class ConfigurationPart extends BasePart
 		this.profileStorageService.store(this.controllerProfile);
 	}
 	
+	public int getMouseMode2SensitivityX() {
+		return this.controllerProfile.getRightThumbStickHandler().getSensitivitySecondaryX();
+	}
+
+	public void setMouseMode2SensitivityX(int mouseMode2SensitivityX) {
+		this.controllerProfile.getRightThumbStickHandler().setSensitivitySecondaryX(mouseMode2SensitivityX);
+		this.profileStorageService.store(this.controllerProfile);
+	}
+	
+	public int getMouseMode2SensitivityY() {
+		return this.controllerProfile.getRightThumbStickHandler().getSensitivitySecondaryY();
+	}
+
+	public void setMouseMode2SensitivityY(int mouseMode2SensitivityY) {
+		this.controllerProfile.getRightThumbStickHandler().setSensitivitySecondaryY(mouseMode2SensitivityY);
+		this.profileStorageService.store(this.controllerProfile);
+	}
+	
 	public void setLookInverted(boolean invertY)
 	{
 		this.controllerProfile.getRightThumbStickHandler().setInvertY(invertY);

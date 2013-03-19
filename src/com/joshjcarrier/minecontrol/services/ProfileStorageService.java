@@ -56,10 +56,7 @@ public class ProfileStorageService
 		writeHandler(section, "mode1.lts.x", profile.getLeftThumbStickXHandler());
 		writeHandler(section, "mode1.lts.y", profile.getLeftThumbStickYHandler());
 		writeHandler(section, "mode1.rts", profile.getRightThumbStickHandler());
-		
-//		this.propertiesStorage.writeInt(getConfigurationKey(identifier, "mouse.mode2.sensitivity.x"), profile.getMouseMode2SensitivityX());
-//		this.propertiesStorage.writeInt(getConfigurationKey(identifier, "mouse.mode2.sensitivity.y"), profile.getMouseMode2SensitivityY());
-		
+				
 		for (Entry<Buttons, IButtonsReplayHandler> mapping : profile.getButtonMappingReplayHandlers().entrySet())
 		{
 			writeHandler(section, "button." + mapping.getKey().name(), mapping.getValue());
@@ -102,8 +99,10 @@ public class ProfileStorageService
 	{
 		int sensitivityX = this.propertiesStorage.read(section, handlerIdentifier + ".x.sensitivity", VirtualMouseMoveAnalogReplayHandler.DefaultSensitivity);
 		int sensitivityY = this.propertiesStorage.read(section, handlerIdentifier + ".x.sensitivity", VirtualMouseMoveAnalogReplayHandler.DefaultSensitivity);
+		int sensitivitySecondaryX = this.propertiesStorage.read(section, handlerIdentifier + ".x.sensitivitysecondary", VirtualMouseMoveAnalogReplayHandler.DefaultSecondarySensitivity);
+		int sensitivitySecondaryY = this.propertiesStorage.read(section, handlerIdentifier + ".x.sensitivitysecondary", VirtualMouseMoveAnalogReplayHandler.DefaultSecondarySensitivity);
 		boolean invertY = this.propertiesStorage.readBoolean(section, handlerIdentifier + ".y.invert"); 
-		return new VirtualMouseMoveAnalogReplayHandler(sensitivityX, sensitivityY, invertY);
+		return new VirtualMouseMoveAnalogReplayHandler(sensitivityX, sensitivityY, sensitivitySecondaryX, sensitivitySecondaryY, invertY);
 	}
 	
 	private void writeHandler(String section, String handlerIdentifier, IButtonsReplayHandler handler)
@@ -125,6 +124,8 @@ public class ProfileStorageService
 	{
 		this.propertiesStorage.write(section, handlerIdentifier + ".x.sensitivity", handler.getSensitivityX());
 		this.propertiesStorage.write(section, handlerIdentifier + ".y.sensitivity", handler.getSensitivityY());
+		this.propertiesStorage.write(section, handlerIdentifier + ".x.sensitivitysecondary", handler.getSensitivitySecondaryX());
+		this.propertiesStorage.write(section, handlerIdentifier + ".y.sensitivitysecondary", handler.getSensitivitySecondaryY());
 		this.propertiesStorage.write(section, handlerIdentifier + ".y.invert", handler.isInvertY());
 	}
 }

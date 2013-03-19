@@ -247,13 +247,13 @@ public class ConfigurationView extends JDialog
 		lookMouseHorizontalSlider.setPaintTicks(true);
 		lookMouseHorizontalSlider.setPaintLabels(true);
 		lookMouseHorizontalSlider.setSnapToTicks(true);
-		//lookMouseHorizontalSlider.setValue(this.dataContext.getMouseMode2SensitivityX());
-		lookMouseHorizontalSlider.setMinimum(1);
+		lookMouseHorizontalSlider.setValue(dataContext.getMouseMode2SensitivityX());
+		lookMouseHorizontalSlider.setMinimum(0);
 		lookMouseHorizontalSlider.setMaximum(40);
 		lookMouseHorizontalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				//dataContext.setMouseMode2SensitivityX(lookMouseHorizontalSlider.getValue());
+				dataContext.setMouseMode2SensitivityX(lookMouseHorizontalSlider.getValue());
 			}
 		});
 		
@@ -266,13 +266,13 @@ public class ConfigurationView extends JDialog
 		lookMouseVerticalSlider.setPaintTicks(true);
 		lookMouseVerticalSlider.setPaintLabels(true);
 		lookMouseVerticalSlider.setSnapToTicks(true);
-		//lookMouseVerticalSlider.setValue(this.dataContext.getMouseMode2SensitivityY());
+		lookMouseVerticalSlider.setValue(dataContext.getMouseMode2SensitivityY());
 		lookMouseVerticalSlider.setMinimum(0);
 		lookMouseVerticalSlider.setMaximum(40);
 		lookMouseVerticalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				//dataContext.setMouseMode2SensitivityY(lookMouseVerticalSlider.getValue());
+				dataContext.setMouseMode2SensitivityY(lookMouseVerticalSlider.getValue());
 			}
 		});
 		

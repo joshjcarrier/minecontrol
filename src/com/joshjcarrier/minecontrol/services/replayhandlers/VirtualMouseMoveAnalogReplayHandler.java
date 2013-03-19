@@ -15,14 +15,22 @@ import com.joshjcarrier.minecontrol.services.ReplayState;
 public class VirtualMouseMoveAnalogReplayHandler implements IAnalogReplayHandler
 {
 	public static final int DefaultSensitivity = 20;
+	public static final int DefaultSecondarySensitivity = 40;
 	
-	private int sensitivityX, sensitivityY;
+	private int sensitivityX, sensitivityY, sensitivitySecondaryX, sensitivitySecondaryY;
 	private byte invertY;
 	
-	public VirtualMouseMoveAnalogReplayHandler(int sensitivityX, int sensitivityY, boolean invertY) 
+	public VirtualMouseMoveAnalogReplayHandler(
+			int sensitivityX, 
+			int sensitivityY,
+			int sensitivitySecondaryX,
+			int sensitivitySecondaryY,
+			boolean invertY) 
 	{
 		this.sensitivityX = sensitivityX;
 		this.sensitivityY = sensitivityY;
+		this.sensitivitySecondaryX = sensitivitySecondaryX;
+		this.sensitivitySecondaryY = sensitivitySecondaryY;
 		
 		if(invertY)
 		{
@@ -36,7 +44,7 @@ public class VirtualMouseMoveAnalogReplayHandler implements IAnalogReplayHandler
 	
 	public VirtualMouseMoveAnalogReplayHandler() 
 	{
-		this(DefaultSensitivity, DefaultSensitivity, false);
+		this(DefaultSensitivity, DefaultSensitivity, DefaultSecondarySensitivity, DefaultSecondarySensitivity, false);
 	}
 	
 	public ReplayState replay(ReplayState replayState, Point2D analogInput, Robot humanInterfaceDeviceService)
@@ -73,6 +81,26 @@ public class VirtualMouseMoveAnalogReplayHandler implements IAnalogReplayHandler
 	public void setSensitivityY(int sensitivityY) 
 	{
 		this.sensitivityY = sensitivityY;
+	}
+	
+	public int getSensitivitySecondaryX() 
+	{
+		return this.sensitivitySecondaryX;
+	}
+
+	public void setSensitivitySecondaryX(int sensitivityX) 
+	{
+		this.sensitivitySecondaryX = sensitivityX;
+	}
+
+	public int getSensitivitySecondaryY() 
+	{
+		return this.sensitivitySecondaryY;
+	}
+
+	public void setSensitivitySecondaryY(int sensitivityY) 
+	{
+		this.sensitivitySecondaryY = sensitivityY;
 	}
 
 	public boolean isInvertY() 
