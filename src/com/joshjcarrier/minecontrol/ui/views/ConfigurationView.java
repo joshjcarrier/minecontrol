@@ -42,6 +42,8 @@ public class ConfigurationView extends JDialog
 	
 	public ConfigurationView(ConfigurationPart part)
 	{
+		setTitle(part.getTitle());
+		
 		ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX360));
     	this.setIconImage(icon.getImage());    
     	
@@ -225,6 +227,48 @@ public class ConfigurationView extends JDialog
 			panel.add(buttonMappingToReplayControl, gridConstraints);
 		}
 		
+		gridConstraints.gridy += 1;
+		gridConstraints.gridx = 0;
+		panel.add(new JLabel("Left joystick: up"), gridConstraints);
+		gridConstraints.gridx = 1;
+		panel.add(new JLabel("W (pulse mode)"), gridConstraints);
+		
+		gridConstraints.gridy += 1;
+		gridConstraints.gridx = 0;
+		panel.add(new JLabel("Left joystick: down"), gridConstraints);
+		gridConstraints.gridx = 1;
+		panel.add(new JLabel("S (pulse mode)"), gridConstraints);
+		
+		gridConstraints.gridy += 1;
+		gridConstraints.gridx = 0;
+		panel.add(new JLabel("Left joystick: left"), gridConstraints);
+		gridConstraints.gridx = 1;
+		panel.add(new JLabel("A (pulse mode)"), gridConstraints);
+		
+		gridConstraints.gridy += 1;
+		gridConstraints.gridx = 0;
+		panel.add(new JLabel("Left joystick: right"), gridConstraints);
+		gridConstraints.gridx = 1;
+		panel.add(new JLabel("D (pulse mode)"), gridConstraints);
+		
+		gridConstraints.gridy += 1;
+		gridConstraints.gridx = 0;
+		panel.add(new JLabel("Right joystick"), gridConstraints);
+		gridConstraints.gridx = 1;
+		panel.add(new JLabel("Mouse movement"), gridConstraints);
+		
+		gridConstraints.gridy += 1;
+		gridConstraints.gridx = 0;
+		panel.add(new JLabel("Left trigger"), gridConstraints);
+		gridConstraints.gridx = 1;
+		panel.add(new JLabel("Mouse right press/release (button 3)"), gridConstraints);
+		
+		gridConstraints.gridy += 1;
+		gridConstraints.gridx = 0;
+		panel.add(new JLabel("Right trigger"), gridConstraints);
+		gridConstraints.gridx = 1;
+		panel.add(new JLabel("Mouse left press/release (button 1)"), gridConstraints);
+		
 		return panel;
 	}
 	
@@ -247,6 +291,7 @@ public class ConfigurationView extends JDialog
 		lookHorizontalSlider.setPaintLabels(true);
 		lookHorizontalSlider.setSnapToTicks(true);
 		lookHorizontalSlider.setValue(dataContext.getMouseMode1SensitivityX());
+		lookHorizontalSlider.setToolTipText("Sets how responsive looking left and right in mouse mode 1 (default mode) will be.");
 		lookHorizontalSlider.setMinimum(0);
 		lookHorizontalSlider.setMaximum(100);		
 		lookHorizontalSlider.addChangeListener(new ChangeListener() {
@@ -266,6 +311,7 @@ public class ConfigurationView extends JDialog
 		lookVerticalSlider.setPaintLabels(true);
 		lookVerticalSlider.setSnapToTicks(true);
 		lookVerticalSlider.setValue(dataContext.getMouseMode1SensitivityY());
+		lookVerticalSlider.setToolTipText("Sets how responsive looking left and right in mouse mode 1 (default mode) will be.");
 		lookVerticalSlider.setMinimum(0);
 		lookVerticalSlider.setMaximum(100);
 		lookVerticalSlider.addChangeListener(new ChangeListener() {
@@ -289,6 +335,7 @@ public class ConfigurationView extends JDialog
 		lookMouseHorizontalSlider.setPaintLabels(true);
 		lookMouseHorizontalSlider.setSnapToTicks(true);
 		lookMouseHorizontalSlider.setValue(dataContext.getMouseMode2SensitivityX());
+		lookMouseHorizontalSlider.setToolTipText("Sets how responsive looking left and right in mouse mode 2 will be. Enter this mode by mapping a button to \"<Toggle mouse mode>\".");
 		lookMouseHorizontalSlider.setMinimum(0);
 		lookMouseHorizontalSlider.setMaximum(40);
 		lookMouseHorizontalSlider.addChangeListener(new ChangeListener() {
@@ -308,6 +355,7 @@ public class ConfigurationView extends JDialog
 		lookMouseVerticalSlider.setPaintLabels(true);
 		lookMouseVerticalSlider.setSnapToTicks(true);
 		lookMouseVerticalSlider.setValue(dataContext.getMouseMode2SensitivityY());
+		lookMouseVerticalSlider.setToolTipText("Sets how responsive looking up and down in mouse mode 2 will be. Enter this mode by mapping a button to \"<Toggle mouse mode>\".");
 		lookMouseVerticalSlider.setMinimum(0);
 		lookMouseVerticalSlider.setMaximum(40);
 		lookMouseVerticalSlider.addChangeListener(new ChangeListener() {
@@ -330,6 +378,7 @@ public class ConfigurationView extends JDialog
 		});
 		
 		invertPitchCheckBox.setText("Invert look up/down");
+		invertPitchCheckBox.setToolTipText("When selected, pushing up on the right joystick moves the mouse down.");
 		invertPitchCheckBox.setSelected(dataContext.isLookInverted());
 		gridConstraints.gridy = 6;
 		panel.add(invertPitchCheckBox, gridConstraints);

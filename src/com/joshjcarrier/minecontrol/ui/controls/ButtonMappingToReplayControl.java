@@ -75,6 +75,7 @@ public class ButtonMappingToReplayControl extends JPanel
 			}
 		});
 		this.keyToggleModeCheckBox.setText("Toggle mode");
+		this.keyToggleModeCheckBox.setToolTipText("When selected, the mapped key will continue to be held until the button is pressed again.");
 		this.add(this.keyToggleModeCheckBox, gridConstraints);
 	}
 	

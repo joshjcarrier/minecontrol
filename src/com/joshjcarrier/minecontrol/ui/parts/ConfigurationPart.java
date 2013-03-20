@@ -52,6 +52,11 @@ public class ConfigurationPart extends BasePart
 		this.profileStorageService.store(this.controllerProfile);
 	}
 	
+	public String getTitle()
+	{
+		return "Minecontrol - Controller profile \"" + this.controllerProfile.getIdentifier() + "\"";
+	}
+	
 	public int getMouseMode1SensitivityX() {
 		return this.controllerProfile.getRightThumbStickHandler().getSensitivityX();
 	}
