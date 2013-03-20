@@ -33,6 +33,7 @@ import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
 import com.joshjcarrier.minecontrol.framework.input.Buttons;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
+import com.joshjcarrier.minecontrol.ui.controls.ButtonDescriptorPanel;
 import com.joshjcarrier.minecontrol.ui.controls.ButtonMappingToReplayControl;
 import com.joshjcarrier.minecontrol.ui.parts.ConfigurationPart;
 
@@ -206,7 +207,7 @@ public class ConfigurationView extends JDialog
 			gridConstraints.gridy += 1;
 			
 			gridConstraints.gridx = 0;
-			panel.add(new JLabel(button.name()), gridConstraints);
+			panel.add(new ButtonDescriptorPanel(button), gridConstraints);
 							
 			final ButtonMappingToReplayControl buttonMappingToReplayControl = new ButtonMappingToReplayControl(Arrays.asList(mappings));
 			buttonMappingToReplayControl.setAction(new SimpleAction()
@@ -227,46 +228,56 @@ public class ConfigurationView extends JDialog
 			panel.add(buttonMappingToReplayControl, gridConstraints);
 		}
 		
-		gridConstraints.gridy += 1;
-		gridConstraints.gridx = 0;
-		panel.add(new JLabel("Left joystick: up"), gridConstraints);
-		gridConstraints.gridx = 1;
+		gridConstraints.gridy = 1;
+		gridConstraints.gridx = 2;
+		panel.add(new JLabel("                  ")); // REVIEW: real cheap way of adding a spacer between the columns
+		
+		JLabel readonlyButtonsHeader = new JLabel("Read-only Mappings");
+		readonlyButtonsHeader.setFont(headerFont);
+		gridConstraints.gridy = 0;
+		gridConstraints.gridx = 3;
+		panel.add(readonlyButtonsHeader, gridConstraints);
+		
+		gridConstraints.gridy = 1;
+		gridConstraints.gridx = 3;
+		panel.add(new ButtonDescriptorPanel("Left joystick: up", ContentResources.BUTTON_XBOX360_LEFTSTICK), gridConstraints);
+		gridConstraints.gridx = 4;
 		panel.add(new JLabel("W (pulse mode)"), gridConstraints);
 		
 		gridConstraints.gridy += 1;
-		gridConstraints.gridx = 0;
-		panel.add(new JLabel("Left joystick: down"), gridConstraints);
-		gridConstraints.gridx = 1;
+		gridConstraints.gridx = 3;
+		panel.add(new ButtonDescriptorPanel("Left joystick: down", ContentResources.BUTTON_XBOX360_LEFTSTICK), gridConstraints);
+		gridConstraints.gridx = 4;
 		panel.add(new JLabel("S (pulse mode)"), gridConstraints);
 		
 		gridConstraints.gridy += 1;
-		gridConstraints.gridx = 0;
-		panel.add(new JLabel("Left joystick: left"), gridConstraints);
-		gridConstraints.gridx = 1;
+		gridConstraints.gridx = 3;
+		panel.add(new ButtonDescriptorPanel("Left joystick: left", ContentResources.BUTTON_XBOX360_LEFTSTICK), gridConstraints);
+		gridConstraints.gridx = 4;
 		panel.add(new JLabel("A (pulse mode)"), gridConstraints);
 		
 		gridConstraints.gridy += 1;
-		gridConstraints.gridx = 0;
-		panel.add(new JLabel("Left joystick: right"), gridConstraints);
-		gridConstraints.gridx = 1;
+		gridConstraints.gridx = 3;
+		panel.add(new ButtonDescriptorPanel("Left joystick: right", ContentResources.BUTTON_XBOX360_LEFTSTICK), gridConstraints);
+		gridConstraints.gridx = 4;
 		panel.add(new JLabel("D (pulse mode)"), gridConstraints);
 		
 		gridConstraints.gridy += 1;
-		gridConstraints.gridx = 0;
-		panel.add(new JLabel("Right joystick"), gridConstraints);
-		gridConstraints.gridx = 1;
+		gridConstraints.gridx = 3;
+		panel.add(new ButtonDescriptorPanel("Right joystick", ContentResources.BUTTON_XBOX360_RIGHTSTICK), gridConstraints);
+		gridConstraints.gridx = 4;
 		panel.add(new JLabel("Mouse movement"), gridConstraints);
 		
 		gridConstraints.gridy += 1;
-		gridConstraints.gridx = 0;
-		panel.add(new JLabel("Left trigger"), gridConstraints);
-		gridConstraints.gridx = 1;
+		gridConstraints.gridx = 3;
+		panel.add(new ButtonDescriptorPanel("Left trigger", ContentResources.BUTTON_XBOX360_LEFTTRIGGER), gridConstraints);
+		gridConstraints.gridx = 4;
 		panel.add(new JLabel("Mouse right press/release (button 3)"), gridConstraints);
 		
 		gridConstraints.gridy += 1;
-		gridConstraints.gridx = 0;
-		panel.add(new JLabel("Right trigger"), gridConstraints);
-		gridConstraints.gridx = 1;
+		gridConstraints.gridx = 3;
+		panel.add(new ButtonDescriptorPanel("Right trigger", ContentResources.BUTTON_XBOX360_RIGHTTRIGGER), gridConstraints);
+		gridConstraints.gridx = 4;
 		panel.add(new JLabel("Mouse left press/release (button 1)"), gridConstraints);
 		
 		return panel;
