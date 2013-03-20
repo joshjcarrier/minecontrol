@@ -44,8 +44,8 @@ public class ButtonMappingToReplayControl extends JPanel
 				{
 					ButtonMapping mapping = (ButtonMapping)buttonMappingComboBox.getSelectedItem();
 					
-					// toggle mode only enabled for keyboard
-					if(mapping.getMappingType() != ButtonMappingType.Keyboard)
+					// toggle mode only enabled for keyboard or mouse
+					if(mapping.getMappingType() != ButtonMappingType.Keyboard && mapping.getMappingType() != ButtonMappingType.Mouse)
 					{
 						keyToggleModeCheckBox.setEnabled(false);
 						keyToggleModeCheckBox.setSelected(false);

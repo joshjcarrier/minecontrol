@@ -60,13 +60,13 @@ public class ButtonDescriptorPanel extends JPanel
 			case LEFT_SHOULDER:
 				return "Left shoulder";
 			case LEFT_STICK:
-				return "Left joystick";
+				return "Left joystick press";
 			case LEFT_TRIGGER:
 				return "Left trigger";
 			case RIGHT_SHOULDER:
 				return "Right shoulder";
 			case RIGHT_STICK:
-				return "Right joystick";
+				return "Right joystick press";
 			case RIGHT_TRIGGER:
 				return "Right trigger";
 			case START:
