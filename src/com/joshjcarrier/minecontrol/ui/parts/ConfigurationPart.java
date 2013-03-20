@@ -1,5 +1,6 @@
 package com.joshjcarrier.minecontrol.ui.parts;
 
+import com.joshjcarrier.minecontrol.AppInfo;
 import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
 import com.joshjcarrier.minecontrol.framework.input.Buttons;
 import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
@@ -54,7 +55,7 @@ public class ConfigurationPart extends BasePart
 	
 	public String getTitle()
 	{
-		return "Minecontrol - Controller profile \"" + this.controllerProfile.getIdentifier() + "\"";
+		return AppInfo.ProductName + " - Controller profile \"" + this.controllerProfile.getIdentifier() + "\"";
 	}
 	
 	public int getMouseMode1SensitivityX() {

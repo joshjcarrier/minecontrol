@@ -41,7 +41,7 @@ public class MainView extends JFrame
 
 	public MainView(final RunnableGamePadInterpreter gamePadInterpreter)
 	{
-		this.setTitle("Minecontrol for Minecraft");
+		this.setTitle(AppInfo.ProductName);
 		
 		ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX360));
     	this.setIconImage(icon.getImage());    
@@ -192,7 +192,7 @@ public class MainView extends JFrame
 		panel.add(copyrightLabel, gridConstraints);
 		
 		JButton aboutButton = new JButton(":)");
-		aboutButton.setToolTipText("About Minecontrol");
+		aboutButton.setToolTipText("About " + AppInfo.ProductName);
 		aboutButton.addActionListener(new ActionListener()
 		{			
 			public void actionPerformed(ActionEvent event)

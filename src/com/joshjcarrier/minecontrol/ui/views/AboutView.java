@@ -10,13 +10,15 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.joshjcarrier.minecontrol.AppInfo;
+
 public class AboutView extends JDialog
 {
 	private static final long serialVersionUID = 3018102427542810766L;
 
 	public AboutView() 
 	{
-		this.setTitle("About Minecontrol");
+		this.setTitle("About " + AppInfo.ProductName);
 		
 		JPanel panel = new JPanel(new GridBagLayout());
 		panel.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 10));
@@ -25,7 +27,7 @@ public class AboutView extends JDialog
 		gridConstraints.insets = new Insets(5, 0, 0, 5);
 		
 		Font headerFont = new Font("Verdana", Font.BOLD | Font.ITALIC, 16);
-		JLabel headerLabel = new JLabel("Minecontrol");
+		JLabel headerLabel = new JLabel(AppInfo.ProductName);
 		headerLabel.setFont(headerFont);
 		gridConstraints.gridy = 0;
 		gridConstraints.gridx = 0;
@@ -38,7 +40,7 @@ public class AboutView extends JDialog
 		panel.add(new JLabel(""), gridConstraints);
 		
 		gridConstraints.gridy += 1;
-		panel.add(new JLabel("Minecontrol is released under the BSD license and made possibly by these open source works:"), gridConstraints);
+		panel.add(new JLabel(AppInfo.ProductName + " is released under the BSD license and made possibly by these open source works:"), gridConstraints);
 		
 		gridConstraints.gridy += 1;
 		panel.add(new JLabel("ini4j the Java .ini library <http://ini4j.sourceforge.net> (Apache 2)"), gridConstraints);

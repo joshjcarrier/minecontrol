@@ -32,7 +32,7 @@ public class PropertiesStorage implements IStorage
 		
 		try 
 		{
-			this.cache.store(new FileOutputStream(settingsFilePath), "Minecontrol for Minecraft v" + AppInfo.BuildVersion);
+			this.cache.store(new FileOutputStream(settingsFilePath), AppInfo.ProductName + " v" + AppInfo.BuildVersion);
 		} 
 		catch (IOException e) 
 		{

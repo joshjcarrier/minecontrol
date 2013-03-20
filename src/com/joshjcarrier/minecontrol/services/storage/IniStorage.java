@@ -28,7 +28,7 @@ public class IniStorage implements IStorage
 		
 		try 
 		{
-			this.cache.setComment("Minecontrol for Minecraft v" + AppInfo.BuildVersion);
+			this.cache.setComment(AppInfo.ProductName + "Minecontrol v" + AppInfo.BuildVersion);
 			this.cache.store(new FileOutputStream(settingsFilePath));
 		} 
 		catch (IOException e) 
