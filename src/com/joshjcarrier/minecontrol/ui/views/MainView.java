@@ -82,7 +82,7 @@ public class MainView extends JFrame
 		contentPanel.add(profilePanel, gridConstraints);
 		
 		JPanel footerPanel = createFooterPanel();
-		footerPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+		footerPanel.setBorder(BorderFactory.createEmptyBorder(6, 4, 0, 4));
 		gridConstraints.gridx = 0;
 		gridConstraints.gridy = 3;
 		contentPanel.add(footerPanel, gridConstraints);
@@ -186,10 +186,23 @@ public class MainView extends JFrame
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
 		
-		JLabel copyrightLabel = new JLabel("v" + AppInfo.BuildVersion + ". 2013 Josh Carrier <josh@joshjcarrier.com>");
+		JLabel copyrightLabel = new JLabel("v" + AppInfo.BuildVersion + ". 2013 Josh Carrier <josh@joshjcarrier.com>  ");
 		copyrightLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
 		copyrightLabel.setForeground(Color.DARK_GRAY);
 		panel.add(copyrightLabel, gridConstraints);
+		
+		JButton aboutButton = new JButton(":)");
+		aboutButton.setToolTipText("About Minecontrol");
+		aboutButton.addActionListener(new ActionListener()
+		{			
+			public void actionPerformed(ActionEvent event)
+			{
+				AboutView aboutView = new AboutView();
+				aboutView.setModal(true);
+				aboutView.setVisible(true);
+			}
+		});
+		panel.add(aboutButton);
 		
 		return panel;
 	}
