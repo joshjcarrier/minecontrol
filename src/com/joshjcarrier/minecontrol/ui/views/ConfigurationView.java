@@ -228,6 +228,29 @@ public class ConfigurationView extends JDialog
 			panel.add(buttonMappingToReplayControl, gridConstraints);
 		}
 		
+		gridConstraints.gridy += 1;
+		
+		gridConstraints.gridx = 0;
+		panel.add(new ButtonDescriptorPanel("Enable triggers", ContentResources.BUTTON_XBOX360_RIGHTTRIGGER), gridConstraints);
+						
+		final JCheckBox enableTriggersCheckBox = new JCheckBox();
+		enableTriggersCheckBox.setToolTipText("When selected, both left and right triggers will be enabled.");
+		enableTriggersCheckBox.setSelected(dataContext.isTriggersEnabled());
+		enableTriggersCheckBox.setAction(new SimpleAction()
+		{				
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				if (enableTriggersCheckBox.isValid())
+				{
+					dataContext.setTriggersEnabled(enableTriggersCheckBox.isSelected());
+				}
+			}
+		});
+				
+		gridConstraints.gridx = 1;
+		panel.add(enableTriggersCheckBox, gridConstraints);
+		
 		gridConstraints.gridy = 1;
 		gridConstraints.gridx = 2;
 		panel.add(new JLabel("                  ")); // REVIEW: real cheap way of adding a spacer between the columns

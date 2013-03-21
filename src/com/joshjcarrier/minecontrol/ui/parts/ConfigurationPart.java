@@ -40,6 +40,17 @@ public class ConfigurationPart extends BasePart
 		return this.controllerProfile.getRightThumbStickHandler().isInvertY();
 	}
 	
+	public boolean isTriggersEnabled()
+	{
+		return !this.controllerProfile.isTriggersDisabled();
+	}
+	
+	public void setTriggersEnabled(boolean isTriggersEnabled)
+	{
+		this.controllerProfile.setTriggersDisabled(!isTriggersEnabled);
+		this.profileStorageService.store(this.controllerProfile);
+	}
+	
 	public ButtonMapping getButtonMapping(Buttons button)
 	{
 		IButtonsReplayHandler handler = this.controllerProfile.getButtonMappingReplayHandlers().get(button);

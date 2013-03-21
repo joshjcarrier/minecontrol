@@ -38,6 +38,7 @@ public class ProfileStorageService
 		profile.setLeftThumbStickXHandler(readKeyAnalogHandler(section, "mode1.lts.x", ControllerProfile.DefaultLeftThumbStickXPositiveMask, ControllerProfile.DefaultLeftThumbStickXNegativeMask));
 		profile.setLeftThumbStickYHandler(readKeyAnalogHandler(section, "mode1.lts.y", ControllerProfile.DefaultLeftThumbStickYPositiveMask, ControllerProfile.DefaultLeftThumbStickYNegativeMask));
 		profile.setRightThumbStickHandler(readMouseMoveAnalogHandler(section, "mode1.rts"));
+		profile.setTriggersDisabled(this.propertiesStorage.readBoolean(section, "triggers.disabled"));
 		
 		for (Entry<Buttons, IButtonsReplayHandler> mapping : profile.getButtonMappingReplayHandlers().entrySet())
 		{
@@ -56,6 +57,7 @@ public class ProfileStorageService
 		writeHandler(section, "mode1.lts.x", profile.getLeftThumbStickXHandler());
 		writeHandler(section, "mode1.lts.y", profile.getLeftThumbStickYHandler());
 		writeHandler(section, "mode1.rts", profile.getRightThumbStickHandler());
+		this.propertiesStorage.write(section, "triggers.disabled", profile.isTriggersDisabled());
 				
 		for (Entry<Buttons, IButtonsReplayHandler> mapping : profile.getButtonMappingReplayHandlers().entrySet())
 		{

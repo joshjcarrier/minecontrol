@@ -31,6 +31,7 @@ public class ControllerProfile
 	private VirtualMouseMoveAnalogReplayHandler rightThumbStickHandler;
 	private VirtualMouseAnalogReplayHandler leftTriggerHandler;
 	private VirtualMouseAnalogReplayHandler rightTriggerHandler;
+	private boolean isTriggersDisabled;
 	
 	public ControllerProfile() 
 	{
@@ -50,6 +51,16 @@ public class ControllerProfile
 	{
 		// TODO read/write identifier
 		return "default";
+	}
+	
+	public boolean isTriggersDisabled() 
+	{
+		return isTriggersDisabled;
+	}
+
+	public void setTriggersDisabled(boolean isTriggerEnabled) 
+	{
+		this.isTriggersDisabled = isTriggerEnabled;
 	}
 	
 	public VirtualKeyAnalogReplayHandler getLeftThumbStickXHandler() 
@@ -93,8 +104,12 @@ public class ControllerProfile
 		leftThumbStickXHandler.replay(replayState, (float)activeGamePadState.getThumbSticks().getLeft().getX(), humanInterfaceDeviceService);
 		leftThumbStickYHandler.replay(replayState, (float)activeGamePadState.getThumbSticks().getLeft().getY(), humanInterfaceDeviceService);
 		rightThumbStickHandler.replay(replayState, activeGamePadState.getThumbSticks().getRight(), humanInterfaceDeviceService);
-		leftTriggerHandler.replay(replayState, activeGamePadState.getTriggers().getLeft(), humanInterfaceDeviceService);
-		rightTriggerHandler.replay(replayState, activeGamePadState.getTriggers().getRight(), humanInterfaceDeviceService);
+		
+		if(!this.isTriggersDisabled)
+		{
+			leftTriggerHandler.replay(replayState, activeGamePadState.getTriggers().getLeft(), humanInterfaceDeviceService);
+			rightTriggerHandler.replay(replayState, activeGamePadState.getTriggers().getRight(), humanInterfaceDeviceService);
+		}
 		
 		return replayState;
 	}
