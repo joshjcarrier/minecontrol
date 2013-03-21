@@ -4,11 +4,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
+import com.joshjcarrier.minecontrol.framework.modes.MinecraftGameMode;
+
 public class ButtonMapping implements Serializable
 {
 	private static final long serialVersionUID = 7306882809094286108L;
 	public static final ButtonMapping UNBOUND = new ButtonMapping(ButtonMappingType.Unbound, 0);
 	
+	private final MinecraftGameMode minecraftGameMode = new MinecraftGameMode();
 	private ButtonMappingType mappingType;	
 	private int eventCode;
 	private int variant;
@@ -71,6 +74,18 @@ public class ButtonMapping implements Serializable
 
 	public String toString()
 	{
+		String gameButtonName = this.minecraftGameMode.getButtonMappingName(this);
+		String buttonMappingName = getButtonMappingName();
+		if(gameButtonName != null && gameButtonName != "")
+		{
+			buttonMappingName += " [" + gameButtonName + "]";
+		}
+		
+		return buttonMappingName;
+	}
+	
+	private String getButtonMappingName()
+	{
 		switch (this.mappingType)
 		{
 			case Keyboard:
@@ -106,6 +121,6 @@ public class ButtonMapping implements Serializable
 				return "<none>";
 		}
 		
-		return this.mappingType.name() + " code " + this.eventCode;		
+		return this.mappingType.name() + " code " + this.eventCode;
 	}
 }
