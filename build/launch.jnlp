@@ -23,6 +23,7 @@
   <jar href="Minecontrol.jar"/>
   <jar href="jinput.jar"/>
   <jar href="ini4j.jar"/>
+  <jar href="rxjava-core.jar"/>
 </resources>
 <resources os="Windows">
   <nativelib href="jinput-windows-native.jar"/>

@@ -8,5 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/ini4j.jar"/>
+	<classpathentry kind="lib" path="lib/rxjava-core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

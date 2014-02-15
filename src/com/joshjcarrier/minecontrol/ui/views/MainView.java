@@ -192,7 +192,7 @@ public class MainView extends JFrame
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
 		
-		JLabel copyrightLabel = new JLabel("v" + AppInfo.BuildVersion + ". 2013 Josh Carrier <josh@joshjcarrier.com>  ");
+		JLabel copyrightLabel = new JLabel("v" + AppInfo.BuildVersion + ". 2014 Josh Carrier <josh@joshjcarrier.com>  ");
 		copyrightLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
 		copyrightLabel.setForeground(Color.DARK_GRAY);
 		panel.add(copyrightLabel, gridConstraints);

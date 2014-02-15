@@ -53,6 +53,7 @@
     	
         <copy file="${lib.dir}/jinput.jar" todir="${drop.dir}"/>
     	<copy file="${lib.dir}/ini4j.jar" todir="${drop.dir}"/>
+    	<copy file="${lib.dir}/rxjava-core.jar" todir="${drop.dir}"/>
     	<copy file="${build.dir}/launch.jnlp" todir="${drop.dir}"/>
     	<copy file="${build.dir}/htaccess.htaccess" tofile="${drop.dir}/.htaccess"/>
     	<copy file="${build.dir}/icon.png" todir="${drop.dir}"/>

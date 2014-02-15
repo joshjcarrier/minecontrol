@@ -49,6 +49,9 @@ public class AboutView extends JDialog
 		panel.add(new JLabel("Jinput Java game controller API <http://java.net/projects/jinput> (BSD 2)"), gridConstraints);
 		
 		gridConstraints.gridy += 1;
+		panel.add(new JLabel("RxJava Reactive Extensions <https://github.com/Netflix/RxJava> (Apache 2)"), gridConstraints);
+		
+		gridConstraints.gridy += 1;
 		panel.add(new JLabel("XNA Button Pack – Jeff Jenkins <http://sinnix.net> (CCA3.0 Unported)"), gridConstraints);
 		
 		gridConstraints.gridy += 1;
