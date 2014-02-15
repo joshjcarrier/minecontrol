@@ -136,6 +136,12 @@ public class MainView extends JFrame
 		
 		panel.add(controllersComboBox);
 		
+		// fire initial selection logic
+		if(controllersComboBox.getItemCount() > 0)
+		{
+			controllersComboBox.setSelectedIndex(0);
+		}
+		
 		// default gamepad selection
 		for (GamePadWrapper device : gamePads)
 		{
