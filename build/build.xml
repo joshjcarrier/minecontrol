@@ -85,6 +85,10 @@
 	</target>
 	
 	<target name="generate_keystore">
+		<input message="Gen Keystore location?" addproperty="cs.keystore" defaultvalue="${drop.dir}/minecontrol2.keystore"/>
+		<input message="Gen Keystore passphrase?" addproperty="cs.storepass"/>
+		<input message="Gen Keystore alias?" addproperty="cs.alias" defaultvalue="minecontrol2"/>
+		
 		<genkey alias="${cs.alias}" 
 				storepass="${cs.storepass}" 
 				keypass="${cs.storepass}"
