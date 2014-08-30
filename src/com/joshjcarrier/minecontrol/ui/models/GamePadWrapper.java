@@ -5,6 +5,7 @@ import java.net.URL;
 import com.joshjcarrier.minecontrol.framework.input.GamePad;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 
+import com.joshjcarrier.rxgamepad.RxGamePad;
 import net.java.games.input.Controller;
 
 /**
@@ -14,21 +15,26 @@ import net.java.games.input.Controller;
  */
 public class GamePadWrapper
 {
-	private final Controller controller;
+	private final RxGamePad rxGamePad;
 	
-	public GamePadWrapper(Controller controller)
+	public GamePadWrapper(RxGamePad rxGamePad)
 	{
-		this.controller = controller;
+		this.rxGamePad = rxGamePad;
 	}
 			
 	public Controller getController()
 	{
-		return this.controller;
+		return this.rxGamePad.getInternalController();
 	}
+
+    public RxGamePad getGamePad()
+    {
+        return this.rxGamePad;
+    }
 	
 	public String getName()
 	{
-		return this.controller.getName();
+		return this.getController().getName();
 	}
 	
 	public URL getTileResource()

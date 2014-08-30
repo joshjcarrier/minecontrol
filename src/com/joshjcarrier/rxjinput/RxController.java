@@ -37,8 +37,7 @@ public class RxController {
                     public Float call(Event event) {
                         return event.getComponent().getPollData();
                     }
-                })
-                .distinctUntilChanged();
+                });
     }
 
     public Observable<Event> getEvents() {
@@ -54,7 +53,7 @@ public class RxController {
                     }
 
                     public Observable<Event> call(Long arg0) {
-
+                        controller.poll();
                         Collection<Event> events = new ArrayList<Event>();
 
                         Event event = new Event();

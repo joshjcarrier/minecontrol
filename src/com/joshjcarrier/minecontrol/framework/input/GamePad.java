@@ -6,6 +6,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import com.joshjcarrier.rxgamepad.RxGamePad;
 import net.java.games.input.Component;
 import net.java.games.input.Component.Identifier;
 import net.java.games.input.Controller;
@@ -63,43 +64,18 @@ public class GamePad
 			put(Identifier.Button._9, Buttons.RIGHT_STICK);
 		}
 	};
-		
-	private final Controller controller;	
+
+    private final RxGamePad rxGamePad;
 	
-	public GamePad(Controller controller)
+	public GamePad(RxGamePad rxGamePad)
 	{
-		this.controller = controller;
+        this.rxGamePad = rxGamePad;
 	}
 	
 	public Observable<GamePadState> getState()
 	{
-		return Observable
-				.interval(5, TimeUnit.MILLISECONDS)
-				.map(new Func1<Long, Collection<Event>>(){
-
-				EventQueue queue;
-				
-				{
-					// primes the event queue with pending controller events
-					controller.poll();
-					this.queue = controller.getEventQueue();
-				}			
-				
-				public Collection<Event> call(Long arg0) {
-                    controller.poll();
-					Collection<Event> events = new ArrayList<Event>();
-					
-					Event event = new Event();
-					while (queue.getNextEvent(event))
-					{
-						events.add(event);
-						event = new Event(); // this allocation necessary?
-					}
-					
-					return events;
-				}
-			})
-			.map(new Func1<Collection<Event>, GamePadState>(){
+		return rxGamePad.getInternalRxController().getEvents()
+			.map(new Func1<Event, GamePadState>(){
 
 				EnumSet<Buttons> previousButtons = EnumSet.noneOf(Buttons.class);
 				float previousLeftThumbStickX = 0;
@@ -109,7 +85,7 @@ public class GamePad
 				float previousLeftTrigger = 0;
 				float previousRightTrigger = 0;
 				
-				public GamePadState call(Collection<Event> arg0) {
+				public GamePadState call(Event event) {
 
 					EnumSet<Buttons> buttons = EnumSet.copyOf(previousButtons);
 					float leftThumbStickX = previousLeftThumbStickX;
@@ -119,85 +95,84 @@ public class GamePad
 					float leftTrigger = previousLeftTrigger;
 					float rightTrigger = previousRightTrigger;
 
-					for (Event event : arg0)
-					{
-						Component comp = event.getComponent();
-						
-						Identifier inputIdentifier = comp.getIdentifier();
-						float inputValue = comp.getPollData();
-						if (comp.isAnalog()) 
-						{							
-							if (inputIdentifier == Identifier.Axis.X)
-							{
-								leftThumbStickX = inputValue;
-							}
-							else if (inputIdentifier == Identifier.Axis.Y)
-							{
-								leftThumbStickY = inputValue;
-							}
-							else if (inputIdentifier == Identifier.Axis.RX)
-							{
-								rightThumbStickX = inputValue;
-							}
-							else if (inputIdentifier == Identifier.Axis.RY)
-							{
-								rightThumbStickY = inputValue;
-							}
-							else if (inputIdentifier == Identifier.Axis.Z)
-							{
-								if (inputValue < 0)
-								{
-									rightTrigger = -inputValue;	
-								}
-								else
-								{
-									leftTrigger = inputValue;
-								}
-							}
-						} 
-						else 
-						{			
-							Buttons digitalButton = digitalIdentifierMap.get(inputIdentifier);
-							
-							if (digitalButton != null)
-							{
-								// button is not pressed or was previously pressed (as in, depressed)
-								if (inputValue != 1f || !buttons.add(digitalButton))
-								{
-									buttons.remove(digitalButton);
-								}
-							}
-							
-							// DPad support
-							if (inputIdentifier == Identifier.Axis.POV)
-							{
-								if (inputValue == 0.25f)
-								{
-									buttons.add(Buttons.DPAD_UP);
-								}
-								else if (inputValue == 0.5f)
-								{
-									buttons.add(Buttons.DPAD_RIGHT);
-								}
-								else if (inputValue == 0.75f)
-								{
-									buttons.add(Buttons.DPAD_DOWN);
-								}
-								else if (inputValue == 1f)
-								{
-									buttons.add(Buttons.DPAD_LEFT);
-								}
-								else
-								{
-									// DPad behaves like analog but is considered digital
-									buttons.remove(Buttons.DPAD_LEFT);
-									buttons.remove(Buttons.DPAD_UP);
-									buttons.remove(Buttons.DPAD_RIGHT);
-									buttons.remove(Buttons.DPAD_DOWN);
-								}
-							}
-						}	
-					}
+
+                    Component comp = event.getComponent();
+
+                    Identifier inputIdentifier = comp.getIdentifier();
+                    float inputValue = comp.getPollData();
+                    if (comp.isAnalog())
+                    {
+                        if (inputIdentifier == Identifier.Axis.X)
+                        {
+                            leftThumbStickX = inputValue;
+                        }
+                        else if (inputIdentifier == Identifier.Axis.Y)
+                        {
+                            leftThumbStickY = inputValue;
+                        }
+                        else if (inputIdentifier == Identifier.Axis.RX)
+                        {
+                            rightThumbStickX = inputValue;
+                        }
+                        else if (inputIdentifier == Identifier.Axis.RY)
+                        {
+                            rightThumbStickY = inputValue;
+                        }
+                        else if (inputIdentifier == Identifier.Axis.Z)
+                        {
+                            if (inputValue < 0)
+                            {
+                                rightTrigger = -inputValue;
+                            }
+                            else
+                            {
+                                leftTrigger = inputValue;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Buttons digitalButton = digitalIdentifierMap.get(inputIdentifier);
+
+                        if (digitalButton != null)
+                        {
+                            // button is not pressed or was previously pressed (as in, depressed)
+                            if (inputValue != 1f || !buttons.add(digitalButton))
+                            {
+                                buttons.remove(digitalButton);
+                            }
+                        }
+
+                        // DPad support
+                        if (inputIdentifier == Identifier.Axis.POV)
+                        {
+                            if (inputValue == 0.25f)
+                            {
+                                buttons.add(Buttons.DPAD_UP);
+                            }
+                            else if (inputValue == 0.5f)
+                            {
+                                buttons.add(Buttons.DPAD_RIGHT);
+                            }
+                            else if (inputValue == 0.75f)
+                            {
+                                buttons.add(Buttons.DPAD_DOWN);
+                            }
+                            else if (inputValue == 1f)
+                            {
+                                buttons.add(Buttons.DPAD_LEFT);
+                            }
+                            else
+                            {
+                                // DPad behaves like analog but is considered digital
+                                buttons.remove(Buttons.DPAD_LEFT);
+                                buttons.remove(Buttons.DPAD_UP);
+                                buttons.remove(Buttons.DPAD_RIGHT);
+                                buttons.remove(Buttons.DPAD_DOWN);
+                            }
+                        }
+                    }
+
 					
 					previousButtons = buttons;
 					

@@ -131,7 +131,7 @@ public class MainView extends JFrame
 			public void actionPerformed(ActionEvent event)
 			{
 				GamePadWrapper gamePad = (GamePadWrapper)controllersComboBox.getSelectedItem();
-				gamePadInterpreter.setInputReaderDevice(gamePad.getController());
+				gamePadInterpreter.setInputReaderDevice(gamePad);
 			}
 		});
 		

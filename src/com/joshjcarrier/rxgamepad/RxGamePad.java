@@ -21,6 +21,11 @@ public class RxGamePad {
         return this.rxController.getInternalController();
     }
 
+    @Deprecated // only for transition purposes
+    public RxController getInternalRxController() {
+        return this.rxController;
+    }
+
     public Observable<Float> getAxisX() {
         return this.rxController.getComponent(Component.Identifier.Axis.X);
     }

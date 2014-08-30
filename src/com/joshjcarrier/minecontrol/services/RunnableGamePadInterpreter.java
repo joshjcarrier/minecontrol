@@ -1,14 +1,9 @@
 package com.joshjcarrier.minecontrol.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.joshjcarrier.rxgamepad.RxGamePad;
 import com.joshjcarrier.rxgamepad.RxGamePadList;
-import com.joshjcarrier.rxjinput.RxController;
-import com.joshjcarrier.rxjinput.RxControllerList;
-import net.java.games.input.Controller;
-import net.java.games.input.ControllerEnvironment;
 import rx.Subscription;
 import rx.util.functions.Action1;
 
@@ -29,23 +24,23 @@ public class RunnableGamePadInterpreter implements Runnable
 	private GamePad gamePad;
 	private ControllerProfile profile;
 	private Subscription gamePadSubscription;
-    private final RxGamePadList controllerList;
+    private final RxGamePadList rxGamePadList;
 	
 	public RunnableGamePadInterpreter()
 	{
 		ProfileStorageService profileStorageService = new ProfileStorageService();
 		this.profile = profileStorageService.load("default");
 		this.replayService = new RunnableHidReplayService(this.profile);
-        this.controllerList = new RxGamePadList();
+        this.rxGamePadList = new RxGamePadList();
 	}
 	
 	public List<GamePadWrapper> getInputReaderDevices()
 	{
-        return this.controllerList.getAll()
+        return this.rxGamePadList.getAll()
                 .map(new Func1<RxGamePad, GamePadWrapper>() {
             @Override
             public GamePadWrapper call(RxGamePad rxController) {
-                return new GamePadWrapper(rxController.getInternalController());
+                return new GamePadWrapper(rxController);
             }
         })
                 .toList().toBlockingObservable().first(); // temporary to maintain interface
@@ -55,9 +50,9 @@ public class RunnableGamePadInterpreter implements Runnable
 		return this.profile;
 	}
 		
-	public void setInputReaderDevice(Controller controller)
+	public void setInputReaderDevice(GamePadWrapper gamePadWrapper)
 	{
-		this.gamePad = new GamePad(controller);
+		this.gamePad = new GamePad(gamePadWrapper.getGamePad());
 
 
 		if(gamePadSubscription != null)
@@ -76,6 +71,7 @@ public class RunnableGamePadInterpreter implements Runnable
 				replayService.update(arg0);
 			}});
 
+        //new KeyboardRobot(controller.getGamePad());
 	}
 
 	public void run()
