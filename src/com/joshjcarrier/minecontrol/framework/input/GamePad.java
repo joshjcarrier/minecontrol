@@ -86,7 +86,7 @@ public class GamePad
 				}			
 				
 				public Collection<Event> call(Long arg0) {
-					
+                    controller.poll();
 					Collection<Event> events = new ArrayList<Event>();
 					
 					Event event = new Event();

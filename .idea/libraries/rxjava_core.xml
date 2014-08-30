@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="rxjava-core">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/rxjava-core.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

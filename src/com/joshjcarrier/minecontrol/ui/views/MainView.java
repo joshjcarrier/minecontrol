@@ -10,6 +10,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
@@ -120,7 +121,7 @@ public class MainView extends JFrame
 	{
 		JPanel panel = new JPanel(new GridLayout(1, 1));
 	
-		ArrayList<GamePadWrapper> gamePads = gamePadInterpreter.getInputReaderDevices();
+		List<GamePadWrapper> gamePads = gamePadInterpreter.getInputReaderDevices();
 		final JComboBox controllersComboBox = new JComboBox(gamePads.toArray());
 		GamePadWrapperListCellRenderer inputReaderDeviceListCellRenderer = new GamePadWrapperListCellRenderer();
 		inputReaderDeviceListCellRenderer.setPreferredSize(new Dimension(300, 35));

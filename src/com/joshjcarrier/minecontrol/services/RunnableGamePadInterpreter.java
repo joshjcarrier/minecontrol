@@ -1,7 +1,10 @@
 package com.joshjcarrier.minecontrol.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.joshjcarrier.minecontrol.com.joshjcarrier.rxjinput.RxController;
+import com.joshjcarrier.minecontrol.com.joshjcarrier.rxjinput.RxControllerList;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import rx.Subscription;
@@ -11,6 +14,7 @@ import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
 import com.joshjcarrier.minecontrol.framework.input.GamePad;
 import com.joshjcarrier.minecontrol.framework.input.GamePadState;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
+import rx.util.functions.Func1;
 
 /**
  * Manages the active game pad connection.
@@ -23,23 +27,26 @@ public class RunnableGamePadInterpreter implements Runnable
 	private GamePad gamePad;
 	private ControllerProfile profile;
 	private Subscription gamePadSubscription;
+    private final RxControllerList controllerList;
 	
 	public RunnableGamePadInterpreter()
 	{
 		ProfileStorageService profileStorageService = new ProfileStorageService();
 		this.profile = profileStorageService.load("default");
 		this.replayService = new RunnableHidReplayService(this.profile);
+        this.controllerList = new RxControllerList();
 	}
 	
-	public ArrayList<GamePadWrapper> getInputReaderDevices()
+	public List<GamePadWrapper> getInputReaderDevices()
 	{
-		ArrayList<GamePadWrapper> devices = new ArrayList<GamePadWrapper>();
-		for(Controller controller : ControllerEnvironment.getDefaultEnvironment().getControllers())
-		{
-			devices.add(new GamePadWrapper(controller));
-		}
-		
-		return devices;
+        return this.controllerList.getAll()
+                .map(new Func1<RxController, GamePadWrapper>() {
+            @Override
+            public GamePadWrapper call(RxController rxController) {
+                return new GamePadWrapper(rxController.getInternalController());
+            }
+        })
+                .toList().toBlockingObservable().first(); // temporary to maintain interface
 	}
 	
 	public ControllerProfile getControllerProfile() {
@@ -71,8 +78,8 @@ public class RunnableGamePadInterpreter implements Runnable
 
 	public void run()
 	{	
-		final RunnableHidReplayService replayService = new RunnableHidReplayService(this.profile);
-		Thread replayServiceThread = new Thread(replayService);
+		//final RunnableHidReplayService replayService = new RunnableHidReplayService(this.profile);
+		Thread replayServiceThread = new Thread(this.replayService);
 		replayServiceThread.start();
 	}
 }
