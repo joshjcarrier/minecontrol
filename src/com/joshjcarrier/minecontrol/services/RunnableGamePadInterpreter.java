@@ -3,8 +3,10 @@ package com.joshjcarrier.minecontrol.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.joshjcarrier.minecontrol.com.joshjcarrier.rxjinput.RxController;
-import com.joshjcarrier.minecontrol.com.joshjcarrier.rxjinput.RxControllerList;
+import com.joshjcarrier.rxgamepad.RxGamePad;
+import com.joshjcarrier.rxgamepad.RxGamePadList;
+import com.joshjcarrier.rxjinput.RxController;
+import com.joshjcarrier.rxjinput.RxControllerList;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import rx.Subscription;
@@ -27,22 +29,22 @@ public class RunnableGamePadInterpreter implements Runnable
 	private GamePad gamePad;
 	private ControllerProfile profile;
 	private Subscription gamePadSubscription;
-    private final RxControllerList controllerList;
+    private final RxGamePadList controllerList;
 	
 	public RunnableGamePadInterpreter()
 	{
 		ProfileStorageService profileStorageService = new ProfileStorageService();
 		this.profile = profileStorageService.load("default");
 		this.replayService = new RunnableHidReplayService(this.profile);
-        this.controllerList = new RxControllerList();
+        this.controllerList = new RxGamePadList();
 	}
 	
 	public List<GamePadWrapper> getInputReaderDevices()
 	{
         return this.controllerList.getAll()
-                .map(new Func1<RxController, GamePadWrapper>() {
+                .map(new Func1<RxGamePad, GamePadWrapper>() {
             @Override
-            public GamePadWrapper call(RxController rxController) {
+            public GamePadWrapper call(RxGamePad rxController) {
                 return new GamePadWrapper(rxController.getInternalController());
             }
         })
