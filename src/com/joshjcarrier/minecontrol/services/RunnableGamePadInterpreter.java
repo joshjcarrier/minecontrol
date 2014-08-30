@@ -1,9 +1,12 @@
 package com.joshjcarrier.minecontrol.services;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
 
+import com.joshjcarrier.rxautomation.KeyboardRobot;
 import com.joshjcarrier.rxgamepad.RxGamePad;
 import com.joshjcarrier.rxgamepad.RxGamePadList;
+import rx.Observable;
 import rx.Subscription;
 import rx.util.functions.Action1;
 
@@ -71,8 +74,21 @@ public class RunnableGamePadInterpreter implements Runnable
 				replayService.update(arg0);
 			}});
 
-        //new KeyboardRobot(controller.getGamePad());
+        Observable<Integer> keyEventA = gamePadWrapper.getGamePad().getButton0().map(new Func1<Float, Integer>() {
+            @Override
+            public Integer call(Float aFloat) {
+                return KeyEvent.VK_Q;
+            }
+        });
+
+        //Observable<Integer> keyEvents = Observable.merge(keyEventA, keyEventA);
+        if(keyboardRobot != null) {
+            keyboardRobot.dispose();
+        }
+
+        //this.keyboardRobot = new KeyboardRobot(keyEventA);
 	}
+    private KeyboardRobot keyboardRobot;
 
 	public void run()
 	{	

@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8f4afd4-c4a0-4fae-8017-c0c93e57e956" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java" />
       <change type="DELETED" beforePath="C:\Users\Josh\Documents\IdeaProjects\minecontrol\src\com\joshjcarrier\minecontrol\com\joshjcarrier\rxjinput\RxController.java" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Josh\Documents\IdeaProjects\minecontrol\src\com\joshjcarrier\minecontrol\com\joshjcarrier\rxjinput\RxControllerList.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePad.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePad.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadWrapper.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadWrapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/views/MainView.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/views/MainView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxjinput/RxController.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxjinput/RxController.java" />
@@ -74,27 +74,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RunnableGamePadInterpreter.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="RunnableGamePadInterpreter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="699" max-vertical-offset="1479">
-              <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.7319317" vertical-offset="888" max-vertical-offset="1751">
+              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1282#1490#0" expanded="true" />
-                <element signature="e#1479#1480#0" expanded="true" />
-                <element signature="e#2010#2118#0" expanded="true" />
-                <element signature="e#2116#2117#0" expanded="true" />
+                <element signature="e#1388#1596#0" expanded="true" />
+                <element signature="e#1585#1586#0" expanded="true" />
+                <element signature="e#2116#2224#0" expanded="true" />
+                <element signature="e#2222#2223#0" expanded="true" />
+                <element signature="e#2313#2474#0" expanded="true" />
+                <element signature="e#2463#2464#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GamePad.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="RunnableHidReplayService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableHidReplayService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="259" max-vertical-offset="1020">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KeyboardRobot.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="89" max-vertical-offset="867">
+              <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#868#1147#0" expanded="true" />
+                <element signature="e#1132#1133#0" expanded="true" />
+                <element signature="e#1318#1319#0" expanded="true" />
+                <element signature="e#1362#1363#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GamePad.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePad.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6399395" vertical-offset="1277" max-vertical-offset="3927">
-              <caret line="100" column="55" selection-start-line="100" selection-start-column="55" selection-end-line="100" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="667" max-vertical-offset="3927">
+              <caret line="76" column="59" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2487#2488#0" expanded="true" />
@@ -107,43 +135,14 @@
       <file leaf-file-name="RxController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxjinput/RxController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="87" max-vertical-offset="1156">
-              <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="531" max-vertical-offset="1292">
+              <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1052#1269#0" expanded="true" />
-                <element signature="e#1250#1251#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GamePadWrapper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadWrapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="70" max-vertical-offset="782">
-              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-              <folding>
-                <element signature="e#557#558#0" expanded="true" />
-                <element signature="e#609#610#0" expanded="true" />
-                <element signature="e#650#651#0" expanded="true" />
-                <element signature="e#687#688#0" expanded="true" />
-                <element signature="e#717#718#0" expanded="true" />
-                <element signature="e#761#762#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RxGamePad.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-              <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#717#718#0" expanded="true" />
-                <element signature="e#757#758#0" expanded="true" />
+                <element signature="e#2042#2271#0" expanded="true" />
+                <element signature="e#2252#2253#0" expanded="true" />
+                <element signature="e#2562#2563#0" expanded="true" />
+                <element signature="e#2596#2597#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -172,21 +171,21 @@
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/com/joshjcarrier/rxjinput/RxController.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/com/joshjcarrier/rxjinput/RxControllerList.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePadList.java" />
-        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/views/MainView.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadWrapper.java" />
-        <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java" />
-        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePad.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxjinput/RxController.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="843" />
-    <option name="y" value="151" />
+    <option name="x" value="1034" />
+    <option name="y" value="59" />
     <option name="width" value="1552" />
-    <option name="height" value="1273" />
+    <option name="height" value="1373" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -410,6 +409,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecontrol2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecontrol2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.joshjcarrier" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecontrol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="replayhandlers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -628,7 +653,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="843" y="151" width="1552" height="1273" extended-state="0" />
+    <frame x="1034" y="59" width="1552" height="1373" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -638,7 +663,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32895887" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39895013" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3668544" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -674,7 +699,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="32" />
+      <option name="time" value="46" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -688,10 +713,12 @@
           <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1282#1490#0" expanded="true" />
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#2010#2118#0" expanded="true" />
-            <element signature="e#2116#2117#0" expanded="true" />
+            <element signature="e#1388#1596#0" expanded="true" />
+            <element signature="e#1585#1586#0" expanded="true" />
+            <element signature="e#2116#2224#0" expanded="true" />
+            <element signature="e#2222#2223#0" expanded="true" />
+            <element signature="e#2313#2474#0" expanded="true" />
+            <element signature="e#2463#2464#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -710,10 +737,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1282#1490#0" expanded="true" />
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#2010#2118#0" expanded="true" />
-            <element signature="e#2116#2117#0" expanded="true" />
+            <element signature="e#1388#1596#0" expanded="true" />
+            <element signature="e#1585#1586#0" expanded="true" />
+            <element signature="e#2116#2224#0" expanded="true" />
+            <element signature="e#2222#2223#0" expanded="true" />
+            <element signature="e#2313#2474#0" expanded="true" />
+            <element signature="e#2463#2464#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -732,10 +761,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1282#1490#0" expanded="true" />
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#2010#2118#0" expanded="true" />
-            <element signature="e#2116#2117#0" expanded="true" />
+            <element signature="e#1388#1596#0" expanded="true" />
+            <element signature="e#1585#1586#0" expanded="true" />
+            <element signature="e#2116#2224#0" expanded="true" />
+            <element signature="e#2222#2223#0" expanded="true" />
+            <element signature="e#2313#2474#0" expanded="true" />
+            <element signature="e#2463#2464#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -795,26 +826,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/replayhandlers/ApplicationCommandReplayHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/ReplayState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
           <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/replayhandlers/ReplayHandlerFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -839,14 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3857791" vertical-offset="0" max-vertical-offset="661">
           <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/jre/lib/rt.jar!/sun/misc/Unsafe.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7685325" vertical-offset="4898" max-vertical-offset="5559">
-          <caret line="319" column="23" selection-start-line="319" selection-start-column="23" selection-end-line="319" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -949,14 +956,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ControllerProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="1802">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/Buttons.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
@@ -1037,87 +1036,140 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java">
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/replayhandlers/VirtualKeyButtonsReplayHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5937922" vertical-offset="2" max-vertical-offset="748">
-          <caret line="26" column="48" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#827#1004#0" expanded="true" />
-            <element signature="e#989#990#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableHidReplayService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1470985" vertical-offset="0" max-vertical-offset="1020">
-          <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.21045393" vertical-offset="0" max-vertical-offset="901">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxjinput/RxController.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/jre/lib/rt.jar!/sun/misc/Unsafe.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="393" max-vertical-offset="1156">
-          <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1052#1269#0" expanded="true" />
-            <element signature="e#1250#1251#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.8363136" vertical-offset="4832" max-vertical-offset="5559">
+          <caret line="321" column="49" selection-start-line="321" selection-start-column="49" selection-end-line="321" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ControllerProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2393397" vertical-offset="340" max-vertical-offset="1802">
+          <caret line="114" column="5" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/replayhandlers/VirtualMouseMoveAnalogReplayHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3554054" vertical-offset="0" max-vertical-offset="1802">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/replayhandlers/ReplayHandlerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09189189" vertical-offset="0" max-vertical-offset="740">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/replayhandlers/ApplicationCommandReplayHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.022972973" vertical-offset="51" max-vertical-offset="816">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="121" max-vertical-offset="782">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding>
-            <element signature="e#557#558#0" expanded="true" />
-            <element signature="e#609#610#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-            <element signature="e#687#688#0" expanded="true" />
-            <element signature="e#717#718#0" expanded="true" />
-            <element signature="e#761#762#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.33508542" vertical-offset="0" max-vertical-offset="761">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.69250983" vertical-offset="0" max-vertical-offset="761">
+          <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#552#553#0" expanded="true" />
+            <element signature="e#616#617#0" expanded="true" />
             <element signature="e#717#718#0" expanded="true" />
             <element signature="e#757#758#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="699" max-vertical-offset="1479">
-          <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1282#1490#0" expanded="true" />
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#2010#2118#0" expanded="true" />
-            <element signature="e#2116#2117#0" expanded="true" />
+            <element signature="e#800#801#0" expanded="true" />
+            <element signature="e#882#883#0" expanded="true" />
+            <element signature="e#927#928#0" expanded="true" />
+            <element signature="e#1012#1013#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePad.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6399395" vertical-offset="1277" max-vertical-offset="3927">
-          <caret line="100" column="55" selection-start-line="100" selection-start-column="55" selection-end-line="100" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1177" max-vertical-offset="3927">
+          <caret line="76" column="59" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2487#2488#0" expanded="true" />
             <element signature="e#2526#2527#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="89" max-vertical-offset="867">
+          <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#868#1147#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1318#1319#0" expanded="true" />
+            <element signature="e#1362#1363#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxjinput/RxController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="531" max-vertical-offset="1292">
+          <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2042#2271#0" expanded="true" />
+            <element signature="e#2252#2253#0" expanded="true" />
+            <element signature="e#2562#2563#0" expanded="true" />
+            <element signature="e#2596#2597#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableHidReplayService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="259" max-vertical-offset="1020">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7319317" vertical-offset="888" max-vertical-offset="1751">
+          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1388#1596#0" expanded="true" />
+            <element signature="e#1585#1586#0" expanded="true" />
+            <element signature="e#2116#2224#0" expanded="true" />
+            <element signature="e#2222#2223#0" expanded="true" />
+            <element signature="e#2313#2474#0" expanded="true" />
+            <element signature="e#2463#2464#0" expanded="true" />
           </folding>
         </state>
       </provider>

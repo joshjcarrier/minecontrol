@@ -5,6 +5,7 @@ import net.java.games.input.Controller;
 import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
 import rx.Observable;
+import rx.observables.ConnectableObservable;
 import rx.util.functions.Action1;
 import rx.util.functions.Func1;
 
@@ -14,9 +15,37 @@ import java.util.concurrent.TimeUnit;
 
 public class RxController {
     private final Controller controller;
+    private final ConnectableObservable<Event> events;
 
-    public RxController(Controller controller) {
+    public RxController(final Controller controller) {
         this.controller = controller;
+
+        this.events = Observable
+                .interval(5, TimeUnit.MILLISECONDS)
+                .flatMap(new Func1<Long, Observable<? extends Event>>() {
+
+
+                    {
+                        // primes the event queue with pending controller events
+                        //controller.poll();
+                        //this.queue = controller.getEventQueue();
+                    }
+
+                    public Observable<Event> call(Long arg0) {
+                        controller.poll();
+                        EventQueue queue = controller.getEventQueue();
+                        Collection<Event> events = new ArrayList<Event>();
+
+                        Event event = new Event();
+                        while (queue.getNextEvent(event)) {
+                            events.add(event);
+                            event = new Event(); // this allocation necessary?
+                        }
+
+                        return Observable.from(events);
+                    }
+                })
+                .publish(); // allow multiple observables to draw from single poll source
     }
 
     @Deprecated // only for transition purposes
@@ -25,7 +54,9 @@ public class RxController {
     }
 
     public Observable<Float> getComponent(final Component.Identifier id) {
-        return getEvents()
+        this.events.connect();
+
+        return this.events
                 .filter(new Func1<Event, Boolean>() {
                     @Override
                     public Boolean call(Event event) {
@@ -41,29 +72,6 @@ public class RxController {
     }
 
     public Observable<Event> getEvents() {
-        return Observable
-                .interval(5, TimeUnit.MILLISECONDS)
-                .flatMap(new Func1<Long, Observable<? extends Event>>() {
-                    EventQueue queue;
-
-                    {
-                        // primes the event queue with pending controller events
-                        controller.poll();
-                        this.queue = controller.getEventQueue();
-                    }
-
-                    public Observable<Event> call(Long arg0) {
-                        controller.poll();
-                        Collection<Event> events = new ArrayList<Event>();
-
-                        Event event = new Event();
-                        while (queue.getNextEvent(event)) {
-                            events.add(event);
-                            event = new Event(); // this allocation necessary?
-                        }
-
-                        return Observable.from(events);
-                    }
-                });
+        return this.events;
     }
 }

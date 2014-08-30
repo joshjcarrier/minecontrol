@@ -29,4 +29,8 @@ public class RxGamePad {
     public Observable<Float> getAxisX() {
         return this.rxController.getComponent(Component.Identifier.Axis.X);
     }
+
+    public Observable<Float> getButton0() {
+        return this.rxController.getComponent(Component.Identifier.Button._0);
+    }
 }
