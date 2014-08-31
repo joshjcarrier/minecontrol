@@ -19,9 +19,14 @@ import java.util.Map;
 public class GamePadProfile {
     private final RxGamePad rxGamePad;
     private Subscription activeSubscription;
+    MouseMoveAutomationRunner mouseMoveAutomationRunner = new MouseMoveAutomationRunner();
 
     public GamePadProfile(RxGamePad rxGamePad){
         this.rxGamePad = rxGamePad;
+
+        // TODO move and terminate thread elsewhere
+        Thread t = new Thread(mouseMoveAutomationRunner);
+        t.start();
     }
 
     public Observable<Pair<IAutomationMethod, Float>> getKeyEvents() {
@@ -93,8 +98,8 @@ public class GamePadProfile {
             put(Component.Identifier.Button._8, new KeyboardAutomationMethod(KeyEvent.VK_SHIFT));
             put(Component.Identifier.Button._9, new KeyboardAutomationMethod(KeyEvent.VK_SPACE));
 
-            put(Component.Identifier.Axis.RX, new MouseMoveXAutomationMethod());
-            put(Component.Identifier.Axis.RY, new MouseMoveYAutomationMethod());
+            put(Component.Identifier.Axis.RX, mouseMoveAutomationRunner.getXAutomationMethod());
+            put(Component.Identifier.Axis.RY, mouseMoveAutomationRunner.getYAutomationMethod());
 
             put(Component.Identifier.Axis.X, new KeyboardAutomationMethod(KeyEvent.VK_D, KeyEvent.VK_A));
             put(Component.Identifier.Axis.Y, new KeyboardAutomationMethod(KeyEvent.VK_S, KeyEvent.VK_W));
