@@ -1,6 +1,6 @@
 package com.joshjcarrier.rxautomation.methods;
 
-import com.joshjcarrier.persistence.IStorage;
+import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
 public class MouseMoveXAutomationMethod implements IAutomationMethod {
     private final MouseMoveAutomationRunner mouseMoveAutomationRunner;
@@ -19,7 +19,7 @@ public class MouseMoveXAutomationMethod implements IAutomationMethod {
     }
 
     @Override
-    public void save(IStorage storage, String rootName) {
-        storage.write(rootName, "method", "mouse-mv-x");
+    public void save(IAutomationWriter automationWriter) {
+        automationWriter.write("method", "mouse-mv-x");
     }
 }

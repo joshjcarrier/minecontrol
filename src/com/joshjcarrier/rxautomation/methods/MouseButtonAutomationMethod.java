@@ -1,6 +1,6 @@
 package com.joshjcarrier.rxautomation.methods;
 
-import com.joshjcarrier.persistence.IStorage;
+import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -64,9 +64,9 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
     }
 
     @Override
-    public void save(IStorage storage, String rootName) {
-        storage.write(rootName, "method", "mouse-btn");
-        storage.write(rootName, "pmei", this.primaryMouseEventId);
-        storage.write(rootName, "smei", this.secondaryMouseEventId);
+    public void save(IAutomationWriter automationWriter) {
+        automationWriter.write("method", "mouse-btn");
+        automationWriter.write("pmei", this.primaryMouseEventId);
+        automationWriter.write("smei", this.secondaryMouseEventId);
     }
 }

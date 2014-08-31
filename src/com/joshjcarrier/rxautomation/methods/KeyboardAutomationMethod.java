@@ -1,6 +1,6 @@
 package com.joshjcarrier.rxautomation.methods;
 
-import com.joshjcarrier.persistence.IStorage;
+import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -55,9 +55,9 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
     }
 
     @Override
-    public void save(IStorage storage, String rootName) {
-        storage.write(rootName, "method", "kbd-btn");
-        storage.write(rootName, "pkei", this.primaryKeyEventId);
-        storage.write(rootName, "skei", this.secondaryKeyEventId);
+    public void save(IAutomationWriter automationWriter) {
+        automationWriter.write("method", "kbd-btn");
+        automationWriter.write("pkei", this.primaryKeyEventId);
+        automationWriter.write("skei", this.secondaryKeyEventId);
     }
 }

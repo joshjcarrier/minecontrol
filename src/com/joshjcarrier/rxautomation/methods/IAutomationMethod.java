@@ -1,11 +1,11 @@
 package com.joshjcarrier.rxautomation.methods;
 
-import com.joshjcarrier.persistence.IStorage;
+import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
 public interface IAutomationMethod {
     void automate(Float value);
 
     String getName();
 
-    void save(IStorage storage, String rootName);
+    void save(IAutomationWriter automationWriter);
 }

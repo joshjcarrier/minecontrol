@@ -3,6 +3,8 @@ package com.joshjcarrier.minecontrol.framework.profiles;
 import com.joshjcarrier.persistence.IStorage;
 import com.joshjcarrier.persistence.IniStorage;
 import com.joshjcarrier.rxautomation.methods.*;
+import com.joshjcarrier.rxautomation.persistence.AutomationWriter;
+import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 import com.joshjcarrier.rxautomation.projection.BimodalRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.IRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.ReplayRxAutomationProjection;
@@ -88,7 +90,8 @@ public class GamePadProfile {
 
     public void save() {
         for(Map.Entry<Component.Identifier, IAutomationMethod> identifierAutomationMethodEntry : this.automationMethodHashMap.entrySet()) {
-            identifierAutomationMethodEntry.getValue().save(this.storage, "default/" + identifierAutomationMethodEntry.getKey());
+            IAutomationWriter writer = new AutomationWriter(getName(), "bind." + identifierAutomationMethodEntry.getKey().toString(), this.storage);
+            identifierAutomationMethodEntry.getValue().save(writer);
         }
 
         this.storage.commit();

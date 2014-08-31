@@ -1,6 +1,6 @@
 package com.joshjcarrier.rxautomation.methods;
 
-import com.joshjcarrier.persistence.IStorage;
+import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
 public class NoOpAutomationMethod implements IAutomationMethod {
     @Override
@@ -14,7 +14,7 @@ public class NoOpAutomationMethod implements IAutomationMethod {
     }
 
     @Override
-    public void save(IStorage configurationSettings, String rootName) {
-        configurationSettings.write(rootName, "method", "noop");
+    public void save(IAutomationWriter configurationSettings) {
+        configurationSettings.write("method", "noop");
     }
 }
