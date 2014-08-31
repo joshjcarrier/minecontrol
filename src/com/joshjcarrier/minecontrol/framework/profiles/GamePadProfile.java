@@ -1,6 +1,7 @@
 package com.joshjcarrier.minecontrol.framework.profiles;
 
-import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
+import com.joshjcarrier.persistence.IStorage;
+import com.joshjcarrier.persistence.IniStorage;
 import com.joshjcarrier.rxautomation.methods.*;
 import com.joshjcarrier.rxautomation.projection.BimodalRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.IRxAutomationProjection;
@@ -20,11 +21,14 @@ import java.util.Map;
 
 public class GamePadProfile {
     private final RxGamePad rxGamePad;
+    private final IStorage storage;
+
     private Subscription activeSubscription;
     MouseMoveAutomationRunner mouseMoveAutomationRunner = new MouseMoveAutomationRunner();
 
     public GamePadProfile(RxGamePad rxGamePad){
         this.rxGamePad = rxGamePad;
+        this.storage = new IniStorage();// TODO inject
 
         // TODO move and terminate thread elsewhere
         Thread t = new Thread(mouseMoveAutomationRunner);
@@ -83,7 +87,11 @@ public class GamePadProfile {
     }
 
     public void save() {
-        // TODO
+        for(Map.Entry<Component.Identifier, IAutomationMethod> identifierAutomationMethodEntry : this.automationMethodHashMap.entrySet()) {
+            identifierAutomationMethodEntry.getValue().save(this.storage, "default/" + identifierAutomationMethodEntry.getKey());
+        }
+
+        this.storage.commit();
     }
 
     public void setAutomationMethod(Component.Identifier identifier, IAutomationMethod automationMethod) {

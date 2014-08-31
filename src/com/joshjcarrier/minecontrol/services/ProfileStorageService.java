@@ -10,8 +10,8 @@ import com.joshjcarrier.minecontrol.services.replayhandlers.IButtonsReplayHandle
 import com.joshjcarrier.minecontrol.services.replayhandlers.ReplayHandlerFactory;
 import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualKeyAnalogReplayHandler;
 import com.joshjcarrier.minecontrol.services.replayhandlers.VirtualMouseMoveAnalogReplayHandler;
-import com.joshjcarrier.minecontrol.services.storage.IStorage;
-import com.joshjcarrier.minecontrol.services.storage.IniStorage;
+import com.joshjcarrier.persistence.IStorage;
+import com.joshjcarrier.persistence.IniStorage;
 
 public class ProfileStorageService 
 {

@@ -1,5 +1,7 @@
 package com.joshjcarrier.rxautomation.methods;
 
+import com.joshjcarrier.persistence.IStorage;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
@@ -59,5 +61,12 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
             default:
                 return "Mouse event unknown";
         }
+    }
+
+    @Override
+    public void save(IStorage storage, String rootName) {
+        storage.write(rootName, "method", "mouse-btn");
+        storage.write(rootName, "pmei", this.primaryMouseEventId);
+        storage.write(rootName, "smei", this.secondaryMouseEventId);
     }
 }

@@ -1,5 +1,7 @@
 package com.joshjcarrier.rxautomation.methods;
 
+import com.joshjcarrier.persistence.IStorage;
+
 import java.awt.*;
 
 public class MouseWheelAutomationMethod implements IAutomationMethod {
@@ -40,5 +42,11 @@ public class MouseWheelAutomationMethod implements IAutomationMethod {
     @Override
     public String getName() {
         return scrollAmount > 0 ? "Mouse scroll down" : "Mouse scroll up";
+    }
+
+    @Override
+    public void save(IStorage storage, String rootName) {
+        storage.write(rootName, "method", "mouse-wheel");
+        storage.write(rootName, "scroll", this.scrollAmount);
     }
 }

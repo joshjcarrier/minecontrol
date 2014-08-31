@@ -1,5 +1,7 @@
 package com.joshjcarrier.rxautomation.methods;
 
+import com.joshjcarrier.persistence.IStorage;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -50,5 +52,12 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
     @Override
     public String getName() {
         return KeyEvent.getKeyText(this.primaryKeyEventId);
+    }
+
+    @Override
+    public void save(IStorage storage, String rootName) {
+        storage.write(rootName, "method", "kbd-btn");
+        storage.write(rootName, "pkei", this.primaryKeyEventId);
+        storage.write(rootName, "skei", this.secondaryKeyEventId);
     }
 }
