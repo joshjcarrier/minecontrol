@@ -1,9 +1,9 @@
 package com.joshjcarrier.minecontrol.ui.controls;
 
-import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
 import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
 import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
+import com.joshjcarrier.minecontrol.ui.models.AutomationBindingWrapper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class ComponentMappingControl extends JPanel {
+public class AutomationBindingsControl extends JPanel {
     private static final long serialVersionUID = -3729294863824556950L;
 
     private final JComboBox buttonMappingComboBox;
@@ -20,13 +20,13 @@ public class ComponentMappingControl extends JPanel {
     private final ButtonMapping unboundMapping = new ButtonMapping(ButtonMappingType.Unbound, 0);
     private Action updateAction;
 
-    public ComponentMappingControl(Collection<AutomationBinding> bindings) {
+    public AutomationBindingsControl(Collection<AutomationBindingWrapper> bindings) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
         gridConstraints.gridx = 0;
         gridConstraints.weightx = 1;
-        ArrayList<AutomationBinding> selectableButtonMappings = new ArrayList<AutomationBinding>();
+        ArrayList<AutomationBindingWrapper> selectableButtonMappings = new ArrayList<AutomationBindingWrapper>();
         //selectableButtonMappings.add(unboundMapping);
         selectableButtonMappings.addAll(bindings);
         this.buttonMappingComboBox = new JComboBox(selectableButtonMappings.toArray());

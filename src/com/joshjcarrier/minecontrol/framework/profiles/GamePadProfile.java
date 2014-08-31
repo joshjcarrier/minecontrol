@@ -62,6 +62,10 @@ public class GamePadProfile {
         }
     }
 
+    public HashMap<Component.Identifier, String> getGamePadButtonLabels() {
+        return this.rxGamePad.getButtonLabels();
+    }
+
     public String getName() {
         return "default";
     }

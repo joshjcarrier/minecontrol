@@ -10,4 +10,9 @@ public class MouseMoveYAutomationMethod implements IAutomationMethod {
     public void automate(Float value) {
         this.mouseMoveAutomationRunner.yValue = value;
     }
+
+    @Override
+    public String getName() {
+        return "Mouse move Y axis";
+    }
 }

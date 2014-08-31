@@ -1,6 +1,7 @@
 package com.joshjcarrier.rxautomation.methods;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class KeyboardAutomationMethod implements IAutomationMethod {
     private final int primaryKeyEventId;
@@ -44,5 +45,10 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
             humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
             humanInterfaceDeviceService.keyRelease(this.secondaryKeyEventId);
         }
+    }
+
+    @Override
+    public String getName() {
+        return KeyEvent.getKeyText(this.primaryKeyEventId);
     }
 }

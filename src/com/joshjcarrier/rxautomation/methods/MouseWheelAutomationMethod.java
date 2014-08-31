@@ -36,4 +36,9 @@ public class MouseWheelAutomationMethod implements IAutomationMethod {
             humanInterfaceDeviceService.mouseWheel(-scrollAmount);
         }
     }
+
+    @Override
+    public String getName() {
+        return scrollAmount > 0 ? "Mouse scroll down" : "Mouse scroll up";
+    }
 }

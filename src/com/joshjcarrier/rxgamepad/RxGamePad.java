@@ -18,7 +18,7 @@ public class RxGamePad {
         return this.rxController.getComponent(componentId);
     }
 
-    public HashMap<Component.Identifier, String> getComponentLabels() {
+    public HashMap<Component.Identifier, String> getButtonLabels() {
         return new HashMap<Component.Identifier, String>() {
             private static final long serialVersionUID = 3658388604108766926L;
 
@@ -27,12 +27,12 @@ public class RxGamePad {
                 put(Component.Identifier.Button._1, "B");
                 put(Component.Identifier.Button._2, "X");
                 put(Component.Identifier.Button._3, "Y");
-                put(Component.Identifier.Button._4, "LEFT_SHOULDER");
-                put(Component.Identifier.Button._5, "RIGHT_SHOULDER");
-                put(Component.Identifier.Button._6, "BACK");
-                put(Component.Identifier.Button._7, "START");
-                put(Component.Identifier.Button._8, "LEFT_STICK");
-                put(Component.Identifier.Button._9, "RIGHT_STICK");
+                put(Component.Identifier.Button._4, "Left shoulder");
+                put(Component.Identifier.Button._5, "Right shoulder");
+                put(Component.Identifier.Button._6, "Back");
+                put(Component.Identifier.Button._7, "Start");
+                put(Component.Identifier.Button._8, "Left joystick press");
+                put(Component.Identifier.Button._9, "Right joystick press");
             }
         };
     }
