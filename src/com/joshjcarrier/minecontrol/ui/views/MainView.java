@@ -148,7 +148,7 @@ public class MainView extends JFrame
 		GridBagConstraints gridConstraints = new GridBagConstraints();
 		gridConstraints.fill = GridBagConstraints.HORIZONTAL;
 		
-		JComboBox profilesComboBox = new JComboBox(new String[] { "default" });
+		JComboBox profilesComboBox = new JComboBox(mainController.getActiveGamePad().getProfiles().toArray());
 		gridConstraints.gridx = 0;
 		gridConstraints.weightx = 1;
 		gridConstraints.insets = new Insets(0, 0, 0, 10);

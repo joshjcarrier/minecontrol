@@ -1,15 +1,15 @@
 package com.joshjcarrier.minecontrol.ui.controllers;
 
-import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
+import com.joshjcarrier.minecontrol.ui.models.GamePadProfileWrapper;
 
 public class GamePadProfileController {
-    private final GamePadProfile gamePadProfile;
+    private final GamePadProfileWrapper gamePadProfile;
 
-    public GamePadProfileController(GamePadProfile gamePadProfile) {
+    public GamePadProfileController(GamePadProfileWrapper gamePadProfile) {
         this.gamePadProfile = gamePadProfile;
     }
 
     public String getTitle() {
-        return "default";
+        return this.gamePadProfile.getName();
     }
 }

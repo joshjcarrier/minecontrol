@@ -61,6 +61,14 @@ public class GamePadProfile {
         }
     }
 
+    public String getName() {
+        return "default";
+    }
+
+    public void save() {
+        // TODO
+    }
+
     private HashMap<Component.Identifier, IRxAutomationProjection> identifierToProjectionMap = new HashMap<Component.Identifier, IRxAutomationProjection>()
     {
         public static final long serialVersionUID = 8658388604108766926L;

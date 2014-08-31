@@ -1,6 +1,8 @@
 package com.joshjcarrier.minecontrol.ui.controllers;
 
 import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
+import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfileList;
+import com.joshjcarrier.minecontrol.ui.models.GamePadProfileWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
 import com.joshjcarrier.minecontrol.ui.views.GamePadProfileView;
 import com.joshjcarrier.minecontrol.ui.views.MainView;
@@ -12,21 +14,39 @@ import java.util.List;
 
 public class MainController {
     private final RxGamePadList rxGamePadList;
-    private GamePadProfile activeProfile;
+    private final GamePadProfileList gamePadProfileList;
+    private GamePadWrapper activeGamePad;
+    private GamePadProfileWrapper activeProfile;
 
-    public MainController(RxGamePadList rxGamePadList) {
+    public MainController(RxGamePadList rxGamePadList, GamePadProfileList gamePadProfileList) {
         this.rxGamePadList = rxGamePadList;
+        this.gamePadProfileList = gamePadProfileList;
     }
 
     public List<GamePadWrapper> getGamePads() {
         return this.rxGamePadList.getAll()
                 .map(new Func1<RxGamePad, GamePadWrapper>() {
                     @Override
-                    public GamePadWrapper call(RxGamePad rxController) {
-                        return new GamePadWrapper(rxController);
+                    public GamePadWrapper call(RxGamePad rxGamePad) {
+                        List<GamePadProfileWrapper> profiles = gamePadProfileList.getAll(rxGamePad).map(new Func1<GamePadProfile, GamePadProfileWrapper>() {
+                                    @Override
+                                    public GamePadProfileWrapper call(GamePadProfile gamePadProfile) {
+                                        return new GamePadProfileWrapper(gamePadProfile);
+                                    }
+                                })
+                                .toList()
+                                .toBlockingObservable()
+                                .first();
+                        return new GamePadWrapper(rxGamePad, profiles);
                     }
                 })
-                .toList().toBlockingObservable().first();// temporary to maintain interface
+                .toList()
+                .toBlockingObservable()
+                .first();// temporary to maintain interface
+    }
+
+    public GamePadWrapper getActiveGamePad() {
+        return this.activeGamePad;
     }
 
     public void setActiveGamePad(GamePadWrapper gamePadWrapper) {
@@ -34,7 +54,8 @@ public class MainController {
             activeProfile.deactivate();
         }
 
-        this.activeProfile = gamePadWrapper.getDefaultProfile();
+        this.activeGamePad = gamePadWrapper;
+        this.activeProfile = gamePadWrapper.getProfiles().get(0);
         this.activeProfile.activate();
     }
 

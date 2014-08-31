@@ -1,10 +1,10 @@
 package com.joshjcarrier.minecontrol.ui.models;
 
-import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 import com.joshjcarrier.rxgamepad.RxGamePad;
 
 import java.net.URL;
+import java.util.List;
 
 /**
  * User experience wrapper for the {@link RxGamePad} class.
@@ -14,16 +14,16 @@ import java.net.URL;
 public class GamePadWrapper
 {
 	private final RxGamePad rxGamePad;
-    private GamePadProfile defaultProfile;
-	
-	public GamePadWrapper(RxGamePad rxGamePad)	{
+    private final List<GamePadProfileWrapper> profiles;
+
+	public GamePadWrapper(RxGamePad rxGamePad, List<GamePadProfileWrapper> profiles)	{
 		this.rxGamePad = rxGamePad;
-        this.defaultProfile = new GamePadProfile(rxGamePad);
+        this.profiles = profiles;
 	}
 
-    public GamePadProfile getDefaultProfile()
+    public List<GamePadProfileWrapper> getProfiles()
     {
-        return this.defaultProfile;
+        return this.profiles;
     }
 	
 	public String getName()

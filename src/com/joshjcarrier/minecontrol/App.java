@@ -1,5 +1,6 @@
 package com.joshjcarrier.minecontrol;
 
+import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfileList;
 import com.joshjcarrier.minecontrol.ui.controllers.MainController;
 import com.joshjcarrier.minecontrol.ui.views.MainView;
 import com.joshjcarrier.rxgamepad.RxGamePadList;
@@ -18,7 +19,8 @@ public class App
 		// TODO sync with minecontrol runtime
 		// controller reader service async
         RxGamePadList rxGamePadList = new RxGamePadList();
-        MainController mainController = new MainController(rxGamePadList);
+        GamePadProfileList gamePadProfileList = new GamePadProfileList();
+        MainController mainController = new MainController(rxGamePadList, gamePadProfileList);
 		
 		MainView view = mainController.index();
 		view.setVisible(true);
