@@ -17,11 +17,6 @@ public class RxGamePad {
     }
 
     @Deprecated // only for transition purposes
-    public Controller getInternalController() {
-        return this.rxController.getInternalController();
-    }
-
-    @Deprecated // only for transition purposes
     public RxController getInternalRxController() {
         return this.rxController;
     }

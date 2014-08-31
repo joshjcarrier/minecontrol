@@ -8,6 +8,8 @@ import com.joshjcarrier.rxgamepad.RxGamePad;
 import javafx.util.Pair;
 import net.java.games.input.Component;
 import rx.Observable;
+import rx.Subscription;
+import rx.util.functions.Action1;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.Map;
 
 public class GamePadProfile {
     private final RxGamePad rxGamePad;
+    private Subscription activeSubscription;
 
     public GamePadProfile(RxGamePad rxGamePad){
         this.rxGamePad = rxGamePad;
@@ -32,6 +35,25 @@ public class GamePadProfile {
         }
 
         return Observable.merge(keyEvents);
+    }
+
+    public void activate(){
+        if(this.activeSubscription != null) {
+            return;
+        }
+
+        this.activeSubscription = getKeyEvents().subscribe(new Action1<Pair<IAutomationMethod, Float>>() {
+            @Override
+            public void call(Pair<IAutomationMethod, Float> iAutomationMethodFloatPair) {
+                iAutomationMethodFloatPair.getKey().automate(iAutomationMethodFloatPair.getValue());
+            }
+        });
+    }
+
+    public void deactivate() {
+        if(this.activeSubscription != null) {
+            this.activeSubscription.unsubscribe();
+        }
     }
 
     private HashMap<Component.Identifier, IRxAutomationProjection> identifierToProjectionMap = new HashMap<Component.Identifier, IRxAutomationProjection>()

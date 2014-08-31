@@ -1,11 +1,10 @@
 package com.joshjcarrier.minecontrol;
 
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
-import com.joshjcarrier.minecontrol.services.RunnableGamePadInterpreter;
+import com.joshjcarrier.minecontrol.ui.controllers.MainController;
 import com.joshjcarrier.minecontrol.ui.views.MainView;
+import com.joshjcarrier.rxgamepad.RxGamePadList;
+
+import javax.swing.*;
 
 /**
  * Application entry point.
@@ -18,11 +17,10 @@ public class App
 	{
 		// TODO sync with minecontrol runtime
 		// controller reader service async
-		RunnableGamePadInterpreter inputReaderService = new RunnableGamePadInterpreter();		
-		Thread inputReaderServiceThread = new Thread(inputReaderService);
-		inputReaderServiceThread.start();
+        RxGamePadList rxGamePadList = new RxGamePadList();
+        MainController mainController = new MainController(rxGamePadList);
 		
-		MainView view = new MainView(inputReaderService);
+		MainView view = mainController.index();
 		view.setVisible(true);
 	}
 

@@ -3,6 +3,7 @@ package com.joshjcarrier.minecontrol.ui.models;
 import java.net.URL;
 
 import com.joshjcarrier.minecontrol.framework.input.GamePad;
+import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 
 import com.joshjcarrier.rxgamepad.RxGamePad;
@@ -16,25 +17,21 @@ import net.java.games.input.Controller;
 public class GamePadWrapper
 {
 	private final RxGamePad rxGamePad;
+    private GamePadProfile defaultProfile;
 	
-	public GamePadWrapper(RxGamePad rxGamePad)
-	{
+	public GamePadWrapper(RxGamePad rxGamePad)	{
 		this.rxGamePad = rxGamePad;
-	}
-			
-	public Controller getController()
-	{
-		return this.rxGamePad.getInternalController();
+        this.defaultProfile = new GamePadProfile(rxGamePad);
 	}
 
-    public RxGamePad getGamePad()
+    public GamePadProfile getDefaultProfile()
     {
-        return this.rxGamePad;
+        return this.defaultProfile;
     }
 	
 	public String getName()
 	{
-		return this.getController().getName();
+		return this.rxGamePad.getName();
 	}
 	
 	public URL getTileResource()

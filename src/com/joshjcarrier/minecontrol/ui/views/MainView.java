@@ -1,35 +1,22 @@
 package com.joshjcarrier.minecontrol.ui.views;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.MatteBorder;
-
 import com.joshjcarrier.minecontrol.AppInfo;
-import com.joshjcarrier.minecontrol.services.RunnableGamePadInterpreter;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
+import com.joshjcarrier.minecontrol.ui.controllers.MainController;
 import com.joshjcarrier.minecontrol.ui.controls.renderers.GamePadWrapperListCellRenderer;
 import com.joshjcarrier.minecontrol.ui.controls.renderers.GameTitleWrapperListCellRenderer;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GameTitleWrapper;
 import com.joshjcarrier.minecontrol.ui.parts.ConfigurationPart;
+
+import javax.swing.*;
+import javax.swing.border.MatteBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * The main view.
@@ -40,14 +27,14 @@ public class MainView extends JFrame
 {
 	private static final long serialVersionUID = -46316333717547118L;
 
-	public MainView(final RunnableGamePadInterpreter gamePadInterpreter)
+	public MainView(final MainController mainController)
 	{
 		this.setTitle(AppInfo.ProductName);
 		
 		ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX360));
     	this.setIconImage(icon.getImage());    
     	
-		JPanel contentPanel = createContentPanel(gamePadInterpreter);				
+		JPanel contentPanel = createContentPanel(mainController);
 		contentPanel.setBorder(BorderFactory.createEmptyBorder(4, 0, 4, 0));
 		this.add(contentPanel);
 		
@@ -56,7 +43,7 @@ public class MainView extends JFrame
 		this.pack();
 	}
 	
-	private static JPanel createContentPanel(final RunnableGamePadInterpreter gamePadInterpreter)
+	private static JPanel createContentPanel(final MainController mainController)
 	{
 		JPanel contentPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
@@ -70,13 +57,13 @@ public class MainView extends JFrame
 		gridConstraints.gridy = 0;
 		contentPanel.add(gameTitleSelectionPanel, gridConstraints);
 		
-		JPanel controllerSelectionPanel = createControllerSelectionPanel(gamePadInterpreter);
+		JPanel controllerSelectionPanel = createControllerSelectionPanel(mainController);
 		controllerSelectionPanel.setBorder(BorderFactory.createTitledBorder(panelBorder, "DEVICE"));
 		gridConstraints.gridx = 0;
 		gridConstraints.gridy = 1;		
 		contentPanel.add(controllerSelectionPanel, gridConstraints);
 								
-		JPanel profilePanel = createProfilePanel(gamePadInterpreter);
+		JPanel profilePanel = createProfilePanel(mainController);
 		profilePanel.setBorder(BorderFactory.createTitledBorder(panelBorder, "PROFILE"));
 		gridConstraints.gridx = 0;
 		gridConstraints.gridy = 2;
@@ -117,11 +104,11 @@ public class MainView extends JFrame
 		return panel;
 	}
 	
-	private static JPanel createControllerSelectionPanel(final RunnableGamePadInterpreter gamePadInterpreter)
+	private static JPanel createControllerSelectionPanel(final MainController mainController)
 	{
 		JPanel panel = new JPanel(new GridLayout(1, 1));
-	
-		List<GamePadWrapper> gamePads = gamePadInterpreter.getInputReaderDevices();
+
+		List<GamePadWrapper> gamePads = mainController.getGamePads();
 		final JComboBox controllersComboBox = new JComboBox(gamePads.toArray());
 		GamePadWrapperListCellRenderer inputReaderDeviceListCellRenderer = new GamePadWrapperListCellRenderer();
 		inputReaderDeviceListCellRenderer.setPreferredSize(new Dimension(300, 35));
@@ -131,7 +118,7 @@ public class MainView extends JFrame
 			public void actionPerformed(ActionEvent event)
 			{
 				GamePadWrapper gamePad = (GamePadWrapper)controllersComboBox.getSelectedItem();
-				gamePadInterpreter.setInputReaderDevice(gamePad);
+				mainController.setActiveGamePad(gamePad);
 			}
 		});
 		
@@ -156,7 +143,7 @@ public class MainView extends JFrame
 		return panel;
 	}
 	
-	private static JPanel createProfilePanel(final RunnableGamePadInterpreter gamePadInterpreter)
+	private static JPanel createProfilePanel(final MainController mainController)
 	{
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
@@ -173,7 +160,7 @@ public class MainView extends JFrame
 		{			
 			public void actionPerformed(ActionEvent event)
 			{
-				ConfigurationPart part = new ConfigurationPart(gamePadInterpreter.getControllerProfile());
+				ConfigurationPart part = new ConfigurationPart(mainController.getControllerProfile());
 				ConfigurationView view = part.createView();
 				view.setModal(true);
 				view.setVisible(true);
