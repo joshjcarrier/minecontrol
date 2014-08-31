@@ -2,21 +2,14 @@ package com.joshjcarrier.minecontrol.services;
 
 import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
 import com.joshjcarrier.minecontrol.framework.input.GamePad;
-import com.joshjcarrier.minecontrol.framework.input.GamePadState;
+import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
 import com.joshjcarrier.rxautomation.KeyboardRobot;
-import com.joshjcarrier.rxautomation.projection.IRxKeyAutomationProjection;
-import com.joshjcarrier.rxautomation.projection.ThresholdRxKeyAutomationProjection;
 import com.joshjcarrier.rxgamepad.RxGamePad;
 import com.joshjcarrier.rxgamepad.RxGamePadList;
-import javafx.util.Pair;
-import net.java.games.input.Component;
-import rx.Observable;
 import rx.Subscription;
-import rx.util.functions.Action1;
 import rx.util.functions.Func1;
 
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 /**
@@ -71,29 +64,25 @@ public class RunnableGamePadInterpreter implements Runnable
 			replayService.update(null);
 		}
 		
-		gamePadSubscription = this.gamePad.getState().subscribe(new Action1<GamePadState>(){
+//		gamePadSubscription = this.gamePad.getState().subscribe(new Action1<GamePadState>(){
+//
+//			public void call(GamePadState arg0) {
+//				replayService.update(arg0);
+//			}});
 
-			public void call(GamePadState arg0) {
-				replayService.update(arg0);
-			}});
-
-        IRxKeyAutomationProjection projector = new ThresholdRxKeyAutomationProjection();
-        Observable<Pair<Integer, Boolean>> keyEventA = projector.map(KeyEvent.VK_Q, gamePadWrapper.getGamePad().getComponentById(Component.Identifier.Button._0));
-        Observable<Pair<Integer, Boolean>> keyEventB = projector.map(KeyEvent.VK_E, gamePadWrapper.getGamePad().getComponentById(Component.Identifier.Button._1));
-
-        Observable<Pair<Integer, Boolean>> keyEvents = Observable.merge(keyEventA, keyEventB);
+        GamePadProfile defaultProfile = new GamePadProfile(gamePadWrapper.getGamePad());
         if(keyboardRobot != null) {
             keyboardRobot.dispose();
         }
 
-        this.keyboardRobot = new KeyboardRobot(keyEvents);
+        this.keyboardRobot = new KeyboardRobot(defaultProfile.getKeyEvents());
 	}
     private KeyboardRobot keyboardRobot;
 
 	public void run()
 	{	
 		//final RunnableHidReplayService replayService = new RunnableHidReplayService(this.profile);
-		Thread replayServiceThread = new Thread(this.replayService);
-		replayServiceThread.start();
+		//Thread replayServiceThread = new Thread(this.replayService);
+		//replayServiceThread.start();
 	}
 }

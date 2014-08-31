@@ -74,4 +74,6 @@ public class RxController {
     public Observable<Event> getEvents() {
         return this.events;
     }
+
+    public String getName() { return this.controller.getName(); }
 }

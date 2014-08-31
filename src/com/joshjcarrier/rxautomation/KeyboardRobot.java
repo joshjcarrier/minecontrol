@@ -11,7 +11,7 @@ public class KeyboardRobot {
     private Robot humanInterfaceDeviceService;
     Subscription subscribe;
 
-    public KeyboardRobot(Observable<Pair<Integer, Boolean>> keyEventIdStates)
+    public KeyboardRobot(Observable<Pair<Integer, Float>> keyEventIdStates)
     {
         try
         {
@@ -20,10 +20,10 @@ public class KeyboardRobot {
             // this prevents the OS from ignoring events generated too quickly in succession
             this.humanInterfaceDeviceService.setAutoDelay(10);
 
-            subscribe = keyEventIdStates.subscribe(new Action1<Pair<Integer, Boolean>>() {
+            subscribe = keyEventIdStates.subscribe(new Action1<Pair<Integer, Float>>() {
                 @Override
-                public void call(Pair<Integer, Boolean> keyEventIdState) {
-                    if(keyEventIdState.getValue()) {
+                public void call(Pair<Integer, Float> keyEventIdState) {
+                    if(keyEventIdState.getValue() == 1f) {
                         humanInterfaceDeviceService.keyPress(keyEventIdState.getKey());
                     }
                     else {
