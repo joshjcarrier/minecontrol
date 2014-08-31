@@ -1,5 +1,7 @@
 package com.joshjcarrier.minecontrol.framework.profiles;
 
+import com.joshjcarrier.rxautomation.methods.IAutomationMethod;
+import com.joshjcarrier.rxautomation.methods.KeyboardAutomationMethod;
 import com.joshjcarrier.rxautomation.projection.IRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.ReplayRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.ThresholdRxAutomationProjection;
@@ -7,6 +9,7 @@ import com.joshjcarrier.rxgamepad.RxGamePad;
 import javafx.util.Pair;
 import net.java.games.input.Component;
 import rx.Observable;
+import rx.util.functions.Func1;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -20,15 +23,28 @@ public class GamePadProfile {
         this.rxGamePad = rxGamePad;
     }
 
-    public Observable<Pair<Integer, Float>> getKeyEvents() {
-        ArrayList<Observable<Pair<Integer, Float>>> keyEvents = new ArrayList<Observable<Pair<Integer, Float>>>();
+    public Observable<Pair<IAutomationMethod, Float>> getKeyEvents() {
+        ArrayList<Observable<Pair<IAutomationMethod, Float>>> keyEvents = new ArrayList<Observable<Pair<IAutomationMethod, Float>>>();
 
-        for(Map.Entry<Component.Identifier, Integer> entry : identifierToKeyMap.entrySet()) {
+        for(Map.Entry<Component.Identifier, IAutomationMethod> entry : identifierToKeyMap.entrySet()) {
 
             IRxAutomationProjection projector = identifierToProjectionMap.get(entry.getKey());
-            Observable<Pair<Integer, Float>> keyEvent = projector.map(entry.getValue(), this.rxGamePad.getComponentById(entry.getKey()));
+            Observable<Pair<IAutomationMethod, Float>> keyEvent = projector.map(entry.getValue(), this.rxGamePad.getComponentById(entry.getKey()));
             keyEvents.add(keyEvent);
         }
+//        for(Map.Entry<Component.Identifier, IAutomationMethod> entry : identifierToAutomationMethodMap.entrySet()) {
+//
+//            final IRxAutomationProjection projector = identifierToProjectionMap.get(entry.getKey());
+//            Observable<Pair<Integer, Float>> keyEvent = this.rxGamePad.getComponentById(entry.getKey())
+//                    .flatMap(new Func1<Float, Observable<Pair<Integer, Float>>>() {
+//                        @Override
+//                        public Observable<Pair<Integer, Float>> call(Float aFloat) {
+//                            return projector.map(aFloat, );
+//                        }
+//                    });
+//
+//            keyEvents.add(keyEvent);
+//        }
 
         return Observable.merge(keyEvents);
     }
@@ -43,19 +59,21 @@ public class GamePadProfile {
             put(Component.Identifier.Button._3, new ThresholdRxAutomationProjection());
 
             put(Component.Identifier.Axis.X, new ReplayRxAutomationProjection());
+            put(Component.Identifier.Axis.Y, new ReplayRxAutomationProjection());
         }
     };
 
-    private HashMap<Component.Identifier, Integer> identifierToKeyMap = new HashMap<Component.Identifier, Integer>()
+    private HashMap<Component.Identifier, IAutomationMethod> identifierToKeyMap = new HashMap<Component.Identifier, IAutomationMethod>()
     {
         public static final long serialVersionUID = 8658388604108766926L;
         {
-            put(Component.Identifier.Button._0, KeyEvent.VK_SPACE);
-            put(Component.Identifier.Button._1, KeyEvent.VK_Q);
-            put(Component.Identifier.Button._2, KeyEvent.VK_SPACE);
-            put(Component.Identifier.Button._3, KeyEvent.VK_E);
+            put(Component.Identifier.Button._0, new KeyboardAutomationMethod(KeyEvent.VK_SPACE));
+            put(Component.Identifier.Button._1, new KeyboardAutomationMethod(KeyEvent.VK_Q));
+            put(Component.Identifier.Button._2, new KeyboardAutomationMethod(KeyEvent.VK_SPACE));
+            put(Component.Identifier.Button._3, new KeyboardAutomationMethod(KeyEvent.VK_E));
 
-            put(Component.Identifier.Axis.X, KeyEvent.VK_A);
+            put(Component.Identifier.Axis.X, new KeyboardAutomationMethod(KeyEvent.VK_D, KeyEvent.VK_A));
+            put(Component.Identifier.Axis.Y, new KeyboardAutomationMethod(KeyEvent.VK_S, KeyEvent.VK_W));
         }
     };
 }

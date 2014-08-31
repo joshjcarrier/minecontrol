@@ -4,10 +4,12 @@ import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
 import com.joshjcarrier.minecontrol.framework.input.GamePad;
 import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
-import com.joshjcarrier.rxautomation.KeyboardRobot;
+import com.joshjcarrier.rxautomation.methods.IAutomationMethod;
 import com.joshjcarrier.rxgamepad.RxGamePad;
 import com.joshjcarrier.rxgamepad.RxGamePadList;
+import javafx.util.Pair;
 import rx.Subscription;
+import rx.util.functions.Action1;
 import rx.util.functions.Func1;
 
 import java.util.List;
@@ -71,13 +73,14 @@ public class RunnableGamePadInterpreter implements Runnable
 //			}});
 
         GamePadProfile defaultProfile = new GamePadProfile(gamePadWrapper.getGamePad());
-        if(keyboardRobot != null) {
-            keyboardRobot.dispose();
-        }
 
-        this.keyboardRobot = new KeyboardRobot(defaultProfile.getKeyEvents());
+        this.gamePadSubscription = defaultProfile.getKeyEvents().subscribe(new Action1<Pair<IAutomationMethod, Float>>() {
+            @Override
+            public void call(Pair<IAutomationMethod, Float> iAutomationMethodFloatPair) {
+                iAutomationMethodFloatPair.getKey().automate(iAutomationMethodFloatPair.getValue());
+            }
+        });
 	}
-    private KeyboardRobot keyboardRobot;
 
 	public void run()
 	{	

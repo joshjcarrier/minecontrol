@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8f4afd4-c4a0-4fae-8017-c0c93e57e956" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ReplayRxAutomationProjection.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/IAutomationMethod.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/KeyboardAutomationMethod.java" />
+      <change type="DELETED" beforePath="C:\Users\Josh\Documents\IdeaProjects\minecontrol\src\com\joshjcarrier\rxautomation\KeyboardRobot.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/profiles/GamePadProfile.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/profiles/GamePadProfile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/IRxAutomationProjection.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/IRxAutomationProjection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ReplayRxAutomationProjection.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ReplayRxAutomationProjection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdRxAutomationProjection.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdRxAutomationProjection.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="minecontrol2.iws" />
@@ -73,67 +78,54 @@
           <file leaf-file-name="RunnableGamePadInterpreter.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="518" max-vertical-offset="1564">
-                  <caret line="82" column="8" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="887" max-vertical-offset="1615">
+                  <caret line="78" column="89" selection-start-line="78" selection-start-column="89" selection-end-line="78" selection-end-column="89" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#1304#1512#0" expanded="true" />
-                    <element signature="e#1501#1502#0" expanded="true" />
+                    <element signature="e#1375#1583#0" expanded="true" />
+                    <element signature="e#1572#1573#0" expanded="true" />
+                    <element signature="e#2390#2674#0" expanded="true" />
+                    <element signature="e#2663#2664#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GamePadProfile.java" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="GamePadProfile.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/profiles/GamePadProfile.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.39752406" vertical-offset="306" max-vertical-offset="1105">
-                  <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="662" max-vertical-offset="1411">
+                  <caret line="61" column="63" selection-start-line="61" selection-start-column="63" selection-end-line="61" selection-end-column="63" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#830#864#0" expanded="true" />
+                    <element signature="e#1017#1061#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="KeyboardRobot.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
-                  <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#644#1120#0" expanded="true" />
-                    <element signature="e#1105#1106#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ThresholdRxAutomationProjection.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdRxAutomationProjection.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-                  <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#337#572#0" expanded="true" />
-                    <element signature="e#561#562#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ReplayRxAutomationProjection.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="ReplayRxAutomationProjection.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ReplayRxAutomationProjection.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-                  <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.32692307" vertical-offset="0" max-vertical-offset="728">
+                  <caret line="14" column="77" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#456#757#0" expanded="true" />
-                    <element signature="e#746#747#0" expanded="true" />
+                    <element signature="e#551#1049#0" expanded="true" />
+                    <element signature="e#1038#1039#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="KeyboardAutomationMethod.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/KeyboardAutomationMethod.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="918">
+                  <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+                  <folding>
+                    <element signature="e#719#720#0" expanded="true" />
+                    <element signature="e#777#778#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -142,8 +134,8 @@
           <file leaf-file-name="GamePad.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePad.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="956" max-vertical-offset="3927">
-                  <caret line="84" column="46" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="1109" max-vertical-offset="3927">
+                  <caret line="59" column="62" selection-start-line="59" selection-start-column="62" selection-end-line="59" selection-end-column="62" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#2487#2488#0" expanded="true" />
@@ -160,7 +152,7 @@
           <file leaf-file-name="ControllerProfile.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ControllerProfile.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.29545453" vertical-offset="1054" max-vertical-offset="1802">
+                <state vertical-scroll-proportion="0.90387183" vertical-offset="598" max-vertical-offset="1802">
                   <caret line="116" column="54" selection-start-line="116" selection-start-column="54" selection-end-line="116" selection-end-column="54" />
                   <folding />
                 </state>
@@ -204,15 +196,17 @@
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdAutomationProjection.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdKeyAutomationProjection.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdRxKeyAutomationProjection.java" />
-        <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxjinput/RxController.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/IRxKeyAutomationProjection.java" />
-        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/IRxAutomationProjection.java" />
-        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdRxAutomationProjection.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/IAutomationMethod.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/IRxAutomationProjection.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdRxAutomationProjection.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/KeyboardAutomationMethod.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/profiles/GamePadProfile.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ReplayRxAutomationProjection.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java" />
       </list>
     </option>
   </component>
@@ -403,6 +397,10 @@
               <option name="myItemId" value="rxautomation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -422,7 +420,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="projection" />
+              <option name="myItemId" value="methods" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -830,7 +828,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32823813" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3668544" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3660499" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -866,7 +864,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="46" />
+      <option name="time" value="47" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -874,20 +872,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.project">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/minecontrol2.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -965,14 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3857791" vertical-offset="0" max-vertical-offset="986">
           <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/rxjava-core.jar!/rx/Observable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.68" vertical-offset="12780" max-vertical-offset="14365">
-          <caret line="767" column="38" selection-start-line="767" selection-start-column="38" selection-end-line="767" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1139,14 +1115,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/jre/lib/rt.jar!/sun/misc/Unsafe.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8363136" vertical-offset="4832" max-vertical-offset="5559">
-          <caret line="321" column="49" selection-start-line="321" selection-start-column="49" selection-end-line="321" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/replayhandlers/VirtualMouseMoveAnalogReplayHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.3554054" vertical-offset="0" max-vertical-offset="1802">
@@ -1216,16 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/IRxAutomationProjection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11821975" vertical-offset="0" max-vertical-offset="719">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableHidReplayService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60247594" vertical-offset="38" max-vertical-offset="1020">
@@ -1244,34 +1202,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdRxAutomationProjection.java">
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ControllerProfile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.90387183" vertical-offset="598" max-vertical-offset="1802">
+          <caret line="116" column="54" selection-start-line="116" selection-start-column="54" selection-end-line="116" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/rxjava-core.jar!/rx/Observable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.8" vertical-offset="7663" max-vertical-offset="14365">
+          <caret line="475" column="38" selection-start-line="475" selection-start-column="38" selection-end-line="475" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/IAutomationMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.045945946" vertical-offset="0" max-vertical-offset="740">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/IRxAutomationProjection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1401099" vertical-offset="0" max-vertical-offset="728">
+          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#337#572#0" expanded="true" />
-            <element signature="e#561#562#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ReplayRxAutomationProjection.java">
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ThresholdRxAutomationProjection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.087855294" vertical-offset="0" max-vertical-offset="774">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#456#757#0" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
+            <element signature="e#431#702#0" expanded="true" />
+            <element signature="e#691#692#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78983516" vertical-offset="4831" max-vertical-offset="5559">
+          <caret line="319" column="23" selection-start-line="319" selection-start-column="23" selection-end-line="319" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/KeyboardAutomationMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="918">
+          <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+          <folding>
+            <element signature="e#719#720#0" expanded="true" />
+            <element signature="e#777#778#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePad.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="956" max-vertical-offset="3927">
-          <caret line="84" column="46" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1109" max-vertical-offset="3927">
+          <caret line="59" column="62" selection-start-line="59" selection-start-column="62" selection-end-line="59" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2487#2488#0" expanded="true" />
@@ -1280,45 +1278,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="518" max-vertical-offset="1564">
-          <caret line="82" column="8" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1304#1512#0" expanded="true" />
-            <element signature="e#1501#1502#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/KeyboardRobot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="833">
-          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#644#1120#0" expanded="true" />
-            <element signature="e#1105#1106#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ControllerProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29545453" vertical-offset="1054" max-vertical-offset="1802">
-          <caret line="116" column="54" selection-start-line="116" selection-start-column="54" selection-end-line="116" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/profiles/GamePadProfile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39752406" vertical-offset="306" max-vertical-offset="1105">
-          <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="662" max-vertical-offset="1411">
+          <caret line="61" column="63" selection-start-line="61" selection-start-column="63" selection-end-line="61" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#830#864#0" expanded="true" />
+            <element signature="e#1017#1061#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/RunnableGamePadInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="887" max-vertical-offset="1615">
+          <caret line="78" column="89" selection-start-line="78" selection-start-column="89" selection-end-line="78" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1375#1583#0" expanded="true" />
+            <element signature="e#1572#1573#0" expanded="true" />
+            <element signature="e#2390#2674#0" expanded="true" />
+            <element signature="e#2663#2664#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/projection/ReplayRxAutomationProjection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32692307" vertical-offset="0" max-vertical-offset="728">
+          <caret line="14" column="77" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#551#1049#0" expanded="true" />
+            <element signature="e#1038#1039#0" expanded="true" />
           </folding>
         </state>
       </provider>
