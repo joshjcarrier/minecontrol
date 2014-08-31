@@ -38,7 +38,7 @@ public class GamePadProfile {
     }
 
     public void activate(){
-        if(this.activeSubscription != null) {
+        if(this.activeSubscription != null && !this.activeSubscription.isUnsubscribed()) {
             return;
         }
 
