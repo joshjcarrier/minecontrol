@@ -1,6 +1,7 @@
 package com.joshjcarrier.minecontrol.framework.profiles;
 
 import com.joshjcarrier.rxautomation.methods.*;
+import com.joshjcarrier.rxautomation.projection.BimodalRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.IRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.ReplayRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.ThresholdRxAutomationProjection;
@@ -83,8 +84,8 @@ public class GamePadProfile {
             put(Component.Identifier.Button._8, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._9, new ThresholdRxAutomationProjection());
 
-            put(Component.Identifier.Axis.RX, new ReplayRxAutomationProjection());
-            put(Component.Identifier.Axis.RY, new ReplayRxAutomationProjection());
+            put(Component.Identifier.Axis.RX, new BimodalRxAutomationProjection());
+            put(Component.Identifier.Axis.RY, new BimodalRxAutomationProjection());
 
             put(Component.Identifier.Axis.X, new ReplayRxAutomationProjection());
             put(Component.Identifier.Axis.Y, new ReplayRxAutomationProjection());

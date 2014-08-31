@@ -27,15 +27,13 @@ import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.joshjcarrier.minecontrol.framework.input.ApplicationEvent;
-import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
-import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
-import com.joshjcarrier.minecontrol.framework.input.Buttons;
+import com.joshjcarrier.minecontrol.framework.input.*;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
 import com.joshjcarrier.minecontrol.ui.controllers.GamePadProfileController;
 import com.joshjcarrier.minecontrol.ui.controls.ButtonDescriptorPanel;
 import com.joshjcarrier.minecontrol.ui.controls.ButtonMappingToReplayControl;
+import com.joshjcarrier.minecontrol.ui.controls.ComponentMappingControl;
 
 public class GamePadProfileView extends JDialog
 {
@@ -127,79 +125,80 @@ public class GamePadProfileView extends JDialog
 		gridConstraints.weightx = 0;
 		gridConstraints.ipadx = 0;
 		panel.add(mappingHeader, gridConstraints);
-		
-		ButtonMapping[] mappings = new ButtonMapping[]
+
+        AutomationBinding[] bindings = new AutomationBinding[]
 				{
-					new ButtonMapping(ButtonMappingType.Application, ApplicationEvent.MouseMode),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_A),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_B),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_C),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_COMMA),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_D),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_DELETE),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_DOWN),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_E),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_END),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_ESCAPE),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F1),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F2),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F3),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F4),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F5),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F6),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F7),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F8),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F9),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F10),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F11),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_F12),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_G),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_H),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_HOME),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_I),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_INSERT),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_J),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_K),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_L),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_LEFT),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_M),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_N),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_O),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_P),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_PAGE_DOWN),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_PAGE_UP),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_PERIOD),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_Q),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_R),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_RIGHT),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_S),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_SHIFT),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_SPACE),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_T),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_TAB),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_U),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_UP),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_V),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_W),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_X),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_Y),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_Z),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_1),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_2),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_3),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_4),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_5),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_6),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_7),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_8),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_9),
-					new ButtonMapping(ButtonMappingType.Keyboard, KeyEvent.VK_0),
-					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON1_MASK),
-					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON2_MASK),
-					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.BUTTON3_MASK),
-					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, -1),
-					new ButtonMapping(ButtonMappingType.Mouse, MouseEvent.MOUSE_WHEEL, 1),
+					//new AutomationBinding(ApplicationEvent.MouseMode),
+					new AutomationBinding(KeyEvent.VK_A),
+					new AutomationBinding(KeyEvent.VK_B),
+					new AutomationBinding(KeyEvent.VK_C),
+					new AutomationBinding(KeyEvent.VK_COMMA),
+                    new AutomationBinding(KeyEvent.VK_CONTROL),
+					new AutomationBinding(KeyEvent.VK_D),
+					new AutomationBinding(KeyEvent.VK_DELETE),
+					new AutomationBinding(KeyEvent.VK_DOWN),
+					new AutomationBinding(KeyEvent.VK_E),
+					new AutomationBinding(KeyEvent.VK_END),
+					new AutomationBinding(KeyEvent.VK_ESCAPE),
+					new AutomationBinding(KeyEvent.VK_F),
+					new AutomationBinding(KeyEvent.VK_F1),
+					new AutomationBinding(KeyEvent.VK_F2),
+					new AutomationBinding(KeyEvent.VK_F3),
+					new AutomationBinding(KeyEvent.VK_F4),
+					new AutomationBinding(KeyEvent.VK_F5),
+					new AutomationBinding(KeyEvent.VK_F6),
+					new AutomationBinding(KeyEvent.VK_F7),
+					new AutomationBinding(KeyEvent.VK_F8),
+					new AutomationBinding(KeyEvent.VK_F9),
+					new AutomationBinding(KeyEvent.VK_F10),
+					new AutomationBinding(KeyEvent.VK_F11),
+					new AutomationBinding(KeyEvent.VK_F12),
+					new AutomationBinding(KeyEvent.VK_G),
+					new AutomationBinding(KeyEvent.VK_H),
+					new AutomationBinding(KeyEvent.VK_HOME),
+					new AutomationBinding(KeyEvent.VK_I),
+					new AutomationBinding(KeyEvent.VK_INSERT),
+					new AutomationBinding(KeyEvent.VK_J),
+					new AutomationBinding(KeyEvent.VK_K),
+					new AutomationBinding(KeyEvent.VK_L),
+					new AutomationBinding(KeyEvent.VK_LEFT),
+					new AutomationBinding(KeyEvent.VK_M),
+					new AutomationBinding(KeyEvent.VK_N),
+					new AutomationBinding(KeyEvent.VK_O),
+					new AutomationBinding(KeyEvent.VK_P),
+					new AutomationBinding(KeyEvent.VK_PAGE_DOWN),
+					new AutomationBinding(KeyEvent.VK_PAGE_UP),
+					new AutomationBinding(KeyEvent.VK_PERIOD),
+					new AutomationBinding(KeyEvent.VK_Q),
+					new AutomationBinding(KeyEvent.VK_R),
+					new AutomationBinding(KeyEvent.VK_RIGHT),
+					new AutomationBinding(KeyEvent.VK_S),
+					new AutomationBinding(KeyEvent.VK_SHIFT),
+					new AutomationBinding(KeyEvent.VK_SPACE),
+					new AutomationBinding(KeyEvent.VK_T),
+					new AutomationBinding(KeyEvent.VK_TAB),
+					new AutomationBinding(KeyEvent.VK_U),
+					new AutomationBinding(KeyEvent.VK_UP),
+					new AutomationBinding(KeyEvent.VK_V),
+					new AutomationBinding(KeyEvent.VK_W),
+					new AutomationBinding(KeyEvent.VK_X),
+					new AutomationBinding(KeyEvent.VK_Y),
+					new AutomationBinding(KeyEvent.VK_Z),
+					new AutomationBinding(KeyEvent.VK_1),
+					new AutomationBinding(KeyEvent.VK_2),
+					new AutomationBinding(KeyEvent.VK_3),
+					new AutomationBinding(KeyEvent.VK_4),
+					new AutomationBinding(KeyEvent.VK_5),
+					new AutomationBinding(KeyEvent.VK_6),
+					new AutomationBinding(KeyEvent.VK_7),
+					new AutomationBinding(KeyEvent.VK_8),
+					new AutomationBinding(KeyEvent.VK_9),
+					new AutomationBinding(KeyEvent.VK_0),
+					new AutomationBinding(MouseEvent.BUTTON1_MASK),
+					new AutomationBinding(MouseEvent.BUTTON2_MASK),
+					new AutomationBinding(MouseEvent.BUTTON3_MASK),
+					new AutomationBinding(MouseEvent.MOUSE_WHEEL),
+					//new AutomationBinding(MouseEvent.MOUSE_WHEEL, 1),
 				};
 				
 		for (final Buttons button : new Buttons[] { Buttons.A, Buttons.B, Buttons.X, Buttons.Y, Buttons.LEFT_SHOULDER, Buttons.RIGHT_SHOULDER, Buttons.LEFT_STICK, Buttons.RIGHT_STICK, Buttons.DPAD_LEFT, Buttons.DPAD_UP, Buttons.DPAD_RIGHT, Buttons.DPAD_DOWN, Buttons.BACK, Buttons.START })
@@ -209,13 +208,13 @@ public class GamePadProfileView extends JDialog
 			gridConstraints.gridx = 0;
 			panel.add(new ButtonDescriptorPanel(button), gridConstraints);
 							
-			final ButtonMappingToReplayControl buttonMappingToReplayControl = new ButtonMappingToReplayControl(Arrays.asList(mappings));
-			buttonMappingToReplayControl.setAction(new SimpleAction()
+			final ComponentMappingControl componentMappingControl = new ComponentMappingControl(Arrays.asList(bindings));
+            componentMappingControl.setAction(new SimpleAction()
 			{				
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					if (buttonMappingToReplayControl.isValid())
+					if (componentMappingControl.isValid())
 					{
 						// TODO dataContext.setButtonMapping(button, buttonMappingToReplayControl.getSelectedButtonMapping());
 					}
@@ -225,7 +224,7 @@ public class GamePadProfileView extends JDialog
 			// TODO buttonMappingToReplayControl.setSelectedButton(dataContext.getButtonMapping(button));
 			
 			gridConstraints.gridx = 1;
-			panel.add(buttonMappingToReplayControl, gridConstraints);
+			panel.add(componentMappingControl, gridConstraints);
 		}
 		
 		gridConstraints.gridy += 1;

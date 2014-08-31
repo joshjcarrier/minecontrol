@@ -155,7 +155,6 @@ public class MainView extends JFrame
 		panel.add(profilesComboBox, gridConstraints);
 		
 		JButton configurationButton = new JButton("Configure");
-        configurationButton.setEnabled(false);
 		configurationButton.addActionListener(new ActionListener()
 		{			
 			public void actionPerformed(ActionEvent event)
