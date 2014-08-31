@@ -9,6 +9,10 @@ public class AutomationBinding {
         this.automationMethod = automationMethod;
     }
 
+    public IAutomationMethod getAutomationMethod() {
+        return this.automationMethod;
+    }
+
     public String getName() {
         return this.automationMethod.getName();
     }

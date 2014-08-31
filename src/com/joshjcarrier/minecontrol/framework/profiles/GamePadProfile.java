@@ -1,5 +1,6 @@
 package com.joshjcarrier.minecontrol.framework.profiles;
 
+import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
 import com.joshjcarrier.rxautomation.methods.*;
 import com.joshjcarrier.rxautomation.projection.BimodalRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.IRxAutomationProjection;
@@ -62,6 +63,17 @@ public class GamePadProfile {
         }
     }
 
+    public IAutomationMethod getAutomationMethod(Component.Identifier identifier) {
+        IAutomationMethod method = this.automationMethodHashMap.get(identifier);
+        if(method == null) {
+            method = new NoOpAutomationMethod();
+            this.automationMethodHashMap.put(identifier, method);
+            this.identifierToProjectionMap.put(identifier, new ThresholdRxAutomationProjection());
+        }
+
+        return method;
+    }
+
     public HashMap<Component.Identifier, String> getGamePadButtonLabels() {
         return this.rxGamePad.getButtonLabels();
     }
@@ -72,6 +84,13 @@ public class GamePadProfile {
 
     public void save() {
         // TODO
+    }
+
+    public void setAutomationMethod(Component.Identifier identifier, IAutomationMethod automationMethod) {
+        automationMethodHashMap.put(identifier, automationMethod);
+        deactivate();
+        activate();
+        save();
     }
 
     private HashMap<Component.Identifier, IRxAutomationProjection> identifierToProjectionMap = new HashMap<Component.Identifier, IRxAutomationProjection>()

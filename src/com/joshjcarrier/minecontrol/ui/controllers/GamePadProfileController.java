@@ -9,8 +9,7 @@ import com.joshjcarrier.rxautomation.methods.MouseWheelAutomationMethod;
 import com.joshjcarrier.rxautomation.methods.NoOpAutomationMethod;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GamePadProfileController {
     private final GamePadProfileWrapper gamePadProfile;

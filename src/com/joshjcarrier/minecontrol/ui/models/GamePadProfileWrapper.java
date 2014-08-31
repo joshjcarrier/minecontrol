@@ -1,5 +1,6 @@
 package com.joshjcarrier.minecontrol.ui.models;
 
+import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
 import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 import net.java.games.input.Component;
@@ -46,6 +47,14 @@ public class GamePadProfileWrapper {
 
     public String getName() {
         return this.gamePadProfile.getName();
+    }
+
+    public AutomationBindingWrapper getAutomationBinding(Component.Identifier identifier) {
+        return new AutomationBindingWrapper(new AutomationBinding(this.gamePadProfile.getAutomationMethod(identifier)));
+    }
+
+    public void setAutomationBinding(Component.Identifier identifier, AutomationBindingWrapper automationBindingWrapper) {
+        this.gamePadProfile.setAutomationMethod(identifier, automationBindingWrapper.getAutomationBinding().getAutomationMethod());
     }
 
     @Override

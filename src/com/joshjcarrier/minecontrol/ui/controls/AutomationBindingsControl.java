@@ -1,5 +1,6 @@
 package com.joshjcarrier.minecontrol.ui.controls;
 
+import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
 import com.joshjcarrier.minecontrol.ui.models.AutomationBindingWrapper;
 
@@ -17,7 +18,7 @@ public class AutomationBindingsControl extends JPanel {
     private final JCheckBox keyToggleModeCheckBox;
     private Action updateAction;
 
-    public AutomationBindingsControl(Collection<AutomationBindingWrapper> bindings) {
+    public AutomationBindingsControl(AutomationBindingWrapper selectedBinding, Collection<AutomationBindingWrapper> bindings) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
@@ -26,7 +27,7 @@ public class AutomationBindingsControl extends JPanel {
         ArrayList<AutomationBindingWrapper> selectableButtonMappings = new ArrayList<AutomationBindingWrapper>();
         selectableButtonMappings.addAll(bindings);
         this.buttonMappingComboBox = new JComboBox(selectableButtonMappings.toArray());
-        this.buttonMappingComboBox.setSelectedItem(selectableButtonMappings.get(0));
+        this.buttonMappingComboBox.setSelectedItem(selectedBinding);
         this.buttonMappingComboBox.setAction(new SimpleAction()
         {
             @Override
@@ -69,9 +70,20 @@ public class AutomationBindingsControl extends JPanel {
         this.add(this.keyToggleModeCheckBox, gridConstraints);
     }
 
+    public AutomationBindingWrapper getSelectedAutomationBinding()
+    {
+        return (AutomationBindingWrapper)this.buttonMappingComboBox.getSelectedItem();
+    }
+
     public void setAction(Action a)
     {
         this.updateAction = a;
+    }
+
+    public void setSelectedAutomationBinding(AutomationBindingWrapper automationBinding)
+    {
+        this.buttonMappingComboBox.setSelectedItem(automationBinding);
+        //this.keyToggleModeCheckBox.setSelected(automationBinding.isToggleMode());
     }
 
     private void notifyItemStateChanged()

@@ -125,29 +125,38 @@ public class GamePadProfileView extends JDialog
 		panel.add(mappingHeader, gridConstraints);
 
         List<AutomationBindingWrapper> automationBindingWrappers = gamePadProfileController.getAutomationBindings();
-        GamePadProfileWrapper gamePadProfile = gamePadProfileController.getGamePadProfile();
+        final GamePadProfileWrapper gamePadProfile = gamePadProfileController.getGamePadProfile();
         HashMap<Component.Identifier, String> gamePadButtonIcons = gamePadProfile.getGamePadButtonIcons();
-        for (final Map.Entry<Component.Identifier, String> gamePadButtonLabel : gamePadProfile.getGamePadButtonLabels().entrySet())
+        List<Map.Entry<Component.Identifier, String>> gamePadLabels = new ArrayList<Map.Entry<Component.Identifier, String>>(gamePadProfile.getGamePadButtonLabels().entrySet());
+        Collections.sort(gamePadLabels, new Comparator<Map.Entry<Component.Identifier, String>>() {
+            @Override
+            public int compare(Map.Entry<Component.Identifier, String> identifierStringEntry, Map.Entry<Component.Identifier, String> identifierStringEntry2) {
+                return identifierStringEntry.getKey().getName().compareTo(identifierStringEntry2.getKey().getName());
+            }
+        });
+
+        for (final Map.Entry<Component.Identifier, String> gamePadButtonLabel : gamePadLabels)
 		{
 			gridConstraints.gridy += 1;
 			
 			gridConstraints.gridx = 0;
 			panel.add(new ButtonDescriptorPanel(gamePadButtonLabel.getValue(), gamePadButtonIcons.get(gamePadButtonLabel.getKey())), gridConstraints);
 							
-			final AutomationBindingsControl automationBindingsControl = new AutomationBindingsControl(automationBindingWrappers);
+			final AutomationBindingsControl automationBindingsControl = new AutomationBindingsControl(gamePadProfile.getAutomationBinding(gamePadButtonLabel.getKey()), automationBindingWrappers);
             automationBindingsControl.setAction(new SimpleAction()
 			{				
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					if (automationBindingsControl.isValid())
+                    gamePadProfile.setAutomationBinding(gamePadButtonLabel.getKey(), automationBindingsControl.getSelectedAutomationBinding());
+					//if (automationBindingsControl.isValid())
 					{
 						// TODO dataContext.setButtonMapping(button, buttonMappingToReplayControl.getSelectedButtonMapping());
 					}
 				}
 			});
 			
-			// TODO buttonMappingToReplayControl.setSelectedButton(dataContext.getButtonMapping(button));
+			//automationBindingsControl.setSelectedAutomationBinding(gamePadProfile.getAutomationBinding(gamePadButtonLabel.getKey()));
 			
 			gridConstraints.gridx = 1;
 			panel.add(automationBindingsControl, gridConstraints);
