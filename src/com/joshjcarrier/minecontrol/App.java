@@ -3,6 +3,8 @@ package com.joshjcarrier.minecontrol;
 import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfileList;
 import com.joshjcarrier.minecontrol.ui.controllers.MainController;
 import com.joshjcarrier.minecontrol.ui.views.MainView;
+import com.joshjcarrier.persistence.IStorage;
+import com.joshjcarrier.persistence.IniStorage;
 import com.joshjcarrier.rxgamepad.RxGamePadList;
 
 import javax.swing.*;
@@ -18,8 +20,10 @@ public class App
 	{
 		// TODO sync with minecontrol runtime
 		// controller reader service async
+        IStorage storage = new IniStorage();
+        storage.load();
         RxGamePadList rxGamePadList = new RxGamePadList();
-        GamePadProfileList gamePadProfileList = new GamePadProfileList();
+        GamePadProfileList gamePadProfileList = new GamePadProfileList(storage);
         MainController mainController = new MainController(rxGamePadList, gamePadProfileList);
 		
 		MainView view = mainController.index();

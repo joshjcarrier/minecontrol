@@ -22,15 +22,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GamePadProfile {
+    private final String name;
     private final RxGamePad rxGamePad;
     private final IStorage storage;
 
     private Subscription activeSubscription;
     MouseMoveAutomationRunner mouseMoveAutomationRunner = new MouseMoveAutomationRunner();
 
-    public GamePadProfile(RxGamePad rxGamePad){
+    public GamePadProfile(String name, RxGamePad rxGamePad, IStorage storage){
+        this.name = name;
         this.rxGamePad = rxGamePad;
-        this.storage = new IniStorage();// TODO inject
+        this.storage = storage;
 
         // TODO move and terminate thread elsewhere
         Thread t = new Thread(mouseMoveAutomationRunner);
@@ -85,7 +87,19 @@ public class GamePadProfile {
     }
 
     public String getName() {
-        return "default";
+        return this.name;
+    }
+
+    public void restore() {
+        for(Map.Entry<Component.Identifier, IAutomationMethod> identifierAutomationMethodEntry : this.automationMethodHashMap.entrySet()) {
+            String methodType = this.storage.read(getName(), "bind." + identifierAutomationMethodEntry.getKey().toString() + ".method");
+            if(methodType == null) {
+                continue;
+            }
+
+            // TODO read the rest -- chain of responsibility?
+            continue;
+        }
     }
 
     public void save() {
