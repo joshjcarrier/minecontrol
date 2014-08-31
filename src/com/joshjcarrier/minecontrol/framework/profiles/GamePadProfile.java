@@ -1,9 +1,6 @@
 package com.joshjcarrier.minecontrol.framework.profiles;
 
-import com.joshjcarrier.rxautomation.methods.IAutomationMethod;
-import com.joshjcarrier.rxautomation.methods.KeyboardAutomationMethod;
-import com.joshjcarrier.rxautomation.methods.MouseButtonAutomationMethod;
-import com.joshjcarrier.rxautomation.methods.MouseWheelAutomationMethod;
+import com.joshjcarrier.rxautomation.methods.*;
 import com.joshjcarrier.rxautomation.projection.IRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.ReplayRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.ThresholdRxAutomationProjection;
@@ -51,6 +48,9 @@ public class GamePadProfile {
             put(Component.Identifier.Button._8, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._9, new ThresholdRxAutomationProjection());
 
+            put(Component.Identifier.Axis.RX, new ReplayRxAutomationProjection());
+            put(Component.Identifier.Axis.RY, new ReplayRxAutomationProjection());
+
             put(Component.Identifier.Axis.X, new ReplayRxAutomationProjection());
             put(Component.Identifier.Axis.Y, new ReplayRxAutomationProjection());
             put(Component.Identifier.Axis.Z, new ThresholdRxAutomationProjection());
@@ -70,6 +70,9 @@ public class GamePadProfile {
             put(Component.Identifier.Button._7, new KeyboardAutomationMethod(KeyEvent.VK_ESCAPE));
             put(Component.Identifier.Button._8, new KeyboardAutomationMethod(KeyEvent.VK_SHIFT));
             put(Component.Identifier.Button._9, new KeyboardAutomationMethod(KeyEvent.VK_SPACE));
+
+            put(Component.Identifier.Axis.RX, new MouseMoveXAutomationMethod());
+            put(Component.Identifier.Axis.RY, new MouseMoveYAutomationMethod());
 
             put(Component.Identifier.Axis.X, new KeyboardAutomationMethod(KeyEvent.VK_D, KeyEvent.VK_A));
             put(Component.Identifier.Axis.Y, new KeyboardAutomationMethod(KeyEvent.VK_S, KeyEvent.VK_W));

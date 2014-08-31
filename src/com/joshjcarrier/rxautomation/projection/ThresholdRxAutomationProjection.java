@@ -10,7 +10,11 @@ public class ThresholdRxAutomationProjection implements IRxAutomationProjection 
         return source.map(new Func1<Float, Pair<IAutomationMethod, Float>>() {
             @Override
             public Pair<IAutomationMethod, Float> call(Float aFloat) {
-                return new Pair<IAutomationMethod, Float>(automationMethod, aFloat > 0.5  ? 1f : 0f);
+                if(aFloat >= 0) {
+                    return new Pair<IAutomationMethod, Float>(automationMethod, aFloat > 0.5 ? 1f : 0f);
+                }
+
+                return new Pair<IAutomationMethod, Float>(automationMethod, -aFloat > 0.5 ? -1f : 0f);
             }
         });
     }
