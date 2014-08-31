@@ -3,10 +3,7 @@ package com.joshjcarrier.rxgamepad;
 import com.joshjcarrier.rxjinput.RxController;
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
-import net.java.games.input.Event;
 import rx.Observable;
-import rx.util.functions.Action1;
-import rx.util.functions.Func1;
 
 public class RxGamePad {
 
@@ -26,11 +23,7 @@ public class RxGamePad {
         return this.rxController;
     }
 
-    public Observable<Float> getAxisX() {
-        return this.rxController.getComponent(Component.Identifier.Axis.X);
-    }
-
-    public Observable<Float> getButton0() {
-        return this.rxController.getComponent(Component.Identifier.Button._0);
+    public Observable<Float> getComponentById(Component.Identifier componentId) {
+        return this.rxController.getComponent(componentId);
     }
 }

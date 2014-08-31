@@ -1,21 +1,17 @@
 package com.joshjcarrier.rxautomation;
 
-import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
-import com.joshjcarrier.minecontrol.framework.input.GamePadState;
-import com.joshjcarrier.minecontrol.services.ReplayState;
-import com.joshjcarrier.rxgamepad.RxGamePad;
+import javafx.util.Pair;
 import rx.Observable;
 import rx.Subscription;
 import rx.util.functions.Action1;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class KeyboardRobot {
     private Robot humanInterfaceDeviceService;
     Subscription subscribe;
 
-    public KeyboardRobot(Observable<Integer> keyEventIds)
+    public KeyboardRobot(Observable<Pair<Integer, Boolean>> keyEventIdStates)
     {
         try
         {
@@ -24,11 +20,15 @@ public class KeyboardRobot {
             // this prevents the OS from ignoring events generated too quickly in succession
             this.humanInterfaceDeviceService.setAutoDelay(10);
 
-            subscribe = keyEventIds.subscribe(new Action1<Integer>() {
+            subscribe = keyEventIdStates.subscribe(new Action1<Pair<Integer, Boolean>>() {
                 @Override
-                public void call(Integer keyEventId) {
-                    humanInterfaceDeviceService.keyPress(keyEventId);
-                    humanInterfaceDeviceService.keyRelease(keyEventId);
+                public void call(Pair<Integer, Boolean> keyEventIdState) {
+                    if(keyEventIdState.getValue()) {
+                        humanInterfaceDeviceService.keyPress(keyEventIdState.getKey());
+                    }
+                    else {
+                        humanInterfaceDeviceService.keyRelease(keyEventIdState.getKey());
+                    }
                 }
             });
         }

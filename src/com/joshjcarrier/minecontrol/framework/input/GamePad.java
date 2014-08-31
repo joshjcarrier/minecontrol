@@ -176,7 +176,7 @@ public class GamePad
 					
 					previousButtons = buttons;
 					
-					// these filters compensate for noise due to mechanical nature of joystick readings
+					// these projection compensate for noise due to mechanical nature of joystick readings
 					leftThumbStickX = getFilteredApproximation(leftThumbStickX, 0.25f, 0.9f);
 					leftThumbStickY = getFilteredApproximation(leftThumbStickY, 0.25f, 0.9f);
 					rightThumbStickX = getFilteredApproximation(rightThumbStickX, 0.19f, 0.9f);
