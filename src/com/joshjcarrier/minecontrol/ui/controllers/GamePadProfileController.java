@@ -6,6 +6,7 @@ import com.joshjcarrier.minecontrol.ui.models.GamePadProfileWrapper;
 import com.joshjcarrier.rxautomation.methods.KeyboardAutomationMethod;
 import com.joshjcarrier.rxautomation.methods.MouseButtonAutomationMethod;
 import com.joshjcarrier.rxautomation.methods.MouseWheelAutomationMethod;
+import com.joshjcarrier.rxautomation.methods.NoOpAutomationMethod;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class GamePadProfileController {
     public List<AutomationBindingWrapper> getAutomationBindings() {
         List<AutomationBinding> automationBindings = new ArrayList<AutomationBinding>(){
             {
+                add(new AutomationBinding(new NoOpAutomationMethod()));
                 add(new AutomationBinding(new KeyboardAutomationMethod(KeyEvent.VK_A)));
                 add(new AutomationBinding(new KeyboardAutomationMethod(KeyEvent.VK_B)));
                 add(new AutomationBinding(new KeyboardAutomationMethod(KeyEvent.VK_C)));

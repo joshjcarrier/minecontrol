@@ -1,7 +1,5 @@
 package com.joshjcarrier.minecontrol.ui.controls;
 
-import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
-import com.joshjcarrier.minecontrol.framework.input.ButtonMappingType;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
 import com.joshjcarrier.minecontrol.ui.models.AutomationBindingWrapper;
 
@@ -17,7 +15,6 @@ public class AutomationBindingsControl extends JPanel {
 
     private final JComboBox buttonMappingComboBox;
     private final JCheckBox keyToggleModeCheckBox;
-    private final ButtonMapping unboundMapping = new ButtonMapping(ButtonMappingType.Unbound, 0);
     private Action updateAction;
 
     public AutomationBindingsControl(Collection<AutomationBindingWrapper> bindings) {
@@ -27,29 +24,28 @@ public class AutomationBindingsControl extends JPanel {
         gridConstraints.gridx = 0;
         gridConstraints.weightx = 1;
         ArrayList<AutomationBindingWrapper> selectableButtonMappings = new ArrayList<AutomationBindingWrapper>();
-        //selectableButtonMappings.add(unboundMapping);
         selectableButtonMappings.addAll(bindings);
         this.buttonMappingComboBox = new JComboBox(selectableButtonMappings.toArray());
-//        this.buttonMappingComboBox.setSelectedItem(unboundMapping);
+        this.buttonMappingComboBox.setSelectedItem(selectableButtonMappings.get(0));
         this.buttonMappingComboBox.setAction(new SimpleAction()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                ButtonMapping mapping = (ButtonMapping)buttonMappingComboBox.getSelectedItem();
+                AutomationBindingWrapper mapping = (AutomationBindingWrapper)buttonMappingComboBox.getSelectedItem();
 
                 // toggle mode only enabled for keyboard
-                if(mapping.getMappingType() != ButtonMappingType.Keyboard)
-                {
-                    keyToggleModeCheckBox.setEnabled(false);
-                    keyToggleModeCheckBox.setSelected(false);
-                }
-                else
-                {
-                    // resync toggle mode state
-                    keyToggleModeCheckBox.setSelected(mapping.isToggleMode());
-                    keyToggleModeCheckBox.setEnabled(true);
-                }
+//                if(mapping.getMappingType() != ButtonMappingType.Keyboard)
+//                {
+//                    keyToggleModeCheckBox.setEnabled(false);
+//                    keyToggleModeCheckBox.setSelected(false);
+//                }
+//                else
+//                {
+//                    // resync toggle mode state
+//                    keyToggleModeCheckBox.setSelected(mapping.isToggleMode());
+//                    keyToggleModeCheckBox.setEnabled(true);
+//                }
 
                 notifyItemStateChanged();
             }
@@ -64,7 +60,7 @@ public class AutomationBindingsControl extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                ((ButtonMapping)buttonMappingComboBox.getSelectedItem()).setIsToggleMode(keyToggleModeCheckBox.isSelected());
+                //((AutomationBindingWrapper)buttonMappingComboBox.getSelectedItem()).setIsToggleMode(keyToggleModeCheckBox.isSelected());
                 notifyItemStateChanged();
             }
         });

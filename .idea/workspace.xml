@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8f4afd4-c4a0-4fae-8017-c0c93e57e956" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/AutomationBindingWrapper.java" />
-      <change type="MOVED" beforePath="C:\Users\Josh\Documents\IdeaProjects\minecontrol\src\com\joshjcarrier\minecontrol\ui\controls\ComponentMappingControl.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/AutomationBindingsControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/AutomationBinding.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/AutomationBinding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/profiles/GamePadProfile.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/profiles/GamePadProfile.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/NoOpAutomationMethod.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/AutomationBindingsControl.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/AutomationBindingsControl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controllers/GamePadProfileController.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controllers/GamePadProfileController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/views/GamePadProfileView.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/views/GamePadProfileView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadProfileWrapper.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadProfileWrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/IAutomationMethod.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/IAutomationMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/KeyboardAutomationMethod.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/KeyboardAutomationMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/MouseButtonAutomationMethod.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/MouseButtonAutomationMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/MouseMoveXAutomationMethod.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/MouseMoveXAutomationMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/MouseMoveYAutomationMethod.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/MouseMoveYAutomationMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/MouseWheelAutomationMethod.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/MouseWheelAutomationMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java" afterPath="$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="minecontrol2.iws" />
@@ -78,42 +67,20 @@
     <favorites_list name="minecontrol2" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.41226354">
+    <splitter split-orientation="horizontal" split-proportion="0.4240052">
       <split-first>
         <leaf>
-          <file leaf-file-name="GamePadProfileWrapper.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="GamePadProfileWrapper.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadProfileWrapper.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935">
-                  <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
+                <state vertical-scroll-proportion="0.44849247" vertical-offset="0" max-vertical-offset="935">
+                  <caret line="27" column="74" selection-start-line="27" selection-start-column="74" selection-end-line="27" selection-end-column="74" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#1967#1968#0" expanded="true" />
                     <element signature="e#2019#2020#0" expanded="true" />
+                    <element signature="e#2065#2066#0" expanded="true" />
                     <element signature="e#2097#2098#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ButtonMappingToReplayControl.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/ButtonMappingToReplayControl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1428">
-                  <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="GamePadProfileController.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controllers/GamePadProfileController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.6796483" vertical-offset="57" max-vertical-offset="1921">
-                  <caret line="84" column="72" selection-start-line="84" selection-start-column="72" selection-end-line="84" selection-end-column="72" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#7494#7520#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -126,8 +93,8 @@
           <file leaf-file-name="ControllerProfile.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ControllerProfile.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1802">
-                  <caret line="132" column="26" selection-start-line="132" selection-start-column="26" selection-end-line="132" selection-end-column="26" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1802">
+                  <caret line="62" column="22" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -158,13 +125,13 @@
           <file leaf-file-name="AutomationBindingsControl.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/AutomationBindingsControl.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.59799" vertical-offset="0" max-vertical-offset="1462">
-                  <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+                <state vertical-scroll-proportion="0.46984926" vertical-offset="0" max-vertical-offset="1394">
+                  <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#1212#1238#0" expanded="true" />
-                    <element signature="e#1552#2370#0" expanded="true" />
-                    <element signature="e#2359#2360#0" expanded="true" />
+                    <element signature="e#976#1002#0" expanded="true" />
+                    <element signature="e#1275#2137#0" expanded="true" />
+                    <element signature="e#2126#2127#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -190,7 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/com/joshjcarrier/rxjinput/RxController.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/com/joshjcarrier/rxjinput/RxControllerList.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePad.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/filters/IFilter.java" />
@@ -228,10 +194,8 @@
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxgamepad/RxGamePad.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePadBinding.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadBindingWrapper.java" />
-        <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controllers/GamePadProfileController.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/views/GamePadProfileView.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/ComponentMappingControl.java" />
-        <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/AutomationBindingsControl.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/AutomationMethodType.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/IAutomationMethod.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/KeyboardAutomationMethod.java" />
@@ -241,12 +205,15 @@
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/MouseButtonAutomationMethod.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/AutomationBinding.java" />
         <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/AutomationBindingWrapper.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/NoOpAutomationMethod.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controllers/GamePadProfileController.java" />
+        <option value="$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/AutomationBindingsControl.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="455" />
-    <option name="y" value="104" />
+    <option name="x" value="449" />
+    <option name="y" value="79" />
     <option name="width" value="1937" />
     <option name="height" value="1373" />
   </component>
@@ -389,72 +356,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="com.joshjcarrier" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rxjinput" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecontrol2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecontrol2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.joshjcarrier" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rxgamepad" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecontrol2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecontrol2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.joshjcarrier" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rxautomation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecontrol2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecontrol2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.joshjcarrier" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rxautomation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="methods" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -984,7 +885,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="455" y="104" width="1937" height="1373" extended-state="0" />
+    <frame x="449" y="79" width="1937" height="1373" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1038,22 +939,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/jre/lib/rt.jar!/sun/misc/Unsafe.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78983516" vertical-offset="4831" max-vertical-offset="5559">
-          <caret line="319" column="23" selection-start-line="319" selection-start-column="23" selection-end-line="319" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/jre/lib/rt.jar!/java/awt/Robot.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="404" max-vertical-offset="1513">
-          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/services/replayhandlers/VirtualKeyButtonsReplayHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21016483" vertical-offset="0" max-vertical-offset="901">
@@ -1280,34 +1165,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/Buttons.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42027193" vertical-offset="0" max-vertical-offset="809">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ControllerProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1802">
-          <caret line="132" column="26" selection-start-line="132" selection-start-column="26" selection-end-line="132" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/jre/lib/rt.jar!/java/lang/Enum.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
           <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/ButtonDescriptorPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8845178" vertical-offset="0" max-vertical-offset="1870">
-          <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1460,55 +1321,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ButtonMapping.java">
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/Buttons.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7939699" vertical-offset="0" max-vertical-offset="1870">
-          <caret line="106" column="24" selection-start-line="106" selection-start-column="24" selection-end-line="106" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.4314721" vertical-offset="0" max-vertical-offset="788">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadProfileWrapper.java">
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/GamePadState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935">
-          <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.19221106" vertical-offset="0" max-vertical-offset="796">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/ButtonDescriptorPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7564895" vertical-offset="0" max-vertical-offset="1870">
+          <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/rxautomation/methods/NoOpAutomationMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25888324" vertical-offset="0" max-vertical-offset="788">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1967#1968#0" expanded="true" />
-            <element signature="e#2019#2020#0" expanded="true" />
-            <element signature="e#2097#2098#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+            <element signature="e#275#276#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/ButtonMappingToReplayControl.java">
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ButtonMapping.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1428">
-          <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+        <state vertical-scroll-proportion="1.4309045" vertical-offset="0" max-vertical-offset="1870">
+          <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controllers/GamePadProfileController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6796483" vertical-offset="57" max-vertical-offset="1921">
-          <caret line="84" column="72" selection-start-line="84" selection-start-column="72" selection-end-line="84" selection-end-column="72" />
+        <state vertical-scroll-proportion="0.39925835" vertical-offset="102" max-vertical-offset="1955">
+          <caret line="27" column="88" selection-start-line="27" selection-start-column="88" selection-end-line="27" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7494#7520#0" expanded="true" />
+            <element signature="e#7633#7659#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ApplicationEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08405439" vertical-offset="0" max-vertical-offset="809">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/ButtonMappingToReplayControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.790201" vertical-offset="153" max-vertical-offset="1428">
+          <caret line="65" column="36" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/models/GamePadProfileWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44849247" vertical-offset="0" max-vertical-offset="935">
+          <caret line="27" column="74" selection-start-line="27" selection-start-column="74" selection-end-line="27" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1967#1968#0" expanded="true" />
+            <element signature="e#2019#2020#0" expanded="true" />
+            <element signature="e#2065#2066#0" expanded="true" />
+            <element signature="e#2097#2098#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/framework/input/ControllerProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1802">
+          <caret line="62" column="22" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/joshjcarrier/minecontrol/ui/controls/AutomationBindingsControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59799" vertical-offset="0" max-vertical-offset="1462">
-          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.46984926" vertical-offset="0" max-vertical-offset="1394">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1212#1238#0" expanded="true" />
-            <element signature="e#1552#2370#0" expanded="true" />
-            <element signature="e#2359#2360#0" expanded="true" />
+            <element signature="e#976#1002#0" expanded="true" />
+            <element signature="e#1275#2137#0" expanded="true" />
+            <element signature="e#2126#2127#0" expanded="true" />
           </folding>
         </state>
       </provider>
