@@ -1,6 +1,7 @@
 package com.joshjcarrier.minecontrol.framework.profiles;
 
 import com.joshjcarrier.rxautomation.projection.IRxAutomationProjection;
+import com.joshjcarrier.rxautomation.projection.ReplayRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.ThresholdRxAutomationProjection;
 import com.joshjcarrier.rxgamepad.RxGamePad;
 import javafx.util.Pair;
@@ -40,6 +41,8 @@ public class GamePadProfile {
             put(Component.Identifier.Button._1, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._2, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._3, new ThresholdRxAutomationProjection());
+
+            put(Component.Identifier.Axis.X, new ReplayRxAutomationProjection());
         }
     };
 
@@ -51,6 +54,8 @@ public class GamePadProfile {
             put(Component.Identifier.Button._1, KeyEvent.VK_Q);
             put(Component.Identifier.Button._2, KeyEvent.VK_SPACE);
             put(Component.Identifier.Button._3, KeyEvent.VK_E);
+
+            put(Component.Identifier.Axis.X, KeyEvent.VK_A);
         }
     };
 }

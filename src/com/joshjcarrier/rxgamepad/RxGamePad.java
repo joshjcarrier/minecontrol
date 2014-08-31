@@ -30,7 +30,7 @@ public class RxGamePad {
         return this.rxController.getComponent(componentId);
     }
 
-    public HashMap<Component.Identifier, String> getButtonLabels() {
+    public HashMap<Component.Identifier, String> getComponentLabels() {
         return new HashMap<Component.Identifier, String>() {
             private static final long serialVersionUID = 3658388604108766926L;
 
