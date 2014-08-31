@@ -1,9 +1,8 @@
 package com.joshjcarrier.minecontrol.ui.controllers;
 
-import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
 import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
-import com.joshjcarrier.minecontrol.services.ProfileStorageService;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
+import com.joshjcarrier.minecontrol.ui.views.GamePadProfileView;
 import com.joshjcarrier.minecontrol.ui.views.MainView;
 import com.joshjcarrier.rxgamepad.RxGamePad;
 import com.joshjcarrier.rxgamepad.RxGamePadList;
@@ -14,13 +13,9 @@ import java.util.List;
 public class MainController {
     private final RxGamePadList rxGamePadList;
     private GamePadProfile activeProfile;
-    private ControllerProfile profile;
 
     public MainController(RxGamePadList rxGamePadList) {
         this.rxGamePadList = rxGamePadList;
-
-        ProfileStorageService profileStorageService = new ProfileStorageService();
-        this.profile = profileStorageService.load("default");
     }
 
     public List<GamePadWrapper> getGamePads() {
@@ -34,11 +29,6 @@ public class MainController {
                 .toList().toBlockingObservable().first();// temporary to maintain interface
     }
 
-    @Deprecated
-    public ControllerProfile getControllerProfile() {
-        return this.profile;
-    }
-
     public void setActiveGamePad(GamePadWrapper gamePadWrapper) {
         if(this.activeProfile != null) {
             activeProfile.deactivate();
@@ -46,6 +36,15 @@ public class MainController {
 
         this.activeProfile = gamePadWrapper.getDefaultProfile();
         this.activeProfile.activate();
+    }
+
+    public GamePadProfileView navigateToGamePadProfile() {
+        if (this.activeProfile == null) {
+            return null;
+        }
+
+        GamePadProfileController gamePadProfileController = new GamePadProfileController(this.activeProfile);
+        return new GamePadProfileView(gamePadProfileController);
     }
 
     public MainView index() {

@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 
 import com.joshjcarrier.minecontrol.framework.input.Buttons;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
-import com.joshjcarrier.minecontrol.ui.views.ConfigurationView;
+import com.joshjcarrier.minecontrol.ui.views.GamePadProfileView;
 
 public class ButtonDescriptorPanel extends JPanel 
 {
@@ -29,7 +29,7 @@ public class ButtonDescriptorPanel extends JPanel
 		this.add(nameLabel);
 				
 		JLabel iconLabel = new JLabel();
-		URL iconUrl = ConfigurationView.class.getClassLoader().getResource(iconResource);
+		URL iconUrl = GamePadProfileView.class.getClassLoader().getResource(iconResource);
     	ImageIcon icon = new ImageIcon(iconUrl);
     	Image newimg = icon.getImage().getScaledInstance(24, 24,  java.awt.Image.SCALE_SMOOTH);  
     	iconLabel.setIcon(new ImageIcon(newimg));

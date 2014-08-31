@@ -7,7 +7,6 @@ import com.joshjcarrier.minecontrol.framework.input.ControllerProfile;
 import com.joshjcarrier.minecontrol.services.ProfileStorageService;
 import com.joshjcarrier.minecontrol.services.replayhandlers.IButtonsReplayHandler;
 import com.joshjcarrier.minecontrol.services.replayhandlers.ReplayHandlerFactory;
-import com.joshjcarrier.minecontrol.ui.views.ConfigurationView;
 
 public class ConfigurationPart extends BasePart
 {
@@ -30,11 +29,6 @@ public class ConfigurationPart extends BasePart
 		this(controllerProfile, new ReplayHandlerFactory(), new ProfileStorageService());
 	}
 
-	public ConfigurationView createView()
-	{
-		return new ConfigurationView(this);
-	}
-	
 	public boolean isLookInverted() 
 	{
 		return this.controllerProfile.getRightThumbStickHandler().isInvertY();

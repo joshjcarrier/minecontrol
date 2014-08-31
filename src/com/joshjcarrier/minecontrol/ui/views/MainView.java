@@ -7,7 +7,6 @@ import com.joshjcarrier.minecontrol.ui.controls.renderers.GamePadWrapperListCell
 import com.joshjcarrier.minecontrol.ui.controls.renderers.GameTitleWrapperListCellRenderer;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GameTitleWrapper;
-import com.joshjcarrier.minecontrol.ui.parts.ConfigurationPart;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
@@ -156,14 +155,16 @@ public class MainView extends JFrame
 		panel.add(profilesComboBox, gridConstraints);
 		
 		JButton configurationButton = new JButton("Configure");
+        configurationButton.setEnabled(false);
 		configurationButton.addActionListener(new ActionListener()
 		{			
 			public void actionPerformed(ActionEvent event)
 			{
-				ConfigurationPart part = new ConfigurationPart(mainController.getControllerProfile());
-				ConfigurationView view = part.createView();
-				view.setModal(true);
-				view.setVisible(true);
+				GamePadProfileView view = mainController.navigateToGamePadProfile();
+                if (view != null) {
+                    view.setModal(true);
+                    view.setVisible(true);
+                }
 			}
 		});
 		

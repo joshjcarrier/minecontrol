@@ -1,16 +1,13 @@
 package com.joshjcarrier.minecontrol.ui.models;
 
-import java.net.URL;
-
-import com.joshjcarrier.minecontrol.framework.input.GamePad;
 import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
-
 import com.joshjcarrier.rxgamepad.RxGamePad;
-import net.java.games.input.Controller;
+
+import java.net.URL;
 
 /**
- * User experience wrapper for the {@link GamePad} class.
+ * User experience wrapper for the {@link RxGamePad} class.
  * @author joshjcarrier
  *
  */
