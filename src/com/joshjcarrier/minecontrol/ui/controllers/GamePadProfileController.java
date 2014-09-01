@@ -1,5 +1,6 @@
 package com.joshjcarrier.minecontrol.ui.controllers;
 
+import com.joshjcarrier.minecontrol.AppInfo;
 import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
 import com.joshjcarrier.minecontrol.ui.models.AutomationBindingWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GamePadProfileWrapper;
@@ -107,6 +108,6 @@ public class GamePadProfileController {
     }
 
     public String getTitle() {
-        return "Profile: " + this.gamePadProfile.getName();
+        return AppInfo.ProductName + " - Controller profile \"" + this.gamePadProfile.getName() + "\"";
     }
 }

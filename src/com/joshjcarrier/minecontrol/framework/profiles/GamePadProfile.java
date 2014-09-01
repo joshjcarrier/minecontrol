@@ -1,7 +1,6 @@
 package com.joshjcarrier.minecontrol.framework.profiles;
 
 import com.joshjcarrier.persistence.IStorage;
-import com.joshjcarrier.persistence.IniStorage;
 import com.joshjcarrier.rxautomation.methods.*;
 import com.joshjcarrier.rxautomation.persistence.AutomationReader;
 import com.joshjcarrier.rxautomation.persistence.AutomationWriter;
