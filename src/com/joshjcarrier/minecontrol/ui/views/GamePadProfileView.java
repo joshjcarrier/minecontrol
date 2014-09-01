@@ -31,6 +31,7 @@ import com.joshjcarrier.minecontrol.ui.controls.AutomationBindingsControl;
 import com.joshjcarrier.minecontrol.ui.controls.ButtonDescriptorPanel;
 import com.joshjcarrier.minecontrol.ui.models.AutomationBindingWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GamePadProfileWrapper;
+import com.joshjcarrier.minecontrol.ui.models.MouseProfileWrapper;
 import net.java.games.input.Component;
 
 public class GamePadProfileView extends JDialog
@@ -53,7 +54,7 @@ public class GamePadProfileView extends JDialog
     	mappingPanel.setBorder(emptyBorder);
     	tabbedPane.addTab("MAPPING", mappingPanel);
     	
-    	JPanel sensitivityPanel = createSensitivityPanel(gamePadProfileController);
+    	JPanel sensitivityPanel = createSensitivityPanel(gamePadProfileController.getGamePadProfile());
     	sensitivityPanel.setBorder(emptyBorder);
     	tabbedPane.addTab("LOOK/SENSITIVITY", sensitivityPanel);
     	
@@ -149,15 +150,9 @@ public class GamePadProfileView extends JDialog
 				public void actionPerformed(ActionEvent e)
 				{
                     gamePadProfile.setAutomationBinding(gamePadButtonLabel.getKey(), automationBindingsControl.getSelectedAutomationBinding());
-					//if (automationBindingsControl.isValid())
-					{
-						// TODO dataContext.setButtonMapping(button, buttonMappingToReplayControl.getSelectedButtonMapping());
-					}
 				}
 			});
-			
-			//automationBindingsControl.setSelectedAutomationBinding(gamePadProfile.getAutomationBinding(gamePadButtonLabel.getKey()));
-			
+
 			gridConstraints.gridx = 1;
 			panel.add(automationBindingsControl, gridConstraints);
 		}
@@ -240,7 +235,7 @@ public class GamePadProfileView extends JDialog
 		return panel;
 	}
 	
-	private static JPanel createSensitivityPanel(final GamePadProfileController gamePadProfileController)
+	private static JPanel createSensitivityPanel(final GamePadProfileWrapper gamePadProfile)
 	{
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
@@ -251,21 +246,22 @@ public class GamePadProfileView extends JDialog
 		/* Sliders for look movement sensitivity */
 		gridConstraints.gridy = 0;
 		panel.add(new JLabel("X, Y Look sensitivity (movement mode)"), gridConstraints);
-		
+
+        final MouseProfileWrapper primaryMouseProfile = gamePadProfile.getPrimaryMouseProfile();
 		final JSlider lookHorizontalSlider = new JSlider();		
 		lookHorizontalSlider.setMajorTickSpacing(10);
 		lookHorizontalSlider.setMinorTickSpacing(1);
 		lookHorizontalSlider.setPaintTicks(true);
 		lookHorizontalSlider.setPaintLabels(true);
 		lookHorizontalSlider.setSnapToTicks(true);
-		// TODO lookHorizontalSlider.setValue(dataContext.getMouseMode1SensitivityX());
+		lookHorizontalSlider.setValue(primaryMouseProfile.getSensitivityX());
 		lookHorizontalSlider.setToolTipText("Sets how responsive looking left and right in mouse mode 1 (default mode) will be.");
 		lookHorizontalSlider.setMinimum(0);
 		lookHorizontalSlider.setMaximum(100);		
 		lookHorizontalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				// TODO dataContext.setMouseMode1SensitivityX(lookHorizontalSlider.getValue());
+                primaryMouseProfile.setSensitivityX(lookHorizontalSlider.getValue());
 			}
 		});		
 		
@@ -278,14 +274,14 @@ public class GamePadProfileView extends JDialog
 		lookVerticalSlider.setPaintTicks(true);
 		lookVerticalSlider.setPaintLabels(true);
 		lookVerticalSlider.setSnapToTicks(true);
-		// TODO lookVerticalSlider.setValue(dataContext.getMouseMode1SensitivityY());
+		lookVerticalSlider.setValue(primaryMouseProfile.getSensitivityY());
 		lookVerticalSlider.setToolTipText("Sets how responsive looking left and right in mouse mode 1 (default mode) will be.");
 		lookVerticalSlider.setMinimum(0);
 		lookVerticalSlider.setMaximum(100);
 		lookVerticalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				// TODO dataContext.setMouseMode1SensitivityY(lookVerticalSlider.getValue());
+                primaryMouseProfile.setSensitivityY(lookVerticalSlider.getValue());
 			}
 		});
 		
@@ -295,21 +291,22 @@ public class GamePadProfileView extends JDialog
 		/* Sliders for mouse movement sensitivity */
 		gridConstraints.gridy = 3;
 		panel.add(new JLabel("X, Y Look sensitivity (mouse mode)"), gridConstraints);
-		
+
+        final MouseProfileWrapper secondaryMouseProfile = gamePadProfile.getSecondaryMouseProfile();
 		final JSlider lookMouseHorizontalSlider = new JSlider();						
 		lookMouseHorizontalSlider.setMajorTickSpacing(5);
 		lookMouseHorizontalSlider.setMinorTickSpacing(1);
 		lookMouseHorizontalSlider.setPaintTicks(true);
 		lookMouseHorizontalSlider.setPaintLabels(true);
 		lookMouseHorizontalSlider.setSnapToTicks(true);
-		// TODO lookMouseHorizontalSlider.setValue(dataContext.getMouseMode2SensitivityX());
+		lookMouseHorizontalSlider.setValue(secondaryMouseProfile.getSensitivityX());
 		lookMouseHorizontalSlider.setToolTipText("Sets how responsive looking left and right in mouse mode 2 will be. Enter this mode by mapping a button to \"<Toggle mouse mode>\".");
 		lookMouseHorizontalSlider.setMinimum(0);
 		lookMouseHorizontalSlider.setMaximum(40);
 		lookMouseHorizontalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				// TODO dataContext.setMouseMode2SensitivityX(lookMouseHorizontalSlider.getValue());
+                secondaryMouseProfile.setSensitivityX(lookMouseHorizontalSlider.getValue());
 			}
 		});
 		
@@ -322,14 +319,14 @@ public class GamePadProfileView extends JDialog
 		lookMouseVerticalSlider.setPaintTicks(true);
 		lookMouseVerticalSlider.setPaintLabels(true);
 		lookMouseVerticalSlider.setSnapToTicks(true);
-		// TODO lookMouseVerticalSlider.setValue(dataContext.getMouseMode2SensitivityY());
+		lookMouseVerticalSlider.setValue(secondaryMouseProfile.getSensitivityY());
 		lookMouseVerticalSlider.setToolTipText("Sets how responsive looking up and down in mouse mode 2 will be. Enter this mode by mapping a button to \"<Toggle mouse mode>\".");
 		lookMouseVerticalSlider.setMinimum(0);
 		lookMouseVerticalSlider.setMaximum(40);
 		lookMouseVerticalSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				// TODO dataContext.setMouseMode2SensitivityY(lookMouseVerticalSlider.getValue());
+                secondaryMouseProfile.setSensitivityY(lookMouseVerticalSlider.getValue());
 			}
 		});
 		
@@ -341,13 +338,13 @@ public class GamePadProfileView extends JDialog
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				// TODO dataContext.setLookInverted(invertPitchCheckBox.isSelected());
+                primaryMouseProfile.setInvertY(invertPitchCheckBox.isSelected());
 			}
 		});
 		
 		invertPitchCheckBox.setText("Invert look up/down");
 		invertPitchCheckBox.setToolTipText("When selected, pushing up on the right joystick moves the mouse down.");
-		// TODO invertPitchCheckBox.setSelected(dataContext.isLookInverted());
+		invertPitchCheckBox.setSelected(primaryMouseProfile.isInvertY());
 		gridConstraints.gridy = 6;
 		panel.add(invertPitchCheckBox, gridConstraints);
 		

@@ -1,5 +1,6 @@
 package com.joshjcarrier.minecontrol.framework.profiles;
 
+import com.joshjcarrier.minecontrol.ui.models.MouseProfileWrapper;
 import com.joshjcarrier.persistence.IStorage;
 import com.joshjcarrier.rxautomation.methods.*;
 import com.joshjcarrier.rxautomation.persistence.AutomationReader;
@@ -28,12 +29,16 @@ public class GamePadProfile {
     private final IStorage storage;
 
     private Subscription activeSubscription;
-    MouseMoveAutomationRunner mouseMoveAutomationRunner = new MouseMoveAutomationRunner();
+    private MouseMoveAutomationRunner mouseMoveAutomationRunner = new MouseMoveAutomationRunner();
+    private IMouseProfile primaryMouseProfile;
+    private IMouseProfile secondaryMouseProfile;
 
     public GamePadProfile(String name, RxGamePad rxGamePad, IStorage storage){
         this.name = name;
         this.rxGamePad = rxGamePad;
         this.storage = storage;
+        this.primaryMouseProfile = new PrimaryMouseProfile();
+        this.secondaryMouseProfile = new SecondaryMouseProfile();
 
         // TODO move and terminate thread elsewhere
         Thread t = new Thread(mouseMoveAutomationRunner);
@@ -89,6 +94,14 @@ public class GamePadProfile {
 
     public String getName() {
         return this.name;
+    }
+
+    public IMouseProfile getPrimaryMouseProfile() {
+        return this.primaryMouseProfile;
+    }
+
+    public IMouseProfile getSecondaryMouseProfile() {
+        return this.secondaryMouseProfile;
     }
 
     public void restore() {

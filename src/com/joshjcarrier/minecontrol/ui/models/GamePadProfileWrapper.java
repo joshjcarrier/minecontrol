@@ -3,7 +3,9 @@ package com.joshjcarrier.minecontrol.ui.models;
 import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
 import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
+import com.joshjcarrier.rxautomation.methods.MouseMoveAutomationRunner;
 import net.java.games.input.Component;
+import net.java.games.input.Mouse;
 
 import java.util.HashMap;
 
@@ -55,6 +57,14 @@ public class GamePadProfileWrapper {
 
     public void setAutomationBinding(Component.Identifier identifier, AutomationBindingWrapper automationBindingWrapper) {
         this.gamePadProfile.setAutomationMethod(identifier, automationBindingWrapper.getAutomationBinding().getAutomationMethod());
+    }
+
+    public MouseProfileWrapper getPrimaryMouseProfile() {
+        return new MouseProfileWrapper(this.gamePadProfile.getPrimaryMouseProfile());
+    }
+
+    public MouseProfileWrapper getSecondaryMouseProfile() {
+        return new MouseProfileWrapper(this.gamePadProfile.getSecondaryMouseProfile());
     }
 
     @Override

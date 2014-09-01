@@ -11,10 +11,10 @@ public class BimodalRxAutomationProjection implements IRxAutomationProjection {
             @Override
             public Pair<IAutomationMethod, Float> call(Float aFloat) {
                 if(aFloat >= 0) {
-                    return new Pair<IAutomationMethod, Float>(automationMethod, aFloat > 0.85 ? 1f : (aFloat < 0.05 ? 0 : aFloat));
+                    return new Pair<IAutomationMethod, Float>(automationMethod, aFloat > 0.85 ? 1f : (aFloat < 0.07 ? 0 : aFloat));
                 }
 
-                return new Pair<IAutomationMethod, Float>(automationMethod, -aFloat > 0.85 ? -1f : (-aFloat < 0.05 ? 0 : aFloat));
+                return new Pair<IAutomationMethod, Float>(automationMethod, -aFloat > 0.85 ? -1f : (-aFloat < 0.07 ? 0 : aFloat));
             }
         });
     }
