@@ -19,7 +19,7 @@ public class MouseMoveXAutomationMethod implements IAutomationMethod {
     }
 
     @Override
-    public void save(IAutomationWriter automationWriter) {
+    public void write(IAutomationWriter automationWriter) {
         automationWriter.write("method", "mouse-mv-x");
     }
 }

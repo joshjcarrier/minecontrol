@@ -63,7 +63,7 @@ public class MouseWheelAutomationMethod implements IAutomationMethod {
     }
 
     @Override
-    public void save(IAutomationWriter automationWriter) {
+    public void write(IAutomationWriter automationWriter) {
         automationWriter.writeMethod(METHOD_ID);
         automationWriter.write(SCROLL_KEY, this.scrollAmount);
     }

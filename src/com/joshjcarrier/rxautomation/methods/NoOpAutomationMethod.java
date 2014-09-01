@@ -26,7 +26,7 @@ public class NoOpAutomationMethod implements IAutomationMethod {
     }
 
     @Override
-    public void save(IAutomationWriter configurationSettings) {
+    public void write(IAutomationWriter configurationSettings) {
         configurationSettings.writeMethod(METHOD_ID);
     }
 }

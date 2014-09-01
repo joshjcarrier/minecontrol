@@ -23,6 +23,11 @@ public class AutomationReader implements IAutomationReader {
     }
 
     @Override
+    public Boolean readBoolean(String key) {
+        return Boolean.parseBoolean(read(key));
+    }
+
+    @Override
     public Integer readInt(String key) {
         return Integer.parseInt(read(key));
     }

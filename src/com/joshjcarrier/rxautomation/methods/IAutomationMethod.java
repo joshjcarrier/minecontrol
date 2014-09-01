@@ -7,5 +7,5 @@ public interface IAutomationMethod {
 
     String getName();
 
-    void save(IAutomationWriter automationWriter);
+    void write(IAutomationWriter automationWriter);
 }

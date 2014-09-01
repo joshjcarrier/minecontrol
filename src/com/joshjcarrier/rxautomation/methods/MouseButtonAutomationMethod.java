@@ -84,7 +84,7 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
     }
 
     @Override
-    public void save(IAutomationWriter automationWriter) {
+    public void write(IAutomationWriter automationWriter) {
         automationWriter.writeMethod(METHOD_ID);
         automationWriter.write(PMEI_KEY, this.primaryMouseEventId);
         automationWriter.write(SMEI_KEY, this.secondaryMouseEventId);

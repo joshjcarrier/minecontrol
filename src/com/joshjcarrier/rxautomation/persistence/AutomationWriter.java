@@ -14,6 +14,11 @@ public class AutomationWriter implements IAutomationWriter {
     }
 
     @Override
+    public void write(String key, Boolean value) {
+        this.storage.write(this.rootName, this.sectionName + "." + key, value);
+    }
+
+    @Override
     public void write(String key, Integer value) {
         this.storage.write(this.rootName, this.sectionName + "." + key, value);
     }

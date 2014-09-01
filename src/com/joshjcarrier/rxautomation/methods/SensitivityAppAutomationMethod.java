@@ -28,7 +28,7 @@ public class SensitivityAppAutomationMethod implements IAutomationMethod {
     }
 
     @Override
-    public void save(IAutomationWriter automationWriter) {
+    public void write(IAutomationWriter automationWriter) {
         automationWriter.writeMethod(METHOD_ID);
     }
 }
