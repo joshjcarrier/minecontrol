@@ -6,10 +6,7 @@ import com.joshjcarrier.rxautomation.persistence.AutomationReader;
 import com.joshjcarrier.rxautomation.persistence.AutomationWriter;
 import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
-import com.joshjcarrier.rxautomation.projection.BimodalRxAutomationProjection;
-import com.joshjcarrier.rxautomation.projection.IRxAutomationProjection;
-import com.joshjcarrier.rxautomation.projection.ReplayRxAutomationProjection;
-import com.joshjcarrier.rxautomation.projection.ThresholdRxAutomationProjection;
+import com.joshjcarrier.rxautomation.projection.*;
 import com.joshjcarrier.rxgamepad.RxGamePad;
 import javafx.util.Pair;
 import net.java.games.input.Component;
@@ -159,7 +156,7 @@ public class GamePadProfile {
             put(Component.Identifier.Button._5, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._6, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._7, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Button._8, new ThresholdRxAutomationProjection());
+            put(Component.Identifier.Button._8, new BufferRxAutomationProjection());
             put(Component.Identifier.Button._9, new ThresholdRxAutomationProjection());
 
             put(Component.Identifier.Axis.RX, new BimodalRxAutomationProjection());

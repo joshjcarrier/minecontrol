@@ -40,12 +40,12 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
     }
 
     public static IAutomationMethod load(IAutomationReader automationReader) {
-        String methodId = automationReader.readMethod();
-        if(!methodId.equalsIgnoreCase(METHOD_ID)) {
-            return null;
-        }
-
         try {
+            String methodId = automationReader.readMethod();
+            if(!methodId.equalsIgnoreCase(METHOD_ID)) {
+                return null;
+            }
+
             Integer primaryMouseEventId = automationReader.readInt(PMEI_KEY);
             Integer secondaryMouseEventId = automationReader.readInt(PMEI_KEY);
 

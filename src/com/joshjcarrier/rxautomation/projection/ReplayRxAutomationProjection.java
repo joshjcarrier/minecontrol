@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class ReplayRxAutomationProjection implements IRxAutomationProjection {
     @Override
     public Observable<Pair<IAutomationMethod, Float>> map(final IAutomationMethod automationMethod, Observable<Float> source) {
-        return Observable.combineLatest(Observable.interval(15, TimeUnit.MILLISECONDS), source, new Func2<Long, Float, Pair<IAutomationMethod, Float>>() {
+        return Observable.combineLatest(Observable.interval(10, TimeUnit.MILLISECONDS), source, new Func2<Long, Float, Pair<IAutomationMethod, Float>>() {
             @Override
             public Pair<IAutomationMethod, Float> call(Long aLong, Float o) {
                 int ratio = (int) (aLong % 10);

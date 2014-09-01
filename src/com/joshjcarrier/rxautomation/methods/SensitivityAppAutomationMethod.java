@@ -7,12 +7,16 @@ public class SensitivityAppAutomationMethod implements IAutomationMethod {
     private final static String METHOD_ID = "app-sensitivity";
 
     public static IAutomationMethod load(IAutomationReader automationReader) {
-        String methodId = automationReader.readMethod();
-        if(!methodId.equalsIgnoreCase(METHOD_ID)) {
+        try {
+            String methodId = automationReader.readMethod();
+            if(!methodId.equalsIgnoreCase(METHOD_ID)) {
+                return null;
+            }
+
+            return new SensitivityAppAutomationMethod();
+        } catch (Exception e) {
             return null;
         }
-
-        return new SensitivityAppAutomationMethod();
     }
 
     @Override

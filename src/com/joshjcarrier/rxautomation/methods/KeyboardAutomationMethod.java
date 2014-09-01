@@ -40,14 +40,14 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
     }
 
     public static IAutomationMethod load(IAutomationReader automationReader) {
-        String methodId = automationReader.readMethod();
-        if(!methodId.equalsIgnoreCase(METHOD_ID)) {
-            return null;
-        }
-
         try{
+            String methodId = automationReader.readMethod();
+            if(!methodId.equalsIgnoreCase(METHOD_ID)) {
+                return null;
+            }
+
             Integer primaryKeyEventId = automationReader.readInt(PKEI_KEY);
-            Integer secondaryKeyEventId = automationReader.readInt(PKEI_KEY);
+            Integer secondaryKeyEventId = automationReader.readInt(SKEI_KEY);
 
             return new KeyboardAutomationMethod(primaryKeyEventId, secondaryKeyEventId);
         } catch (Exception e) {

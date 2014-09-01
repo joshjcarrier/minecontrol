@@ -34,12 +34,12 @@ public class MouseWheelAutomationMethod implements IAutomationMethod {
     }
 
     public static IAutomationMethod load(IAutomationReader automationReader) {
-        String methodId = automationReader.readMethod();
-        if(!methodId.equalsIgnoreCase(METHOD_ID)) {
-            return null;
-        }
-
         try {
+            String methodId = automationReader.readMethod();
+            if(!methodId.equalsIgnoreCase(METHOD_ID)) {
+                return null;
+            }
+
             Integer scrollAmount = automationReader.readInt(SCROLL_KEY);
 
             return new MouseWheelAutomationMethod(scrollAmount);
