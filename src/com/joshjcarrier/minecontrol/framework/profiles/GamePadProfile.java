@@ -84,6 +84,16 @@ public class GamePadProfile {
         return method;
     }
 
+    public IRxAutomationProjection getAutomationProjection(Component.Identifier identifier) {
+        IRxAutomationProjection projection = this.identifierToProjectionMap.get(identifier);
+        if(projection == null) {
+            projection = new ThresholdRxAutomationProjection();
+            this.identifierToProjectionMap.put(identifier, projection);
+        }
+
+        return projection;
+    }
+
     public HashMap<Component.Identifier, String> getGamePadButtonLabels() {
         return this.rxGamePad.getButtonLabels();
     }
@@ -138,10 +148,17 @@ public class GamePadProfile {
     }
 
     public void setAutomationMethod(Component.Identifier identifier, IAutomationMethod automationMethod) {
-        automationMethodHashMap.put(identifier, automationMethod);
+        this.automationMethodHashMap.put(identifier, automationMethod);
         deactivate();
         activate();
         save();
+    }
+
+    public void setAutomationProjection(Component.Identifier identifier, IRxAutomationProjection automationProjection) {
+        this.identifierToProjectionMap.put(identifier, automationProjection);
+        deactivate();
+        activate();
+        //save();
     }
 
     private HashMap<Component.Identifier, IRxAutomationProjection> identifierToProjectionMap = new HashMap<Component.Identifier, IRxAutomationProjection>()

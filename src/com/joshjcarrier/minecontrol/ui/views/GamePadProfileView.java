@@ -33,6 +33,8 @@ import com.joshjcarrier.minecontrol.ui.models.AutomationBindingWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GamePadProfileWrapper;
 import com.joshjcarrier.minecontrol.ui.models.MouseProfileWrapper;
 import net.java.games.input.Component;
+import rx.util.functions.Action0;
+import rx.util.functions.Action1;
 
 public class GamePadProfileView extends JDialog
 {
@@ -143,15 +145,23 @@ public class GamePadProfileView extends JDialog
 			gridConstraints.gridx = 0;
 			panel.add(new ButtonDescriptorPanel(gamePadButtonLabel.getValue(), gamePadButtonIcons.get(gamePadButtonLabel.getKey())), gridConstraints);
 							
-			final AutomationBindingsControl automationBindingsControl = new AutomationBindingsControl(gamePadProfile.getAutomationBinding(gamePadButtonLabel.getKey()), automationBindingWrappers);
-            automationBindingsControl.setAction(new SimpleAction()
-			{				
-				@Override
-				public void actionPerformed(ActionEvent e)
-				{
-                    gamePadProfile.setAutomationBinding(gamePadButtonLabel.getKey(), automationBindingsControl.getSelectedAutomationBinding());
-				}
-			});
+			final AutomationBindingsControl automationBindingsControl = new AutomationBindingsControl(gamePadProfile.isBufferAutomationProjection(gamePadButtonLabel.getKey()), gamePadProfile.getAutomationBinding(gamePadButtonLabel.getKey()), automationBindingWrappers);
+            automationBindingsControl.onBindingChanged(new Action1<AutomationBindingWrapper>() {
+                @Override
+                public void call(AutomationBindingWrapper selectedAutomationBinding) {
+                    gamePadProfile.setAutomationBinding(gamePadButtonLabel.getKey(), selectedAutomationBinding);
+                }
+            });
+            automationBindingsControl.onProjectionChanged(new Action1<Boolean>() {
+                @Override
+                public void call(Boolean isToggled) {
+                    if (isToggled) {
+                        gamePadProfile.setBufferAutomationProjection(gamePadButtonLabel.getKey());
+                    } else {
+                        gamePadProfile.setThresholdAutomationProjection(gamePadButtonLabel.getKey());
+                    }
+                }
+            });
 
 			gridConstraints.gridx = 1;
 			panel.add(automationBindingsControl, gridConstraints);

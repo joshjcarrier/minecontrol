@@ -1,13 +1,12 @@
 package com.joshjcarrier.minecontrol.ui.controls;
 
-import com.joshjcarrier.minecontrol.framework.input.ButtonMapping;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
 import com.joshjcarrier.minecontrol.ui.models.AutomationBindingWrapper;
+import rx.util.functions.Action1;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -16,9 +15,10 @@ public class AutomationBindingsControl extends JPanel {
 
     private final JComboBox buttonMappingComboBox;
     private final JCheckBox keyToggleModeCheckBox;
-    private Action updateAction;
+    private Action1<AutomationBindingWrapper> bindingChangedAction;
+    private Action1<Boolean> projectionChangedAction;
 
-    public AutomationBindingsControl(AutomationBindingWrapper selectedBinding, Collection<AutomationBindingWrapper> bindings) {
+    public AutomationBindingsControl(boolean isToggled, AutomationBindingWrapper selectedBinding, Collection<AutomationBindingWrapper> bindings) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
@@ -33,22 +33,12 @@ public class AutomationBindingsControl extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                AutomationBindingWrapper mapping = (AutomationBindingWrapper)buttonMappingComboBox.getSelectedItem();
+                AutomationBindingWrapper binding = (AutomationBindingWrapper)buttonMappingComboBox.getSelectedItem();
 
-                // toggle mode only enabled for keyboard
-//                if(mapping.getMappingType() != ButtonMappingType.Keyboard)
-//                {
-//                    keyToggleModeCheckBox.setEnabled(false);
-//                    keyToggleModeCheckBox.setSelected(false);
-//                }
-//                else
-//                {
-//                    // resync toggle mode state
-//                    keyToggleModeCheckBox.setSelected(mapping.isToggleMode());
-//                    keyToggleModeCheckBox.setEnabled(true);
-//                }
-
-                notifyItemStateChanged();
+                if (bindingChangedAction != null)
+                {
+                    bindingChangedAction.call(binding);
+                }
             }
         });
         this.add(this.buttonMappingComboBox, gridConstraints);
@@ -56,13 +46,16 @@ public class AutomationBindingsControl extends JPanel {
         gridConstraints.gridx = 1;
         gridConstraints.weighty = 0;
         this.keyToggleModeCheckBox = new JCheckBox();
+        this.keyToggleModeCheckBox.setSelected(isToggled);
         this.keyToggleModeCheckBox.setAction(new SimpleAction()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                //((AutomationBindingWrapper)buttonMappingComboBox.getSelectedItem()).setIsToggleMode(keyToggleModeCheckBox.isSelected());
-                notifyItemStateChanged();
+                if (projectionChangedAction != null)
+                {
+                    projectionChangedAction.call(keyToggleModeCheckBox.isSelected());
+                }
             }
         });
         this.keyToggleModeCheckBox.setText("Toggle mode");
@@ -70,27 +63,13 @@ public class AutomationBindingsControl extends JPanel {
         this.add(this.keyToggleModeCheckBox, gridConstraints);
     }
 
-    public AutomationBindingWrapper getSelectedAutomationBinding()
+    public void onBindingChanged(Action1<AutomationBindingWrapper> a)
     {
-        return (AutomationBindingWrapper)this.buttonMappingComboBox.getSelectedItem();
+        this.bindingChangedAction = a;
     }
 
-    public void setAction(Action a)
+    public void onProjectionChanged(Action1<Boolean> a)
     {
-        this.updateAction = a;
-    }
-
-    public void setSelectedAutomationBinding(AutomationBindingWrapper automationBinding)
-    {
-        this.buttonMappingComboBox.setSelectedItem(automationBinding);
-        //this.keyToggleModeCheckBox.setSelected(automationBinding.isToggleMode());
-    }
-
-    private void notifyItemStateChanged()
-    {
-        if (this.updateAction != null)
-        {
-            this.updateAction.actionPerformed(new ActionEvent(this, ItemEvent.ITEM_STATE_CHANGED, ""));
-        }
+        this.projectionChangedAction = a;
     }
 }

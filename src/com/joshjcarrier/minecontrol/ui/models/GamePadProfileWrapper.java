@@ -4,6 +4,8 @@ import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
 import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 import com.joshjcarrier.rxautomation.methods.MouseMoveAutomationRunner;
+import com.joshjcarrier.rxautomation.projection.BufferRxAutomationProjection;
+import com.joshjcarrier.rxautomation.projection.ThresholdRxAutomationProjection;
 import net.java.games.input.Component;
 import net.java.games.input.Mouse;
 
@@ -55,8 +57,21 @@ public class GamePadProfileWrapper {
         return new AutomationBindingWrapper(new AutomationBinding(this.gamePadProfile.getAutomationMethod(identifier)));
     }
 
+    @Deprecated // replace with info from projection strategy
+    public boolean isBufferAutomationProjection(Component.Identifier identifier) {
+        return this.gamePadProfile.getAutomationProjection(identifier) instanceof BufferRxAutomationProjection;
+    }
+
     public void setAutomationBinding(Component.Identifier identifier, AutomationBindingWrapper automationBindingWrapper) {
         this.gamePadProfile.setAutomationMethod(identifier, automationBindingWrapper.getAutomationBinding().getAutomationMethod());
+    }
+
+    public void setThresholdAutomationProjection(Component.Identifier identifier) {
+        this.gamePadProfile.setAutomationProjection(identifier, new ThresholdRxAutomationProjection());
+    }
+
+    public void setBufferAutomationProjection(Component.Identifier identifier) {
+        this.gamePadProfile.setAutomationProjection(identifier, new BufferRxAutomationProjection());
     }
 
     public MouseProfileWrapper getPrimaryMouseProfile() {
