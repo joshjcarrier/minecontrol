@@ -136,12 +136,37 @@ public class GamePadProfile {
                 this.automationMethodHashMap.put(identifierAutomationMethodEntry.getKey(), automationMethod);
             }
         }
+
+        for(Map.Entry<Component.Identifier, IRxAutomationProjection> identifierAutomationProjection : this.identifierToProjectionMap.entrySet()) {
+            IAutomationReader automationReader = new AutomationReader(getName(), "bind." + identifierAutomationProjection.getKey().toString(), this.storage);
+
+            // chain of command
+            IRxAutomationProjection automationProjection = ThresholdRxAutomationProjection.load(automationReader);
+            if(automationProjection == null) {
+                automationProjection = BimodalRxAutomationProjection.load(automationReader);
+            }
+
+            if(automationProjection == null) {
+                automationProjection = BufferRxAutomationProjection.load(automationReader);
+            }
+
+            if(automationProjection == null) {
+                automationProjection = ReplayRxAutomationProjection.load(automationReader);
+            }
+
+            if(automationProjection != null) {
+                this.identifierToProjectionMap.put(identifierAutomationProjection.getKey(), automationProjection);
+            }
+        }
     }
 
     public void save() {
         for(Map.Entry<Component.Identifier, IAutomationMethod> identifierAutomationMethodEntry : this.automationMethodHashMap.entrySet()) {
             IAutomationWriter writer = new AutomationWriter(getName(), "bind." + identifierAutomationMethodEntry.getKey().toString(), this.storage);
             identifierAutomationMethodEntry.getValue().write(writer);
+
+            IRxAutomationProjection projection = getAutomationProjection(identifierAutomationMethodEntry.getKey());
+            projection.write(writer);
         }
 
         this.storage.commit();
@@ -158,7 +183,7 @@ public class GamePadProfile {
         this.identifierToProjectionMap.put(identifier, automationProjection);
         deactivate();
         activate();
-        //save();
+        save();
     }
 
     private HashMap<Component.Identifier, IRxAutomationProjection> identifierToProjectionMap = new HashMap<Component.Identifier, IRxAutomationProjection>()

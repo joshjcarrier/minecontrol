@@ -23,6 +23,11 @@ public class AutomationReader implements IAutomationReader {
     }
 
     @Override
+    public String readProjection() {
+        return this.read("projection");
+    }
+
+    @Override
     public Boolean readBoolean(String key) {
         return Boolean.parseBoolean(read(key));
     }

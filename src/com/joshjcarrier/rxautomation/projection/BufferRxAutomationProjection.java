@@ -1,6 +1,8 @@
 package com.joshjcarrier.rxautomation.projection;
 
 import com.joshjcarrier.rxautomation.methods.IAutomationMethod;
+import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
+import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 import javafx.util.Pair;
 import rx.Observable;
 import rx.util.functions.Func1;
@@ -10,6 +12,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class BufferRxAutomationProjection implements IRxAutomationProjection {
+    private static final String PROJECTION_ID = "buffer";
+
+    public static IRxAutomationProjection load(IAutomationReader automationReader) {
+        try {
+            String projectionId = automationReader.readProjection();
+            if(projectionId.equalsIgnoreCase(PROJECTION_ID)) {
+                return new BufferRxAutomationProjection();
+            }
+        } catch (Exception e) {
+            // do nothing
+        }
+
+        return null;
+    }
+
     @Override
     public Observable<Pair<IAutomationMethod, Float>> map(final IAutomationMethod automationMethod, Observable<Float> source) {
         return source.buffer(2)
@@ -28,5 +45,10 @@ public class BufferRxAutomationProjection implements IRxAutomationProjection {
                         return new Pair<IAutomationMethod, Float>(automationMethod, aFloat);
                     }
                 });
+    }
+
+    @Override
+    public void write(IAutomationWriter automationWriter) {
+        automationWriter.writeProjection(PROJECTION_ID);
     }
 }

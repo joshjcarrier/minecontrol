@@ -32,4 +32,9 @@ public class AutomationWriter implements IAutomationWriter {
     public void writeMethod(String value) {
         this.write("method", value);
     }
+
+    @Override
+    public void writeProjection(String value) {
+        this.write("projection", value);
+    }
 }
