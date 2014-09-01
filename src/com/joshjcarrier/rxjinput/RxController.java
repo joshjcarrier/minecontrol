@@ -66,7 +66,17 @@ public class RxController {
                 .map(new Func1<Event, Float>() {
                     @Override
                     public Float call(Event event) {
-                        return event.getComponent().getPollData();
+                        Float data = event.getComponent().getPollData();
+
+                        // debounce joystick
+                        if(data > 0 && data <= 0.07) {
+                            data = 0f;
+                        }
+                        else if(-data > 0 && -data <= 0.07) {
+                            data = 0f;
+                        }
+
+                        return data;
                     }
                 });
     }

@@ -30,12 +30,11 @@ public class ReplayRxAutomationProjection implements IRxAutomationProjection {
         return Observable.combineLatest(Observable.interval(10, TimeUnit.MILLISECONDS), source, new Func2<Long, Float, Pair<IAutomationMethod, Float>>() {
             @Override
             public Pair<IAutomationMethod, Float> call(Long aLong, Float o) {
-                int ratio = (int) (aLong % 10);
                 if(o >= 0) {
-                    return new Pair<IAutomationMethod, Float>(automationMethod, o * 10 > 10 - ratio ? 1f : 0);
+                    return new Pair<IAutomationMethod, Float>(automationMethod, o > 0 ? 1f : 0);
                 }
 
-                return new Pair<IAutomationMethod, Float>(automationMethod, -o * 10 > 10 - ratio ? -1f : 0);
+                return new Pair<IAutomationMethod, Float>(automationMethod, -o > 0 ? -1f : 0);
             }
         }).distinctUntilChanged();
     }
