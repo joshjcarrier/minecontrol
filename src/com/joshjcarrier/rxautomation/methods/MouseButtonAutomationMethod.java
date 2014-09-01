@@ -1,11 +1,15 @@
 package com.joshjcarrier.rxautomation.methods;
 
+import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class MouseButtonAutomationMethod implements IAutomationMethod {
+    private static final String METHOD_ID = "mouse-btn";
+    private static final String PMEI_KEY = "pmei";
+    private static final String SMEI_KEY = "smei";
     private final int primaryMouseEventId;
     private final int secondaryMouseEventId;
     private static Robot humanInterfaceDeviceService;
@@ -33,6 +37,22 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
     public MouseButtonAutomationMethod(int primaryMouseEventId, int secondaryMouseEventId) {
         this.primaryMouseEventId = primaryMouseEventId;
         this.secondaryMouseEventId = secondaryMouseEventId;
+    }
+
+    public static IAutomationMethod load(IAutomationReader automationReader) {
+        String methodId = automationReader.readMethod();
+        if(!methodId.equalsIgnoreCase(METHOD_ID)) {
+            return null;
+        }
+
+        try {
+            Integer primaryMouseEventId = automationReader.readInt(PMEI_KEY);
+            Integer secondaryMouseEventId = automationReader.readInt(PMEI_KEY);
+
+            return new MouseButtonAutomationMethod(primaryMouseEventId, secondaryMouseEventId);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void automate(Float value) {
@@ -65,8 +85,8 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
 
     @Override
     public void save(IAutomationWriter automationWriter) {
-        automationWriter.write("method", "mouse-btn");
-        automationWriter.write("pmei", this.primaryMouseEventId);
-        automationWriter.write("smei", this.secondaryMouseEventId);
+        automationWriter.writeMethod(METHOD_ID);
+        automationWriter.write(PMEI_KEY, this.primaryMouseEventId);
+        automationWriter.write(SMEI_KEY, this.secondaryMouseEventId);
     }
 }

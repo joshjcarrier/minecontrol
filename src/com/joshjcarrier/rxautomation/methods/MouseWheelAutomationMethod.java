@@ -1,10 +1,13 @@
 package com.joshjcarrier.rxautomation.methods;
 
+import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
 import java.awt.*;
 
 public class MouseWheelAutomationMethod implements IAutomationMethod {
+    private static final String METHOD_ID = "mouse-wheel";
+    private static final String SCROLL_KEY = "scroll";
     private static Robot humanInterfaceDeviceService;
 
     static {
@@ -30,6 +33,21 @@ public class MouseWheelAutomationMethod implements IAutomationMethod {
         this.scrollAmount = scrollAmount;
     }
 
+    public static IAutomationMethod load(IAutomationReader automationReader) {
+        String methodId = automationReader.readMethod();
+        if(!methodId.equalsIgnoreCase(METHOD_ID)) {
+            return null;
+        }
+
+        try {
+            Integer scrollAmount = automationReader.readInt(SCROLL_KEY);
+
+            return new MouseWheelAutomationMethod(scrollAmount);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public void automate(Float value) {
         if(value == 1f) {
             humanInterfaceDeviceService.mouseWheel(scrollAmount);
@@ -46,7 +64,7 @@ public class MouseWheelAutomationMethod implements IAutomationMethod {
 
     @Override
     public void save(IAutomationWriter automationWriter) {
-        automationWriter.write("method", "mouse-wheel");
-        automationWriter.write("scroll", this.scrollAmount);
+        automationWriter.writeMethod(METHOD_ID);
+        automationWriter.write(SCROLL_KEY, this.scrollAmount);
     }
 }

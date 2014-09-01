@@ -22,4 +22,9 @@ public class AutomationWriter implements IAutomationWriter {
     public void write(String key, String value) {
         this.storage.write(this.rootName, this.sectionName + "." + key, value);
     }
+
+    @Override
+    public void writeMethod(String value) {
+        this.write("method", value);
+    }
 }

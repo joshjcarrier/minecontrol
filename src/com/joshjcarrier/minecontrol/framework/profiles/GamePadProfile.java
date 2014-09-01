@@ -3,7 +3,9 @@ package com.joshjcarrier.minecontrol.framework.profiles;
 import com.joshjcarrier.persistence.IStorage;
 import com.joshjcarrier.persistence.IniStorage;
 import com.joshjcarrier.rxautomation.methods.*;
+import com.joshjcarrier.rxautomation.persistence.AutomationReader;
 import com.joshjcarrier.rxautomation.persistence.AutomationWriter;
+import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 import com.joshjcarrier.rxautomation.projection.BimodalRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.IRxAutomationProjection;
@@ -92,13 +94,25 @@ public class GamePadProfile {
 
     public void restore() {
         for(Map.Entry<Component.Identifier, IAutomationMethod> identifierAutomationMethodEntry : this.automationMethodHashMap.entrySet()) {
-            String methodType = this.storage.read(getName(), "bind." + identifierAutomationMethodEntry.getKey().toString() + ".method");
-            if(methodType == null) {
-                continue;
+            IAutomationReader automationReader = new AutomationReader(getName(), "bind." + identifierAutomationMethodEntry.getKey().toString(), this.storage);
+
+            // chain of command
+            IAutomationMethod automationMethod = KeyboardAutomationMethod.load(automationReader);
+            if(automationMethod == null) {
+                automationMethod = MouseButtonAutomationMethod.load(automationReader);
             }
 
-            // TODO read the rest -- chain of responsibility?
-            continue;
+            if(automationMethod == null) {
+                automationMethod = MouseWheelAutomationMethod.load(automationReader);
+            }
+
+            if(automationMethod == null) {
+                automationMethod = NoOpAutomationMethod.load(automationReader);
+            }
+
+            if(automationMethod != null) {
+                this.automationMethodHashMap.put(identifierAutomationMethodEntry.getKey(), automationMethod);
+            }
         }
     }
 

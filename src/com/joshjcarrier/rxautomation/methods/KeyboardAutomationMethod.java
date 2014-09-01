@@ -1,14 +1,18 @@
 package com.joshjcarrier.rxautomation.methods;
 
+import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class KeyboardAutomationMethod implements IAutomationMethod {
+    private static Robot humanInterfaceDeviceService;
+    private static final String METHOD_ID = "kbd-btn";
+    private static final String PKEI_KEY = "pkei";
+    private static final String SKEI_KEY = "skei";
     private final int primaryKeyEventId;
     private final int secondaryKeyEventId;
-    private static Robot humanInterfaceDeviceService;
 
     static {
 
@@ -33,7 +37,22 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
     public KeyboardAutomationMethod(int primaryKeyEventId, int secondaryKeyEventId) {
         this.primaryKeyEventId = primaryKeyEventId;
         this.secondaryKeyEventId = secondaryKeyEventId;
+    }
 
+    public static IAutomationMethod load(IAutomationReader automationReader) {
+        String methodId = automationReader.readMethod();
+        if(!methodId.equalsIgnoreCase(METHOD_ID)) {
+            return null;
+        }
+
+        try{
+            Integer primaryKeyEventId = automationReader.readInt(PKEI_KEY);
+            Integer secondaryKeyEventId = automationReader.readInt(PKEI_KEY);
+
+            return new KeyboardAutomationMethod(primaryKeyEventId, secondaryKeyEventId);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void automate(Float value) {
@@ -56,8 +75,8 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
 
     @Override
     public void save(IAutomationWriter automationWriter) {
-        automationWriter.write("method", "kbd-btn");
-        automationWriter.write("pkei", this.primaryKeyEventId);
-        automationWriter.write("skei", this.secondaryKeyEventId);
+        automationWriter.writeMethod(METHOD_ID);
+        automationWriter.write(PKEI_KEY, this.primaryKeyEventId);
+        automationWriter.write(SKEI_KEY, this.secondaryKeyEventId);
     }
 }
