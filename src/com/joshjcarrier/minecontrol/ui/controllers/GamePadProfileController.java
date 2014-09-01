@@ -3,10 +3,7 @@ package com.joshjcarrier.minecontrol.ui.controllers;
 import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
 import com.joshjcarrier.minecontrol.ui.models.AutomationBindingWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GamePadProfileWrapper;
-import com.joshjcarrier.rxautomation.methods.KeyboardAutomationMethod;
-import com.joshjcarrier.rxautomation.methods.MouseButtonAutomationMethod;
-import com.joshjcarrier.rxautomation.methods.MouseWheelAutomationMethod;
-import com.joshjcarrier.rxautomation.methods.NoOpAutomationMethod;
+import com.joshjcarrier.rxautomation.methods.*;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
@@ -93,6 +90,7 @@ public class GamePadProfileController {
                 add(new AutomationBinding(new MouseButtonAutomationMethod(KeyEvent.BUTTON3_MASK)));
                 add(new AutomationBinding(new MouseWheelAutomationMethod(-1)));
                 add(new AutomationBinding(new MouseWheelAutomationMethod(1)));
+                add(new AutomationBinding(new SensitivityAppAutomationMethod()));
             }
         };
 

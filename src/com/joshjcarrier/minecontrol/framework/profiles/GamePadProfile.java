@@ -107,6 +107,10 @@ public class GamePadProfile {
             }
 
             if(automationMethod == null) {
+                automationMethod = SensitivityAppAutomationMethod.load(automationReader);
+            }
+
+            if(automationMethod == null) {
                 automationMethod = NoOpAutomationMethod.load(automationReader);
             }
 
@@ -142,6 +146,7 @@ public class GamePadProfile {
             put(Component.Identifier.Button._3, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._4, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._5, new ThresholdRxAutomationProjection());
+            put(Component.Identifier.Button._6, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._7, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._8, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Button._9, new ThresholdRxAutomationProjection());
@@ -165,6 +170,7 @@ public class GamePadProfile {
             put(Component.Identifier.Button._3, new KeyboardAutomationMethod(KeyEvent.VK_E));
             put(Component.Identifier.Button._4, new MouseWheelAutomationMethod(-1));
             put(Component.Identifier.Button._5, new MouseWheelAutomationMethod(1));
+            put(Component.Identifier.Button._6, new SensitivityAppAutomationMethod());
             put(Component.Identifier.Button._7, new KeyboardAutomationMethod(KeyEvent.VK_ESCAPE));
             put(Component.Identifier.Button._8, new KeyboardAutomationMethod(KeyEvent.VK_SHIFT));
             put(Component.Identifier.Button._9, new KeyboardAutomationMethod(KeyEvent.VK_SPACE));
