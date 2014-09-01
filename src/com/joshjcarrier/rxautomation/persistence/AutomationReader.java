@@ -36,4 +36,9 @@ public class AutomationReader implements IAutomationReader {
     public Integer readInt(String key) {
         return Integer.parseInt(read(key));
     }
+
+    @Override
+    public Integer readInt(String key, Integer defaultValue) {
+        return this.storage.read(this.rootName, this.sectionName + "." + key, defaultValue);
+    }
 }

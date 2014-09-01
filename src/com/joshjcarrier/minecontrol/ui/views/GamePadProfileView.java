@@ -166,7 +166,7 @@ public class GamePadProfileView extends JDialog
 			gridConstraints.gridx = 1;
 			panel.add(automationBindingsControl, gridConstraints);
 		}
-				
+
 		gridConstraints.gridy = 1;
 		gridConstraints.gridx = 2;
 		panel.add(new JLabel("                  ")); // REVIEW: real cheap way of adding a spacer between the columns

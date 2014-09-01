@@ -154,6 +154,10 @@ public class GamePadProfile {
                 automationProjection = ReplayRxAutomationProjection.load(automationReader);
             }
 
+            if(automationProjection == null) {
+                automationProjection = RawRxAutomationProjection.load(automationReader);
+            }
+
             if(automationProjection != null) {
                 this.identifierToProjectionMap.put(identifierAutomationProjection.getKey(), automationProjection);
             }
@@ -207,6 +211,8 @@ public class GamePadProfile {
             put(Component.Identifier.Axis.X, new ReplayRxAutomationProjection());
             put(Component.Identifier.Axis.Y, new ReplayRxAutomationProjection());
             put(Component.Identifier.Axis.Z, new ThresholdRxAutomationProjection());
+
+            put(Component.Identifier.Axis.POV, new RawRxAutomationProjection());
         }
     };
 
@@ -231,6 +237,8 @@ public class GamePadProfile {
             put(Component.Identifier.Axis.X, new KeyboardAutomationMethod(KeyEvent.VK_D, KeyEvent.VK_A));
             put(Component.Identifier.Axis.Y, new KeyboardAutomationMethod(KeyEvent.VK_S, KeyEvent.VK_W));
             put(Component.Identifier.Axis.Z, new MouseButtonAutomationMethod(KeyEvent.BUTTON3_MASK, KeyEvent.BUTTON1_MASK));
+
+            put(Component.Identifier.Axis.POV, new KeyboardAutomationMethod(KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S));
         }
     };
 }

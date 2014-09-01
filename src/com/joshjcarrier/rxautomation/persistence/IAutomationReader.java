@@ -6,4 +6,5 @@ public interface IAutomationReader {
     String readProjection();
     Boolean readBoolean(String key);
     Integer readInt(String key);
+    Integer readInt(String key, Integer defaultValue);
 }
