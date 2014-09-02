@@ -2,7 +2,7 @@ package com.joshjcarrier.rxautomation.projection;
 
 import com.joshjcarrier.rxautomation.methods.IAutomationMethod;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
-import javafx.util.Pair;
+import com.joshjcarrier.Pair;
 import rx.Observable;
 
 public interface IRxAutomationProjection {

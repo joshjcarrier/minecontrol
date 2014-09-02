@@ -3,6 +3,7 @@
   <component name="EclipseModuleManager">
     <libelement value="jar://$MODULE_DIR$/lib/jinput.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/ini4j.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/rxjava-core.jar!/" />
     <src_description expected_position="0">
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
     </src_description>
@@ -33,7 +34,15 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="rxjava-core" level="project" />
+    <orderEntry type="module-library">
+      <library name="rxjava-core.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/rxjava-core.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 

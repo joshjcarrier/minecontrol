@@ -1,5 +1,6 @@
 package com.joshjcarrier.minecontrol.framework.profiles;
 
+import com.joshjcarrier.Pair;
 import com.joshjcarrier.persistence.IStorage;
 import com.joshjcarrier.rxautomation.methods.*;
 import com.joshjcarrier.rxautomation.persistence.AutomationReader;
@@ -8,7 +9,6 @@ import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 import com.joshjcarrier.rxautomation.projection.*;
 import com.joshjcarrier.rxgamepad.RxGamePad;
-import javafx.util.Pair;
 import net.java.games.input.Component;
 import rx.Observable;
 import rx.Subscription;

@@ -36,6 +36,8 @@ Note: preferences are saved in your home directory, as .minecontrol2.txt.
 ### SOURCE
 http://github.com/joshjcarrier/minecontrol
 
+To run from Eclipse/IntelliJ you will need the VM arguments "-Djava.library.path=lib"
+
 ### FOLLOW
 http://javadocs.wordpress.com/category/java-projects/minecontrol/
 
