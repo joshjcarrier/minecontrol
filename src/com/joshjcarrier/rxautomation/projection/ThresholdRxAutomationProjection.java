@@ -30,10 +30,10 @@ public class ThresholdRxAutomationProjection implements IRxAutomationProjection 
             @Override
             public Pair<IAutomationMethod, Float> call(Float aFloat) {
                 if(aFloat >= 0) {
-                    return new Pair<IAutomationMethod, Float>(automationMethod, aFloat > 0.5 ? 1f : 0f);
+                    return new Pair<IAutomationMethod, Float>(automationMethod, aFloat > 0 ? 1f : 0f);
                 }
 
-                return new Pair<IAutomationMethod, Float>(automationMethod, -aFloat > 0.5 ? -1f : 0f);
+                return new Pair<IAutomationMethod, Float>(automationMethod, -aFloat > 0 ? -1f : 0f);
             }
         }).throttleWithTimeout(20, TimeUnit.MILLISECONDS);
     }

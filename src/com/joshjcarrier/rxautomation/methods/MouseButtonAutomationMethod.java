@@ -48,7 +48,7 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
             }
 
             Integer primaryMouseEventId = automationReader.readInt(PMEI_KEY);
-            Integer secondaryMouseEventId = automationReader.readInt(PMEI_KEY);
+            Integer secondaryMouseEventId = automationReader.readInt(SMEI_KEY);
 
             return new MouseButtonAutomationMethod(primaryMouseEventId, secondaryMouseEventId);
         } catch (Exception e) {
@@ -65,7 +65,10 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
         }
         else {
             humanInterfaceDeviceService.mouseRelease(this.primaryMouseEventId);
-            humanInterfaceDeviceService.mouseRelease(this.secondaryMouseEventId);
+
+            if(this.secondaryMouseEventId != this.primaryMouseEventId) {
+                humanInterfaceDeviceService.mouseRelease(this.secondaryMouseEventId);
+            }
         }
     }
 

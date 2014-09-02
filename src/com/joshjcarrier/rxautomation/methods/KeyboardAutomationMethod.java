@@ -69,19 +69,15 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
     }
 
     public void automate(Float value) {
-        if(value == 1f) {
+        if (value == 1f) {
             humanInterfaceDeviceService.keyPress(this.primaryKeyEventId);
-        }
-        else if(value == -1f || value == 0.25f) {
+        } else if (value == -1f || value == 0.25f) {
             humanInterfaceDeviceService.keyPress(this.secondaryKeyEventId);
-        }
-        else if(value == 0.5f) {
+        } else if (value == 0.5f) {
             humanInterfaceDeviceService.keyPress(this.tertiaryKeyEventId);
-        }
-        else if(value == 0.75f) {
+        } else if (value == 0.75f) {
             humanInterfaceDeviceService.keyPress(this.quaternaryKeyEventId);
-        }
-        else {
+        } else {
             humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
 
             if (this.secondaryKeyEventId != this.primaryKeyEventId) {
