@@ -32,6 +32,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 This software also contains third party binaries, protected under their own respective licenses:
 ini4j the Java .ini library					Apache 2
 JInput Java Game Controller API				BSD 2
+RxJava										Apache 2
 XNA Button Pack – Jeff Jenkins				Creative Commons Attribution 3.0 Unported
 
 Minecraft and the Minecraft cube are registered trademarks of Mojang Specifications and/or its affiliates.
+
+** RxJava **
+Copyright 2013 Netflix, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. 
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the 
+License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+See the License for the specific language governing permissions and limitations under the License.

@@ -9,11 +9,10 @@ This is the successor for [Minecontrol for Minecraft v1.x](https://bitbucket.org
 ![v2.0.0](http://javadocs.files.wordpress.com/2013/03/minecontrol2.png)
 
 ##### Features:
-* NEW: D-Pad mapping
-* NEW: refreshed UI
-* NEW: switch any button mapping to toggle mode (press once/hold key)
-* NEW: disable the trigger buttons
-* NEW: rearchitected for more fun
+* NEW: rearchitected again for more fun
+* D-Pad mapping to WASD
+* refreshed UI
+* switch any button mapping to toggle mode (press once/hold key)
 * Xbox 360 controller support (Windows, Mac OSX/Linux/alternate controllers experimental)
 * Convert left joystick into WASD pulses, regulated by how much you push on the stick
 * Convert right joytick into mouse movements, also regulated by how much you push on the stick
@@ -43,7 +42,7 @@ http://javadocs.wordpress.com/category/java-projects/minecontrol/
 ### LICENSE
 See the included license agreement in the repository. 
 
-This software includes binaries from **JInput** and **ini4j**. 
+This software includes binaries from **JInput**, **RxJava** and **ini4j**. 
 It also contains works from **XNA Button Pack – Jeff Jenkins**.
 **Minecraft** and the Minecraft cube are registered trademarks of Mojang Specifications and/or its affiliates.
 
