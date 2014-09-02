@@ -23,10 +23,10 @@ public class MouseMoveAutomationRunner implements Runnable {
 
     public static boolean PRIMARY_SENSITIVITY_MODE = true;
     public static boolean INVERT_Y = false;
-    public static int PRIMARY_SENSITIVITY_X = 10;
-    public static int PRIMARY_SENSITIVITY_Y = 10;
-    public static int SECONDARY_SENSITIVITY_X = 5;
-    public static int SECONDARY_SENSITIVITY_Y = 5;
+    public static int PRIMARY_SENSITIVITY_X = 40;
+    public static int PRIMARY_SENSITIVITY_Y = 25;
+    public static int SECONDARY_SENSITIVITY_X = 20;
+    public static int SECONDARY_SENSITIVITY_Y = 20;
     public float xValue, yValue;
 
     public MouseMoveXAutomationMethod getXAutomationMethod() {
@@ -47,11 +47,11 @@ public class MouseMoveAutomationRunner implements Runnable {
 
                     // TODO 2.1+ smoothen mouse
                     humanInterfaceDeviceService.mouseMove(
-                            (int) (info.getLocation().x + (xValue * (PRIMARY_SENSITIVITY_MODE ? PRIMARY_SENSITIVITY_X : SECONDARY_SENSITIVITY_X))),
-                            (int) (info.getLocation().y  + (yValue * (PRIMARY_SENSITIVITY_MODE ? PRIMARY_SENSITIVITY_Y : SECONDARY_SENSITIVITY_Y) * (INVERT_Y ? -1 : 1))));
+                            (int) (info.getLocation().x + (0.2 * xValue * (PRIMARY_SENSITIVITY_MODE ? PRIMARY_SENSITIVITY_X : SECONDARY_SENSITIVITY_X))),
+                            (int) (info.getLocation().y  + (0.2 * yValue * (PRIMARY_SENSITIVITY_MODE ? PRIMARY_SENSITIVITY_Y : SECONDARY_SENSITIVITY_Y) * (INVERT_Y ? -1 : 1))));
                 }
 
-                Thread.sleep(1);
+                Thread.sleep(5);
             } catch (InterruptedException e) {
             }
         }

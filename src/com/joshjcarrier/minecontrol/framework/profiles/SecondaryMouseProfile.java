@@ -42,8 +42,8 @@ public class SecondaryMouseProfile implements IMouseProfile {
     }
 
     private void restore() {
-        MouseMoveAutomationRunner.PRIMARY_SENSITIVITY_X = this.storage.read(this.profileName, SENSITIVITY_X_KEY, MouseMoveAutomationRunner.PRIMARY_SENSITIVITY_X);
-        MouseMoveAutomationRunner.PRIMARY_SENSITIVITY_X = this.storage.read(this.profileName, SENSITIVITY_Y_KEY, MouseMoveAutomationRunner.PRIMARY_SENSITIVITY_Y);
+        MouseMoveAutomationRunner.SECONDARY_SENSITIVITY_X = this.storage.read(this.profileName, SENSITIVITY_X_KEY, MouseMoveAutomationRunner.SECONDARY_SENSITIVITY_X);
+        MouseMoveAutomationRunner.SECONDARY_SENSITIVITY_Y = this.storage.read(this.profileName, SENSITIVITY_Y_KEY, MouseMoveAutomationRunner.SECONDARY_SENSITIVITY_Y);
     }
 
     private void write() {
