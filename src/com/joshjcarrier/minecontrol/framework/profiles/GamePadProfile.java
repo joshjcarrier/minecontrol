@@ -151,10 +151,6 @@ public class GamePadProfile {
             }
 
             if(automationProjection == null) {
-                automationProjection = ReplayRxAutomationProjection.load(automationReader);
-            }
-
-            if(automationProjection == null) {
                 automationProjection = RawRxAutomationProjection.load(automationReader);
             }
 
@@ -208,8 +204,8 @@ public class GamePadProfile {
             put(Component.Identifier.Axis.RX, new BimodalRxAutomationProjection());
             put(Component.Identifier.Axis.RY, new BimodalRxAutomationProjection());
 
-            put(Component.Identifier.Axis.X, new ReplayRxAutomationProjection());
-            put(Component.Identifier.Axis.Y, new ReplayRxAutomationProjection());
+            put(Component.Identifier.Axis.X, new ThresholdRxAutomationProjection());
+            put(Component.Identifier.Axis.Y, new ThresholdRxAutomationProjection());
             put(Component.Identifier.Axis.Z, new ThresholdRxAutomationProjection());
 
             put(Component.Identifier.Axis.POV, new RawRxAutomationProjection());

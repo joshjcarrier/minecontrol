@@ -35,7 +35,7 @@ public class ThresholdRxAutomationProjection implements IRxAutomationProjection 
 
                 return new Pair<IAutomationMethod, Float>(automationMethod, -aFloat > 0 ? -1f : 0f);
             }
-        }).throttleWithTimeout(20, TimeUnit.MILLISECONDS);
+        }).distinctUntilChanged();
     }
 
     @Override

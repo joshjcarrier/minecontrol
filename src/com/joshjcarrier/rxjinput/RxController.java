@@ -69,10 +69,10 @@ public class RxController {
                         Float data = event.getComponent().getPollData();
 
                         // debounce joystick
-                        if(data > 0 && data <= 0.07) {
+                        if(data > 0 && data <= 0.17) {
                             data = 0f;
                         }
-                        else if(-data > 0 && -data <= 0.07) {
+                        else if(-data > 0 && -data <= 0.17) {
                             data = 0f;
                         }
 
