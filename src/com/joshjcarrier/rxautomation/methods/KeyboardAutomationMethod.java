@@ -1,5 +1,6 @@
 package com.joshjcarrier.rxautomation.methods;
 
+import com.joshjcarrier.minecontrol.framework.modes.MinecraftGameMode;
 import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
@@ -99,7 +100,11 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
 
     @Override
     public String getName() {
-        return KeyEvent.getKeyText(this.primaryKeyEventId);
+        String helperText = MinecraftGameMode.getKeyText(this.primaryKeyEventId);
+        if (helperText != "") {
+            helperText = " [" + helperText +"]";
+        }
+        return KeyEvent.getKeyText(this.primaryKeyEventId)  + helperText;
     }
 
     @Override

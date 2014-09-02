@@ -1,5 +1,6 @@
 package com.joshjcarrier.rxautomation.methods;
 
+import com.joshjcarrier.minecontrol.framework.modes.MinecraftGameMode;
 import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
@@ -70,17 +71,29 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
 
     @Override
     public String getName() {
+        String name;
         switch(this.primaryMouseEventId)
         {
             case MouseEvent.BUTTON1_MASK:
-                return "Mouse left click (button 1)";
+                name = "Mouse left click (button 1)";
+                break;
             case MouseEvent.BUTTON2_MASK:
-                return "Mouse middle click (button 2)";
+                name = "Mouse middle click (button 2)";
+                break;
             case MouseEvent.BUTTON3_MASK:
-                return "Mouse right click (button 3)";
+                name = "Mouse right click (button 3)";
+                break;
             default:
-                return "Mouse event unknown";
+                name = "Mouse event unknown";
+                break;
         }
+
+        String helperText = MinecraftGameMode.getMouseButtonText(this.primaryMouseEventId);
+        if (helperText != "") {
+            helperText = " [" + helperText +"]";
+        }
+
+        return name + helperText;
     }
 
     @Override

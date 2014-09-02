@@ -28,7 +28,7 @@ public class SensitivityAppAutomationMethod implements IAutomationMethod {
 
     @Override
     public String getName() {
-        return "Toggle sensitivity (Minecontrol)";
+        return "Minecontrol toggle mouse profile";
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.joshjcarrier.rxautomation.methods;
 
+import com.joshjcarrier.minecontrol.framework.modes.MinecraftGameMode;
 import com.joshjcarrier.rxautomation.persistence.IAutomationReader;
 import com.joshjcarrier.rxautomation.persistence.IAutomationWriter;
 
@@ -59,7 +60,14 @@ public class MouseWheelAutomationMethod implements IAutomationMethod {
 
     @Override
     public String getName() {
-        return scrollAmount > 0 ? "Mouse scroll down" : "Mouse scroll up";
+        String name = this.scrollAmount > 0 ? "Mouse scroll down" : "Mouse scroll up";
+
+        String helperText = MinecraftGameMode.getMouseScrollText(this.scrollAmount);
+        if (helperText != "") {
+            helperText = " [" + helperText +"]";
+        }
+
+        return name + helperText;
     }
 
     @Override
