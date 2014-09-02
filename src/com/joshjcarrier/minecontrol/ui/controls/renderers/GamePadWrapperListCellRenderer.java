@@ -36,7 +36,7 @@ public class GamePadWrapperListCellRenderer extends BaseWrapperListCellRenderer<
     	String normalizedControllerName = value.getName().toLowerCase();
     	if (normalizedControllerName.contains("xbox"))
     	{
-    		this.titleLabel.setText("Microsoft Xbox 360 Controller");
+    		this.titleLabel.setText("Microsoft Xbox Controller");
     		this.titleLabel.setForeground(Color.BLACK);
     		this.publisherLabel.setText(value.getName());
     	}
