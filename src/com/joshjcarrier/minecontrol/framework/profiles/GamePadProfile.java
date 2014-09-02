@@ -142,9 +142,6 @@ public class GamePadProfile {
 
             // chain of command
             IRxAutomationProjection automationProjection = BinaryRxAutomationProjection.load(automationReader);
-            if(automationProjection == null) {
-                automationProjection = BimodalRxAutomationProjection.load(automationReader);
-            }
 
             if(automationProjection == null) {
                 automationProjection = BufferedSwitchRxAutomationProjection.load(automationReader);
@@ -205,8 +202,8 @@ public class GamePadProfile {
             put(Component.Identifier.Button._8, new BufferedSwitchRxAutomationProjection());
             put(Component.Identifier.Button._9, new BinaryRxAutomationProjection());
 
-            put(Component.Identifier.Axis.RX, new BimodalRxAutomationProjection());
-            put(Component.Identifier.Axis.RY, new BimodalRxAutomationProjection());
+            put(Component.Identifier.Axis.RX, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Axis.RY, new BinaryRxAutomationProjection());
 
             put(Component.Identifier.Axis.X, new BinaryRxAutomationProjection());
             put(Component.Identifier.Axis.Y, new BinaryRxAutomationProjection());

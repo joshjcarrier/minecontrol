@@ -70,12 +70,54 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
 
     public void automate(Float value) {
         if (value == 1f) {
+            if (this.secondaryKeyEventId != this.primaryKeyEventId) {
+                humanInterfaceDeviceService.keyRelease(this.secondaryKeyEventId);
+            }
+
+            if (this.tertiaryKeyEventId != this.primaryKeyEventId) {
+                humanInterfaceDeviceService.keyRelease(this.tertiaryKeyEventId);
+            }
+
+            if (this.quaternaryKeyEventId != this.primaryKeyEventId) {
+                humanInterfaceDeviceService.keyRelease(this.quaternaryKeyEventId);
+            }
+
             humanInterfaceDeviceService.keyPress(this.primaryKeyEventId);
-        } else if (value == -1f || value == 0.25f) {
+        } else if (value == -1f || (this.secondaryKeyEventId != this.primaryKeyEventId && value == 0.25f)) {
+            humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
+
+            if (this.tertiaryKeyEventId != this.primaryKeyEventId) {
+                humanInterfaceDeviceService.keyRelease(this.tertiaryKeyEventId);
+            }
+
+            if (this.quaternaryKeyEventId != this.primaryKeyEventId) {
+                humanInterfaceDeviceService.keyRelease(this.quaternaryKeyEventId);
+            }
+
             humanInterfaceDeviceService.keyPress(this.secondaryKeyEventId);
-        } else if (value == 0.5f) {
+        } else if (this.tertiaryKeyEventId != this.primaryKeyEventId && value == 0.5f) {
+            humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
+
+            if (this.secondaryKeyEventId != this.primaryKeyEventId) {
+                humanInterfaceDeviceService.keyRelease(this.secondaryKeyEventId);
+            }
+
+            if (this.quaternaryKeyEventId != this.primaryKeyEventId) {
+                humanInterfaceDeviceService.keyRelease(this.quaternaryKeyEventId);
+            }
+
             humanInterfaceDeviceService.keyPress(this.tertiaryKeyEventId);
-        } else if (value == 0.75f) {
+        } else if (this.quaternaryKeyEventId != this.primaryKeyEventId && value == 0.75f) {
+            humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
+
+            if (this.secondaryKeyEventId != this.secondaryKeyEventId) {
+                humanInterfaceDeviceService.keyRelease(this.quaternaryKeyEventId);
+            }
+
+            if (this.tertiaryKeyEventId != this.primaryKeyEventId) {
+                humanInterfaceDeviceService.keyRelease(this.tertiaryKeyEventId);
+            }
+
             humanInterfaceDeviceService.keyPress(this.quaternaryKeyEventId);
         } else {
             humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
