@@ -78,7 +78,7 @@ public class GamePadProfile {
         if(method == null) {
             method = new NoOpAutomationMethod();
             this.automationMethodHashMap.put(identifier, method);
-            this.identifierToProjectionMap.put(identifier, new ThresholdRxAutomationProjection());
+            this.identifierToProjectionMap.put(identifier, new BinaryRxAutomationProjection());
         }
 
         return method;
@@ -87,7 +87,7 @@ public class GamePadProfile {
     public IRxAutomationProjection getAutomationProjection(Component.Identifier identifier) {
         IRxAutomationProjection projection = this.identifierToProjectionMap.get(identifier);
         if(projection == null) {
-            projection = new ThresholdRxAutomationProjection();
+            projection = new BinaryRxAutomationProjection();
             this.identifierToProjectionMap.put(identifier, projection);
         }
 
@@ -141,17 +141,17 @@ public class GamePadProfile {
             IAutomationReader automationReader = new AutomationReader(getName(), "bind." + identifierAutomationProjection.getKey().toString(), this.storage);
 
             // chain of command
-            IRxAutomationProjection automationProjection = ThresholdRxAutomationProjection.load(automationReader);
+            IRxAutomationProjection automationProjection = BinaryRxAutomationProjection.load(automationReader);
             if(automationProjection == null) {
                 automationProjection = BimodalRxAutomationProjection.load(automationReader);
             }
 
             if(automationProjection == null) {
-                automationProjection = BufferRxAutomationProjection.load(automationReader);
+                automationProjection = BufferedSwitchRxAutomationProjection.load(automationReader);
             }
 
             if(automationProjection == null) {
-                automationProjection = RawRxAutomationProjection.load(automationReader);
+                automationProjection = PassThruRxAutomationProjection.load(automationReader);
             }
 
             if(automationProjection != null) {
@@ -190,25 +190,25 @@ public class GamePadProfile {
     {
         public static final long serialVersionUID = 8658388604108766926L;
         {
-            put(Component.Identifier.Button._0, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Button._1, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Button._2, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Button._3, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Button._4, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Button._5, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Button._6, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Button._7, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Button._8, new BufferRxAutomationProjection());
-            put(Component.Identifier.Button._9, new ThresholdRxAutomationProjection());
+            put(Component.Identifier.Button._0, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._1, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._2, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._3, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._4, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._5, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._6, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._7, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._8, new BufferedSwitchRxAutomationProjection());
+            put(Component.Identifier.Button._9, new BinaryRxAutomationProjection());
 
             put(Component.Identifier.Axis.RX, new BimodalRxAutomationProjection());
             put(Component.Identifier.Axis.RY, new BimodalRxAutomationProjection());
 
-            put(Component.Identifier.Axis.X, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Axis.Y, new ThresholdRxAutomationProjection());
-            put(Component.Identifier.Axis.Z, new ThresholdRxAutomationProjection());
+            put(Component.Identifier.Axis.X, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Axis.Y, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Axis.Z, new BinaryRxAutomationProjection());
 
-            put(Component.Identifier.Axis.POV, new RawRxAutomationProjection());
+            put(Component.Identifier.Axis.POV, new PassThruRxAutomationProjection());
         }
     };
 

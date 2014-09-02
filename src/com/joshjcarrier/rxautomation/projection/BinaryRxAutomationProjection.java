@@ -7,14 +7,14 @@ import javafx.util.Pair;
 import rx.Observable;
 import rx.util.functions.Func1;
 
-public class RawRxAutomationProjection implements IRxAutomationProjection {
-    private static final String PROJECTION_ID = "raw";
+public class BinaryRxAutomationProjection implements IRxAutomationProjection {
+    private static final String PROJECTION_ID = "binary";
 
     public static IRxAutomationProjection load(IAutomationReader automationReader) {
         try {
             String projectionId = automationReader.readProjection();
             if(projectionId.equalsIgnoreCase(PROJECTION_ID)) {
-                return new RawRxAutomationProjection();
+                return new BinaryRxAutomationProjection();
             }
         } catch (Exception e) {
             // do nothing
@@ -23,14 +23,17 @@ public class RawRxAutomationProjection implements IRxAutomationProjection {
         return null;
     }
 
-    @Override
     public Observable<Pair<IAutomationMethod, Float>> map(final IAutomationMethod automationMethod, Observable<Float> source) {
         return source.map(new Func1<Float, Pair<IAutomationMethod, Float>>() {
-                    @Override
-                    public Pair<IAutomationMethod, Float> call(Float aFloat) {
-                        return new Pair<IAutomationMethod, Float>(automationMethod, aFloat);
-                    }
-                });
+            @Override
+            public Pair<IAutomationMethod, Float> call(Float aFloat) {
+                if(aFloat >= 0) {
+                    return new Pair<IAutomationMethod, Float>(automationMethod, aFloat > 0 ? 1f : 0f);
+                }
+
+                return new Pair<IAutomationMethod, Float>(automationMethod, -aFloat > 0 ? -1f : 0f);
+            }
+        }).distinctUntilChanged();
     }
 
     @Override
