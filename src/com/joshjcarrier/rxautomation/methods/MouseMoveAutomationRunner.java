@@ -23,10 +23,10 @@ public class MouseMoveAutomationRunner implements Runnable {
 
     public static boolean PRIMARY_SENSITIVITY_MODE = true;
     public static boolean INVERT_Y = false;
-    public static int PRIMARY_SENSITIVITY_X = 40;
+    public static int PRIMARY_SENSITIVITY_X = 45;
     public static int PRIMARY_SENSITIVITY_Y = 25;
-    public static int SECONDARY_SENSITIVITY_X = 20;
-    public static int SECONDARY_SENSITIVITY_Y = 20;
+    public static int SECONDARY_SENSITIVITY_X = 25;
+    public static int SECONDARY_SENSITIVITY_Y = 25;
     public float xValue, yValue;
 
     public MouseMoveXAutomationMethod getXAutomationMethod() {
