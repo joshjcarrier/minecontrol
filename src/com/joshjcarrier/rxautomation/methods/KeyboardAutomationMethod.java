@@ -68,70 +68,112 @@ public class KeyboardAutomationMethod implements IAutomationMethod {
         }
     }
 
+    boolean isPrimaryKeyPressed;
+    boolean isSecondaryKeyPressed;
+    boolean isTertiaryKeyPressed;
+    boolean isQuaternaryKeyPressed;
+
+    // TODO come and clean this up. have abstraction on Robot to do performance optimization
     public void automate(Float value) {
         if (value == 1f) {
-            if (this.secondaryKeyEventId != this.primaryKeyEventId) {
+            if (this.isSecondaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.secondaryKeyEventId);
+                this.isSecondaryKeyPressed = false;
             }
 
-            if (this.tertiaryKeyEventId != this.primaryKeyEventId) {
+            if (this.isTertiaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.tertiaryKeyEventId);
+                this.isTertiaryKeyPressed = false;
             }
 
-            if (this.quaternaryKeyEventId != this.primaryKeyEventId) {
+            if (this.isQuaternaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.quaternaryKeyEventId);
+                this.isQuaternaryKeyPressed = false;
             }
 
-            humanInterfaceDeviceService.keyPress(this.primaryKeyEventId);
+            if (!this.isPrimaryKeyPressed) {
+                this.isPrimaryKeyPressed = true;
+                humanInterfaceDeviceService.keyPress(this.primaryKeyEventId);
+            }
         } else if (value == -1f || (this.secondaryKeyEventId != this.primaryKeyEventId && value == 0.25f)) {
-            humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
+            if (this.isPrimaryKeyPressed) {
+                humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
+                this.isPrimaryKeyPressed = false;
+            }
 
-            if (this.tertiaryKeyEventId != this.primaryKeyEventId) {
+            if (this.isTertiaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.tertiaryKeyEventId);
+                this.isTertiaryKeyPressed = false;
             }
 
-            if (this.quaternaryKeyEventId != this.primaryKeyEventId) {
+            if (this.isQuaternaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.quaternaryKeyEventId);
+                this.isQuaternaryKeyPressed = false;
             }
 
-            humanInterfaceDeviceService.keyPress(this.secondaryKeyEventId);
+            if (!this.isSecondaryKeyPressed) {
+                this.isSecondaryKeyPressed = true;
+                humanInterfaceDeviceService.keyPress(this.secondaryKeyEventId);
+            }
         } else if (this.tertiaryKeyEventId != this.primaryKeyEventId && value == 0.5f) {
-            humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
+            if (this.isPrimaryKeyPressed) {
+                humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
+                this.isPrimaryKeyPressed = false;
+            }
 
-            if (this.secondaryKeyEventId != this.primaryKeyEventId) {
+            if (this.isSecondaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.secondaryKeyEventId);
+                this.isSecondaryKeyPressed = false;
             }
 
-            if (this.quaternaryKeyEventId != this.primaryKeyEventId) {
+            if (this.isQuaternaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.quaternaryKeyEventId);
+                this.isQuaternaryKeyPressed = false;
             }
 
-            humanInterfaceDeviceService.keyPress(this.tertiaryKeyEventId);
+            if (!this.isTertiaryKeyPressed) {
+                this.isTertiaryKeyPressed = true;
+                humanInterfaceDeviceService.keyPress(this.tertiaryKeyEventId);
+            }
         } else if (this.quaternaryKeyEventId != this.primaryKeyEventId && value == 0.75f) {
-            humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
-
-            if (this.secondaryKeyEventId != this.secondaryKeyEventId) {
-                humanInterfaceDeviceService.keyRelease(this.quaternaryKeyEventId);
+            if (this.isPrimaryKeyPressed) {
+                humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
+                this.isPrimaryKeyPressed = false;
             }
 
-            if (this.tertiaryKeyEventId != this.primaryKeyEventId) {
-                humanInterfaceDeviceService.keyRelease(this.tertiaryKeyEventId);
-            }
-
-            humanInterfaceDeviceService.keyPress(this.quaternaryKeyEventId);
-        } else {
-            humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
-
-            if (this.secondaryKeyEventId != this.primaryKeyEventId) {
+            if (this.isSecondaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.secondaryKeyEventId);
+                this.isSecondaryKeyPressed = false;
             }
 
-            if (this.tertiaryKeyEventId != this.primaryKeyEventId) {
+            if (this.isTertiaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.tertiaryKeyEventId);
+                this.isTertiaryKeyPressed = false;
             }
 
-            if (this.quaternaryKeyEventId != this.primaryKeyEventId) {
+            if (!this.isQuaternaryKeyPressed) {
+                this.isQuaternaryKeyPressed = true;
+                humanInterfaceDeviceService.keyPress(this.quaternaryKeyEventId);
+            }
+        } else {
+            if (this.isPrimaryKeyPressed) {
+                humanInterfaceDeviceService.keyRelease(this.primaryKeyEventId);
+                this.isPrimaryKeyPressed = false;
+            }
+
+            if (this.isSecondaryKeyPressed) {
+                humanInterfaceDeviceService.keyRelease(this.secondaryKeyEventId);
+                this.isSecondaryKeyPressed = false;
+            }
+
+            if (this.isTertiaryKeyPressed) {
+                humanInterfaceDeviceService.keyRelease(this.tertiaryKeyEventId);
+                this.isTertiaryKeyPressed = false;
+            }
+
+            if (this.isQuaternaryKeyPressed) {
                 humanInterfaceDeviceService.keyRelease(this.quaternaryKeyEventId);
+                this.isQuaternaryKeyPressed = false;
             }
         }
     }
