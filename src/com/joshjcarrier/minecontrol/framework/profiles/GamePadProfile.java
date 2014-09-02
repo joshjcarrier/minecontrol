@@ -78,7 +78,7 @@ public class GamePadProfile {
         if(method == null) {
             method = new NoOpAutomationMethod();
             this.automationMethodHashMap.put(identifier, method);
-            this.identifierToProjectionMap.put(identifier, new BinaryRxAutomationProjection());
+            this.identifierToProjectionMap.put(identifier, new PassThruRxAutomationProjection());
         }
 
         return method;
@@ -87,7 +87,7 @@ public class GamePadProfile {
     public IRxAutomationProjection getAutomationProjection(Component.Identifier identifier) {
         IRxAutomationProjection projection = this.identifierToProjectionMap.get(identifier);
         if(projection == null) {
-            projection = new BinaryRxAutomationProjection();
+            projection = new PassThruRxAutomationProjection();
             this.identifierToProjectionMap.put(identifier, projection);
         }
 
@@ -191,16 +191,16 @@ public class GamePadProfile {
     {
         public static final long serialVersionUID = 8658388604108766926L;
         {
-            put(Component.Identifier.Button._0, new BinaryRxAutomationProjection());
-            put(Component.Identifier.Button._1, new BinaryRxAutomationProjection());
-            put(Component.Identifier.Button._2, new BinaryRxAutomationProjection());
-            put(Component.Identifier.Button._3, new BinaryRxAutomationProjection());
-            put(Component.Identifier.Button._4, new BinaryRxAutomationProjection());
-            put(Component.Identifier.Button._5, new BinaryRxAutomationProjection());
-            put(Component.Identifier.Button._6, new BinaryRxAutomationProjection());
-            put(Component.Identifier.Button._7, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._0, new PassThruRxAutomationProjection());
+            put(Component.Identifier.Button._1, new PassThruRxAutomationProjection());
+            put(Component.Identifier.Button._2, new PassThruRxAutomationProjection());
+            put(Component.Identifier.Button._3, new PassThruRxAutomationProjection());
+            put(Component.Identifier.Button._4, new PassThruRxAutomationProjection());
+            put(Component.Identifier.Button._5, new PassThruRxAutomationProjection());
+            put(Component.Identifier.Button._6, new PassThruRxAutomationProjection());
+            put(Component.Identifier.Button._7, new PassThruRxAutomationProjection());
             put(Component.Identifier.Button._8, new BufferedSwitchRxAutomationProjection());
-            put(Component.Identifier.Button._9, new BinaryRxAutomationProjection());
+            put(Component.Identifier.Button._9, new PassThruRxAutomationProjection());
 
             put(Component.Identifier.Axis.RX, new BinaryRxAutomationProjection());
             put(Component.Identifier.Axis.RY, new BinaryRxAutomationProjection());
