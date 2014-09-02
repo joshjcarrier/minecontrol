@@ -22,7 +22,7 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
             humanInterfaceDeviceService = new Robot();
 
             // this prevents the OS from ignoring events generated too quickly in succession
-            humanInterfaceDeviceService.setAutoDelay(5);
+            humanInterfaceDeviceService.setAutoDelay(10);
         }
         catch (AWTException e)
         {
@@ -56,18 +56,38 @@ public class MouseButtonAutomationMethod implements IAutomationMethod {
         }
     }
 
+    private boolean isPrimaryMousePressed;
+    private boolean isSecondaryMousePressed;
+
+    // TODO optimization in the mouse robot
     public void automate(Float value) {
         if(value == 1f) {
+            if (this.isSecondaryMousePressed) {
+                humanInterfaceDeviceService.mouseRelease(this.secondaryMouseEventId);
+                this.isSecondaryMousePressed = false;
+            }
+
             humanInterfaceDeviceService.mousePress(this.primaryMouseEventId);
+            this.isPrimaryMousePressed = true;
         }
         else if(value == -1f) {
+            if (this.isPrimaryMousePressed) {
+                humanInterfaceDeviceService.mouseRelease(this.primaryMouseEventId);
+                this.isPrimaryMousePressed = false;
+            }
+
             humanInterfaceDeviceService.mousePress(this.secondaryMouseEventId);
+            this.isSecondaryMousePressed = true;
         }
         else {
-            humanInterfaceDeviceService.mouseRelease(this.primaryMouseEventId);
+            if (this.isPrimaryMousePressed) {
+                humanInterfaceDeviceService.mouseRelease(this.primaryMouseEventId);
+                this.isPrimaryMousePressed = false;
+            }
 
-            if(this.secondaryMouseEventId != this.primaryMouseEventId) {
+            if (this.isSecondaryMousePressed) {
                 humanInterfaceDeviceService.mouseRelease(this.secondaryMouseEventId);
+                this.isSecondaryMousePressed = false;
             }
         }
     }
