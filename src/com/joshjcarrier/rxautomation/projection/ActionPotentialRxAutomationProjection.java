@@ -30,12 +30,13 @@ public class ActionPotentialRxAutomationProjection implements IRxAutomationProje
                     @Override
                     public Float call(Float value) {
                         if (value >= 0) {
-                            return value > 0.9 ? 1f : 0f;
+                            return value > 0.7 ? 1f : 0f;
                         } else {
-                            return -value > 0.9 ? -1f : 0f;
+                            return -value > 0.7 ? -1f : 0f;
                         }
                     }
                 })
+                .distinctUntilChanged()
                 .timestamp()
                 .flatMap(new Func1<Timestamped<Float>, Observable<Float>>() {
                     long lastNonZeroMillis = 0L;
@@ -44,7 +45,7 @@ public class ActionPotentialRxAutomationProjection implements IRxAutomationProje
                     public Observable<Float> call(Timestamped<Float> timestampedFloat) {
                         if (timestampedFloat.getValue() != 0) {
                             // past the refractory period, fire again
-                            if (timestampedFloat.getTimestampMillis() - lastNonZeroMillis > 90) {
+                            if (timestampedFloat.getTimestampMillis() - lastNonZeroMillis > 100) {
                                 lastNonZeroMillis = timestampedFloat.getTimestampMillis();
                                 return Observable.from(timestampedFloat.getValue(), 0f);
                             }
