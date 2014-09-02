@@ -43,12 +43,14 @@ public class ActionPotentialRxAutomationProjection implements IRxAutomationProje
 
                     @Override
                     public Observable<Float> call(Timestamped<Float> timestampedFloat) {
-                        if (timestampedFloat.getValue() != 0) {
+                        if (timestampedFloat.getValue() < 0) {
                             // past the refractory period, fire again
                             if (timestampedFloat.getTimestampMillis() - lastNonZeroMillis > 100) {
                                 lastNonZeroMillis = timestampedFloat.getTimestampMillis();
                                 return Observable.from(timestampedFloat.getValue(), 0f);
                             }
+                        } else if(timestampedFloat.getValue() > 0) {
+                            return Observable.just(timestampedFloat.getValue());
                         }
 
                         return Observable.just(0f);
