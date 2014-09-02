@@ -12,6 +12,7 @@
         <pathelement location="bin"/>
         <pathelement location="lib/jinput.jar"/>
         <pathelement location="lib/ini4j.jar"/>
+        <pathelement location="lib/rxjava-core.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
