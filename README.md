@@ -38,6 +38,14 @@ http://github.com/joshjcarrier/minecontrol
 
 To run from Eclipse/IntelliJ you will need the VM arguments "-Djava.library.path=lib"
 
+### CONTRIBUTING
+Tips on adding game profiles, controller profiles, automation methods and more coming soon.
+
+### BUILD STATUS
+[![Build Status](http://ci.joshjcarrier.com:8080/buildStatus/icon?job=Minecontrol 2.x)](http://ci.joshjcarrier.com:8080/job/Minecontrol%202.x/) update.joshjcarrier.com/minecontrol
+
+[![Build Status](http://ci.joshjcarrier.com:8080/buildStatus/icon?job=Minecontrol 2.x BETA)](http://ci.joshjcarrier.com:8080/job/Minecontrol%202.x%20BETA/) beta.joshjcarrier.com/minecontrol
+
 ### FOLLOW
 http://javadocs.wordpress.com/category/java-projects/minecontrol/
 
