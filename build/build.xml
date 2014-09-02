@@ -8,7 +8,7 @@
 	<property name="codesign.dir" location="${drop.dir}/signed" />
 	
 	<target name="version">
-		<input message="Version?" addproperty="Version" defaultvalue="2.0.0"/>
+		<input message="Version?" addproperty="Version" defaultvalue="2.1.0"/>
 		<tstamp>
 		  <format property="BuildDate"
 		          pattern="yyyyMMdd"/>
