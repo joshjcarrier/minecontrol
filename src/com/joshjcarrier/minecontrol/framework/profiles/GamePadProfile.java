@@ -114,23 +114,7 @@ public class GamePadProfile {
         for(Map.Entry<Component.Identifier, IAutomationMethod> identifierAutomationMethodEntry : this.automationMethodHashMap.entrySet()) {
             IAutomationReader automationReader = new AutomationReader(getName(), "bind." + identifierAutomationMethodEntry.getKey().toString(), this.storage);
 
-            // chain of command
-            IAutomationMethod automationMethod = KeyboardAutomationMethod.load(automationReader);
-            if(automationMethod == null) {
-                automationMethod = MouseButtonAutomationMethod.load(automationReader);
-            }
-
-            if(automationMethod == null) {
-                automationMethod = MouseWheelAutomationMethod.load(automationReader);
-            }
-
-            if(automationMethod == null) {
-                automationMethod = SensitivityAppAutomationMethod.load(automationReader);
-            }
-
-            if(automationMethod == null) {
-                automationMethod = NoOpAutomationMethod.load(automationReader);
-            }
+            IAutomationMethod automationMethod = AutomationMethodFactory.load(automationReader);
 
             if(automationMethod != null) {
                 this.automationMethodHashMap.put(identifierAutomationMethodEntry.getKey(), automationMethod);
@@ -231,11 +215,15 @@ public class GamePadProfile {
             put(Component.Identifier.Axis.RX, mouseMoveAutomationRunner.getXAutomationMethod());
             put(Component.Identifier.Axis.RY, mouseMoveAutomationRunner.getYAutomationMethod());
 
-            put(Component.Identifier.Axis.X, new KeyboardAutomationMethod(KeyEvent.VK_D, KeyEvent.VK_A));
-            put(Component.Identifier.Axis.Y, new KeyboardAutomationMethod(KeyEvent.VK_S, KeyEvent.VK_W));
-            put(Component.Identifier.Axis.Z, new MouseButtonAutomationMethod(KeyEvent.BUTTON3_MASK, KeyEvent.BUTTON1_MASK));
+            put(Component.Identifier.Axis.X, new DiscreteDelegateAutomationMethod(new KeyboardAutomationMethod(KeyEvent.VK_D), new KeyboardAutomationMethod(KeyEvent.VK_A)));
+            put(Component.Identifier.Axis.Y, new DiscreteDelegateAutomationMethod(new KeyboardAutomationMethod(KeyEvent.VK_S), new KeyboardAutomationMethod(KeyEvent.VK_W)));
+            put(Component.Identifier.Axis.Z, new DiscreteDelegateAutomationMethod(new MouseButtonAutomationMethod(KeyEvent.BUTTON3_MASK), new MouseButtonAutomationMethod(KeyEvent.BUTTON1_MASK)));
 
-            put(Component.Identifier.Axis.POV, new KeyboardAutomationMethod(KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S));
+            put(Component.Identifier.Axis.POV, new DiscreteDelegateAutomationMethod(
+                    new KeyboardAutomationMethod(KeyEvent.VK_A),
+                    new KeyboardAutomationMethod(KeyEvent.VK_W),
+                    new KeyboardAutomationMethod(KeyEvent.VK_D),
+                    new KeyboardAutomationMethod(KeyEvent.VK_S)));
         }
     };
 }
