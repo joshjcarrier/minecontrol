@@ -44,7 +44,7 @@ public class GamePadProfileView extends JDialog
 	{
 		setTitle(gamePadProfileController.getTitle());
 		
-		ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX360));
+		ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX_ONE));
     	this.setIconImage(icon.getImage());    
     	
     	Border emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);

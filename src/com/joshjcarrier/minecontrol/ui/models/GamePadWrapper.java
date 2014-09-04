@@ -35,6 +35,10 @@ public class GamePadWrapper
 	{
 		if (this.getName().toLowerCase().contains("xbox"))
 		{
+            if (this.getName().toLowerCase().contains("one")) {
+                return this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX_ONE);
+            }
+
 			return this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX360);
 		}
 		

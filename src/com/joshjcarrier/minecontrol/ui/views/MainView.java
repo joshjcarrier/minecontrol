@@ -30,7 +30,7 @@ public class MainView extends JFrame
 	{
 		this.setTitle(AppInfo.ProductName);
 		
-		ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX360));
+		ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(ContentResources.INPUTDEVICE_XBOX_ONE));
     	this.setIconImage(icon.getImage());    
     	
 		JPanel contentPanel = createContentPanel(mainController);
