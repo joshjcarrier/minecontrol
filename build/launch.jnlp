@@ -6,13 +6,13 @@
   <title>Minecontrol for Minecraft</title>
   <vendor>Josh Carrier</vendor>
   <homepage href="http://redirect.joshjcarrier.com?r=minecontrol" />
-  <description>Allows gamepads such as the Microsoft Xbox 360 controller to be used with Minecraft.</description>
+  <description>Allows gamepads such as the Microsoft Xbox One/Xbox 360 controller to be used with Minecraft.</description>
   <offline-allowed/>
   <shortcut online="true">
       <desktop/>
       <menu submenu="Minecontrol for Minecraft"/>
   </shortcut>
-  <icon href="http://@{channel}.joshjcarrier.com/minecontrol/icon.png"/>
+  <icon href="icon.png"/>
 </information>
 <offline-allowed/>
 <security>
