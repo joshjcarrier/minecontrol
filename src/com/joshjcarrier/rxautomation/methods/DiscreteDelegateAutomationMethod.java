@@ -67,6 +67,22 @@ public class DiscreteDelegateAutomationMethod implements IAutomationMethod {
         }
     }
 
+    public IAutomationMethod getPrimaryAutomationMethod() {
+        return this.primaryAutomationMethod;
+    }
+
+    public IAutomationMethod getSecondaryAutomationMethod() {
+        return this.secondaryAutomationMethod;
+    }
+
+    public IAutomationMethod getTertiaryAutomationMethod() {
+        return this.tertiaryAutomationMethod;
+    }
+
+    public IAutomationMethod getQuaternaryAutomationMethod() {
+        return this.quaternaryAutomationMethod;
+    }
+
     @Override
     public void automate(Float value) {
         if (value == 1f) {

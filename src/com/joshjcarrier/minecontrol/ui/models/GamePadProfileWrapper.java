@@ -3,6 +3,7 @@ package com.joshjcarrier.minecontrol.ui.models;
 import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
 import com.joshjcarrier.minecontrol.framework.profiles.GamePadProfile;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
+import com.joshjcarrier.rxautomation.methods.IAutomationMethod;
 import com.joshjcarrier.rxautomation.projection.BinaryRxAutomationProjection;
 import com.joshjcarrier.rxautomation.projection.BufferedSwitchRxAutomationProjection;
 import net.java.games.input.Component;
@@ -43,6 +44,8 @@ public class GamePadProfileWrapper {
                 put(Component.Identifier.Button._7, ContentResources.BUTTON_XBOX360_START);
                 put(Component.Identifier.Button._8, ContentResources.BUTTON_XBOX360_LEFTSTICK);
                 put(Component.Identifier.Button._9, ContentResources.BUTTON_XBOX360_RIGHTSTICK);
+
+                put(Component.Identifier.Axis.POV, ContentResources.BUTTON_XBOX360_DPAD);
             }
         };
     }
@@ -53,6 +56,11 @@ public class GamePadProfileWrapper {
 
     public AutomationBindingWrapper getAutomationBinding(Component.Identifier identifier) {
         return new AutomationBindingWrapper(new AutomationBinding(this.gamePadProfile.getAutomationMethod(identifier)));
+    }
+
+    @Deprecated // TODO shouldn't poke hole through wrapper
+    public IAutomationMethod getAutomationMethodBadBadBad(Component.Identifier identifier) {
+        return this.gamePadProfile.getAutomationMethod(identifier);
     }
 
     @Deprecated // replace with info from projection strategy

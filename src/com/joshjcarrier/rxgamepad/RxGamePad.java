@@ -33,6 +33,8 @@ public class RxGamePad {
                 put(Component.Identifier.Button._7, "Start");
                 put(Component.Identifier.Button._8, "Left joystick press");
                 put(Component.Identifier.Button._9, "Right joystick press");
+
+                put(Component.Identifier.Axis.POV, "D-Pad");
             }
         };
     }

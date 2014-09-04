@@ -19,6 +19,10 @@ public class AutomationBindingsControl extends JPanel {
     private Action1<Boolean> projectionChangedAction;
 
     public AutomationBindingsControl(boolean isToggled, AutomationBindingWrapper selectedBinding, Collection<AutomationBindingWrapper> bindings) {
+        this(isToggled, selectedBinding, bindings, true);
+    }
+
+    public AutomationBindingsControl(boolean isToggled, AutomationBindingWrapper selectedBinding, Collection<AutomationBindingWrapper> bindings, boolean isToggleEnabled) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints gridConstraints = new GridBagConstraints();
 
@@ -60,6 +64,7 @@ public class AutomationBindingsControl extends JPanel {
         });
         this.keyToggleModeCheckBox.setText("Toggle mode");
         this.keyToggleModeCheckBox.setToolTipText("When selected, the mapped key will continue to be held until the button is pressed again.");
+        this.keyToggleModeCheckBox.setEnabled(isToggleEnabled);
         this.add(this.keyToggleModeCheckBox, gridConstraints);
     }
 

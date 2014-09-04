@@ -220,10 +220,10 @@ public class GamePadProfile {
             put(Component.Identifier.Axis.Z, new DiscreteDelegateAutomationMethod(new MouseButtonAutomationMethod(KeyEvent.BUTTON3_MASK), new MouseButtonAutomationMethod(KeyEvent.BUTTON1_MASK)));
 
             put(Component.Identifier.Axis.POV, new DiscreteDelegateAutomationMethod(
-                    new KeyboardAutomationMethod(KeyEvent.VK_A),
-                    new KeyboardAutomationMethod(KeyEvent.VK_W),
-                    new KeyboardAutomationMethod(KeyEvent.VK_D),
-                    new KeyboardAutomationMethod(KeyEvent.VK_S)));
+                    new KeyboardAutomationMethod(KeyEvent.VK_TAB),
+                    new KeyboardAutomationMethod(KeyEvent.VK_F5),
+                    new KeyboardAutomationMethod(KeyEvent.VK_F3),
+                    new KeyboardAutomationMethod(KeyEvent.VK_F2)));
         }
     };
 }

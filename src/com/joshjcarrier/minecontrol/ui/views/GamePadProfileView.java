@@ -24,6 +24,7 @@ import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.joshjcarrier.minecontrol.framework.input.AutomationBinding;
 import com.joshjcarrier.minecontrol.ui.ContentResources;
 import com.joshjcarrier.minecontrol.ui.actions.SimpleAction;
 import com.joshjcarrier.minecontrol.ui.controllers.GamePadProfileController;
@@ -32,6 +33,8 @@ import com.joshjcarrier.minecontrol.ui.controls.ButtonDescriptorPanel;
 import com.joshjcarrier.minecontrol.ui.models.AutomationBindingWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GamePadProfileWrapper;
 import com.joshjcarrier.minecontrol.ui.models.MouseProfileWrapper;
+import com.joshjcarrier.rxautomation.methods.DiscreteDelegateAutomationMethod;
+import com.joshjcarrier.rxautomation.methods.IAutomationMethod;
 import net.java.games.input.Component;
 import rx.util.functions.Action0;
 import rx.util.functions.Action1;
@@ -140,6 +143,150 @@ public class GamePadProfileView extends JDialog
 
         for (final Map.Entry<Component.Identifier, String> gamePadButtonLabel : gamePadLabels)
 		{
+            // TODO switching on type is bad! non contractual!
+            IAutomationMethod automationMethod = gamePadProfile.getAutomationMethodBadBadBad(gamePadButtonLabel.getKey());
+            if(automationMethod instanceof DiscreteDelegateAutomationMethod) {
+                DiscreteDelegateAutomationMethod badBadBadAutomationMethod = (DiscreteDelegateAutomationMethod)automationMethod;
+
+                AutomationBindingWrapper primaryAutomationBindingWrapper = new AutomationBindingWrapper(new AutomationBinding(badBadBadAutomationMethod.getPrimaryAutomationMethod()));
+                gridConstraints.gridy += 1;
+                gridConstraints.gridx = 0;
+                panel.add(new ButtonDescriptorPanel(gamePadButtonLabel.getValue() + " left", gamePadButtonIcons.get(gamePadButtonLabel.getKey())), gridConstraints);
+
+                final AutomationBindingsControl primaryAutomationBindingsControl = new AutomationBindingsControl(gamePadProfile.isBufferAutomationProjection(gamePadButtonLabel.getKey()), primaryAutomationBindingWrapper, automationBindingWrappers, false);
+                primaryAutomationBindingsControl.onBindingChanged(new Action1<AutomationBindingWrapper>() {
+                    @Override
+                    public void call(AutomationBindingWrapper selectedAutomationBinding) {
+                        DiscreteDelegateAutomationMethod badAutomationMethod = (DiscreteDelegateAutomationMethod)gamePadProfile.getAutomationMethodBadBadBad(gamePadButtonLabel.getKey());
+
+                        gamePadProfile.setAutomationBinding(gamePadButtonLabel.getKey(), new AutomationBindingWrapper(
+                                new AutomationBinding(
+                                        new DiscreteDelegateAutomationMethod(
+                                                selectedAutomationBinding.getAutomationBinding().getAutomationMethod(),
+                                                badAutomationMethod.getSecondaryAutomationMethod(),
+                                                badAutomationMethod.getTertiaryAutomationMethod(),
+                                                badAutomationMethod.getQuaternaryAutomationMethod()))));
+                    }
+                });
+                primaryAutomationBindingsControl.onProjectionChanged(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean isToggled) {
+                        if (isToggled) {
+                            gamePadProfile.setBufferAutomationProjection(gamePadButtonLabel.getKey());
+                        } else {
+                            gamePadProfile.setThresholdAutomationProjection(gamePadButtonLabel.getKey());
+                        }
+                    }
+                });
+
+                gridConstraints.gridx = 1;
+                panel.add(primaryAutomationBindingsControl, gridConstraints);
+
+                AutomationBindingWrapper secondaryAutomationBindingWrapper = new AutomationBindingWrapper(new AutomationBinding(badBadBadAutomationMethod.getSecondaryAutomationMethod()));
+                gridConstraints.gridy += 1;
+                gridConstraints.gridx = 0;
+                panel.add(new ButtonDescriptorPanel(gamePadButtonLabel.getValue() + " up", gamePadButtonIcons.get(gamePadButtonLabel.getKey())), gridConstraints);
+
+                final AutomationBindingsControl secondaryAutomationBindingsControl = new AutomationBindingsControl(gamePadProfile.isBufferAutomationProjection(gamePadButtonLabel.getKey()), secondaryAutomationBindingWrapper, automationBindingWrappers, false);
+                secondaryAutomationBindingsControl.onBindingChanged(new Action1<AutomationBindingWrapper>() {
+                    @Override
+                    public void call(AutomationBindingWrapper selectedAutomationBinding) {
+                        DiscreteDelegateAutomationMethod badAutomationMethod = (DiscreteDelegateAutomationMethod)gamePadProfile.getAutomationMethodBadBadBad(gamePadButtonLabel.getKey());
+
+                        gamePadProfile.setAutomationBinding(gamePadButtonLabel.getKey(), new AutomationBindingWrapper(
+                                new AutomationBinding(
+                                        new DiscreteDelegateAutomationMethod(
+                                                badAutomationMethod.getPrimaryAutomationMethod(),
+                                                selectedAutomationBinding.getAutomationBinding().getAutomationMethod(),
+                                                badAutomationMethod.getTertiaryAutomationMethod(),
+                                                badAutomationMethod.getQuaternaryAutomationMethod()))));
+                    }
+                });
+                secondaryAutomationBindingsControl.onProjectionChanged(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean isToggled) {
+                        if (isToggled) {
+                            gamePadProfile.setBufferAutomationProjection(gamePadButtonLabel.getKey());
+                        } else {
+                            gamePadProfile.setThresholdAutomationProjection(gamePadButtonLabel.getKey());
+                        }
+                    }
+                });
+
+                gridConstraints.gridx = 1;
+                panel.add(secondaryAutomationBindingsControl, gridConstraints);
+
+                AutomationBindingWrapper tertiaryAutomationBindingWrapper = new AutomationBindingWrapper(new AutomationBinding(badBadBadAutomationMethod.getTertiaryAutomationMethod()));
+                gridConstraints.gridy += 1;
+                gridConstraints.gridx = 0;
+                panel.add(new ButtonDescriptorPanel(gamePadButtonLabel.getValue() + " right", gamePadButtonIcons.get(gamePadButtonLabel.getKey())), gridConstraints);
+
+                final AutomationBindingsControl tertiaryAutomationBindingsControl = new AutomationBindingsControl(gamePadProfile.isBufferAutomationProjection(gamePadButtonLabel.getKey()), tertiaryAutomationBindingWrapper, automationBindingWrappers, false);
+                tertiaryAutomationBindingsControl.onBindingChanged(new Action1<AutomationBindingWrapper>() {
+                    @Override
+                    public void call(AutomationBindingWrapper selectedAutomationBinding) {
+                        DiscreteDelegateAutomationMethod badAutomationMethod = (DiscreteDelegateAutomationMethod)gamePadProfile.getAutomationMethodBadBadBad(gamePadButtonLabel.getKey());
+
+                        gamePadProfile.setAutomationBinding(gamePadButtonLabel.getKey(), new AutomationBindingWrapper(
+                                new AutomationBinding(
+                                        new DiscreteDelegateAutomationMethod(
+                                                badAutomationMethod.getPrimaryAutomationMethod(),
+                                                badAutomationMethod.getSecondaryAutomationMethod(),
+                                                selectedAutomationBinding.getAutomationBinding().getAutomationMethod(),
+                                                badAutomationMethod.getQuaternaryAutomationMethod()))));
+                    }
+                });
+                tertiaryAutomationBindingsControl.onProjectionChanged(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean isToggled) {
+                        if (isToggled) {
+                            gamePadProfile.setBufferAutomationProjection(gamePadButtonLabel.getKey());
+                        } else {
+                            gamePadProfile.setThresholdAutomationProjection(gamePadButtonLabel.getKey());
+                        }
+                    }
+                });
+
+                gridConstraints.gridx = 1;
+                panel.add(tertiaryAutomationBindingsControl, gridConstraints);
+
+                AutomationBindingWrapper quaternaryAutomationBindingWrapper = new AutomationBindingWrapper(new AutomationBinding(badBadBadAutomationMethod.getQuaternaryAutomationMethod()));
+                gridConstraints.gridy += 1;
+                gridConstraints.gridx = 0;
+                panel.add(new ButtonDescriptorPanel(gamePadButtonLabel.getValue() + " down", gamePadButtonIcons.get(gamePadButtonLabel.getKey())), gridConstraints);
+
+                final AutomationBindingsControl quaternaryAutomationBindingsControl = new AutomationBindingsControl(gamePadProfile.isBufferAutomationProjection(gamePadButtonLabel.getKey()), quaternaryAutomationBindingWrapper, automationBindingWrappers, false);
+                quaternaryAutomationBindingsControl.onBindingChanged(new Action1<AutomationBindingWrapper>() {
+                    @Override
+                    public void call(AutomationBindingWrapper selectedAutomationBinding) {
+                        DiscreteDelegateAutomationMethod badAutomationMethod = (DiscreteDelegateAutomationMethod)gamePadProfile.getAutomationMethodBadBadBad(gamePadButtonLabel.getKey());
+
+                        gamePadProfile.setAutomationBinding(gamePadButtonLabel.getKey(), new AutomationBindingWrapper(
+                                new AutomationBinding(
+                                        new DiscreteDelegateAutomationMethod(
+                                                badAutomationMethod.getPrimaryAutomationMethod(),
+                                                badAutomationMethod.getSecondaryAutomationMethod(),
+                                                badAutomationMethod.getTertiaryAutomationMethod(),
+                                                selectedAutomationBinding.getAutomationBinding().getAutomationMethod()))));
+                    }
+                });
+                quaternaryAutomationBindingsControl.onProjectionChanged(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean isToggled) {
+                        if (isToggled) {
+                            gamePadProfile.setBufferAutomationProjection(gamePadButtonLabel.getKey());
+                        } else {
+                            gamePadProfile.setThresholdAutomationProjection(gamePadButtonLabel.getKey());
+                        }
+                    }
+                });
+
+                gridConstraints.gridx = 1;
+                panel.add(quaternaryAutomationBindingsControl, gridConstraints);
+
+                continue;
+            }
+
 			gridConstraints.gridy += 1;
 			
 			gridConstraints.gridx = 0;
