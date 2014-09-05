@@ -32,6 +32,7 @@
             <manifest>
                 <attribute name="Main-Class" value="com.joshjcarrier.minecontrol.App"/>
                 <attribute name="Class-Path" value=". jinput.jar"/>
+                <attribute name="Permissions" value="all-permissions"/>
             </manifest>
             <fileset dir="${bin.dir}"/>
         </jar>
