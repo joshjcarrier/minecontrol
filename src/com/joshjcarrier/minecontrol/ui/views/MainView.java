@@ -5,6 +5,7 @@ import com.joshjcarrier.minecontrol.ui.ContentResources;
 import com.joshjcarrier.minecontrol.ui.controllers.MainController;
 import com.joshjcarrier.minecontrol.ui.controls.renderers.GamePadWrapperListCellRenderer;
 import com.joshjcarrier.minecontrol.ui.controls.renderers.GameTitleWrapperListCellRenderer;
+import com.joshjcarrier.minecontrol.ui.models.GamePadProfileWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GamePadWrapper;
 import com.joshjcarrier.minecontrol.ui.models.GameTitleWrapper;
 
@@ -147,8 +148,10 @@ public class MainView extends JFrame
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gridConstraints = new GridBagConstraints();
 		gridConstraints.fill = GridBagConstraints.HORIZONTAL;
-		
-		JComboBox profilesComboBox = new JComboBox(mainController.getActiveGamePad().getProfiles().toArray());
+
+
+		GamePadWrapper activeGamePad = mainController.getActiveGamePad();
+		JComboBox profilesComboBox = new JComboBox(activeGamePad == null ? new GamePadProfileWrapper[0] : activeGamePad.getProfiles().toArray());
 		gridConstraints.gridx = 0;
 		gridConstraints.weightx = 1;
 		gridConstraints.insets = new Insets(0, 0, 0, 10);

@@ -127,6 +127,17 @@ Thumbs.db
 # Folder config file
 Desktop.ini
 
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
 
 
 drop/
